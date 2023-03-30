@@ -64,7 +64,7 @@ const Login = () => {
             <label className="form-check-label" for="exampleCheck1">Remember Me</label>
           </div>
           <div className="center-btn">
-          <button type="submit" onClick={handleSubmit}  className="btn login-btn text-center px-5">Submit</button>
+          <button type="submit" onClick={handleSubmit}  className="login-btn text-center px-5">Submit</button>
           </div>
          
         </form>
