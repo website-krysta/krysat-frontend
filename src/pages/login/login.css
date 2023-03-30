@@ -33,8 +33,13 @@
     width: 300px;
     
 }
-.center-btn .login-btn{
+.center-btn .login1-btn{
     background-color: #FD863E;
+    color: aliceblue;
+    font-weight: 800;
+}
+.center-btn .login1-btn:hover{
+    background-color: #FD863E !important;
     color: aliceblue;
     font-weight: 800;
 }
