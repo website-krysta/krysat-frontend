@@ -16,7 +16,7 @@ const Datatable = () => {
   const getApidata = async ()=>{
      try{
       
-      let res = await axios.get('http://127.0.0.1:8000/api/user/');
+      let res = await axios.get('http://43.205.253.201:8012/api/user/');
       setmydata(res.data)
       console.log(mydata )
      }
