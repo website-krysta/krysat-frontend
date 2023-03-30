@@ -29,7 +29,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try{
-      let res = await axios.post('http://43.205.253.201:8013/api/user/',userData );
+      let res = await axios.post('http://43.205.253.201:8013/api/user',userData );
       navigate('/users')
     }
     catch(error){
