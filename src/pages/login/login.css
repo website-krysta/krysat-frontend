@@ -38,3 +38,8 @@
     color: aliceblue;
     font-weight: 800;
 }
+.center-btn .login-btn:hover{
+    background-color: #FD863E;
+    color: aliceblue;
+    font-weight: 800;
+}
