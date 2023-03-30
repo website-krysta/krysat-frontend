@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className={darkMode ? "app dark" : "app"}> 
-      <BrowserRouter>
+      <BrowserRouter basename='krystafrontend'>
         <Routes>
           <Route path="/">
             <Route index element={<Login />} />
