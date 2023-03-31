@@ -42,8 +42,8 @@ const Single = () => {
       <div className="singleContainer">
         <Navbar />
         <div className="top">
-          <div className="left d-flex justify-content-end">
-          <Link to="/users" className="link">
+          <div className="left">
+          <Link to="/users" className="link editButton">
               <button className="btn btn-warning">
               Back
               </button>
