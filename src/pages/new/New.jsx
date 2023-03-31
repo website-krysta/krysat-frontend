@@ -29,7 +29,7 @@ const handleChange = (event) => {
 const handlAdduser = async (event) => {
   event.preventDefault();
   try{
-    let res = await axios.post('http://127.0.0.1:8000/api/useradd/',userData );
+    let res = await axios.post('https://saimythribuilders.com/api/useradd/',userData );
     navigate('/users')
   }
   catch(error){

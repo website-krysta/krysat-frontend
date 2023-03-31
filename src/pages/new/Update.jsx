@@ -30,7 +30,7 @@ const getUserdata = async ()=>{
     let id = 13;
     try{
      debugger
-     let res = await axios.get(`http://127.0.0.1:8000/api/userget/${userId}/`);
+     let res = await axios.get(`https://saimythribuilders.com/api/userget/${userId}/`);
      setUserdata(res.data)
     
     }
@@ -43,7 +43,7 @@ const handlUpdateuser = async (event) => {
     event.preventDefault();
         try{
             debugger
-            let res = await axios.post(`http://127.0.0.1:8000/api/userupdate/${userId}/`,userData );
+            let res = await axios.post(`https://saimythribuilders.com/api/userupdate/${userId}/`,userData );
             navigate('/users')
         }
         catch(error){

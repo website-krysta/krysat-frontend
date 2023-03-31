@@ -27,7 +27,7 @@ const Datatable = () => {
   const handleuserDelete =  async(id) => {
    
      try{
-      await axios.delete(`http://127.0.0.1:8000/api/deleteuser/${id}/`)
+      await axios.delete(`https://saimythribuilders.com/api/deleteuser/${id}/`)
      }
      catch(error){
       console.log(error);
