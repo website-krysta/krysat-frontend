@@ -44,9 +44,10 @@ const Datatable = () => {
 
 useEffect(() =>{
   getApidata();
+  handleuserDelete();
   
 },{});
-debugger
+
 const userData = JSON.parse(sessionStorage.getItem('userData'));
 let Role = 'user'
   return (
