@@ -42,7 +42,7 @@ const Single = () => {
       <div className="singleContainer">
         <Navbar />
         <div className="top">
-          <div className="left">
+          <div className="left d-flex justify-content-end">
           <Link to="/users" className="link">
               <button className="btn btn-warning">
               Back
