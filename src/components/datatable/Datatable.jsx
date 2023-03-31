@@ -28,7 +28,7 @@ const Datatable = () => {
    
      try{
       await axios.delete(`https://saimythribuilders.com/api/deleteuser/${id}/`)
-      navigate('/users')
+      navigate('/')
      }
      catch(error){
       console.log(error);
