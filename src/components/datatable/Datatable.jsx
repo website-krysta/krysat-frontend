@@ -97,7 +97,7 @@ let Role = 'user'
                 <td>
                   <button
                    onClick={() => handleuserDelete(post.UserID)}
-                    className='btn btn-danger'>Delet
+                    className='btn btn-danger'>Delete
                   </button>
                 </td>
               </tr>
