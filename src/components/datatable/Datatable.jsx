@@ -28,7 +28,9 @@ const Datatable = () => {
    
      try{
       await axios.delete(`https://saimythribuilders.com/api/deleteuser/${id}/`)
-              navigate('/users')
+      const updateuser = mydata.filter(user => user.UserID !== id);
+      setmydata(updateuser);
+              
      }
      catch(error){
       console.log(error);
