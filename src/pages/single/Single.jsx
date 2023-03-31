@@ -22,7 +22,7 @@ const Single = () => {
     let id = 13;
     try{
      debugger
-     let res = await axios.get(`http://127.0.0.1:8000/api/userget/${userId}/`);
+     let res = await axios.get(`https://saimythribuilders.com/api/userget/${userId}/`);
      setUserdata(res.data)
     
     }

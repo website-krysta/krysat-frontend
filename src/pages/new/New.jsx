@@ -80,7 +80,7 @@ useEffect (()=>{
                 <input type="text"  placeholder="Confirm Password"/>
                 </div>
                 <div className="col-6 pt-5">
-                <button onClick={handlAdduser} >Send</button>
+                <button onClick={handlAdduser} >Add user</button>
                 </div>
               </div>
             </form>
