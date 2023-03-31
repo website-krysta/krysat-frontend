@@ -73,11 +73,11 @@ useEffect (()=>{
                 </div>
                 <div className="formInput col-6 pt-5">
                 <label for="role">Password</label>
-                <input type="text" name="Password" value={userData.Password} onChange={handleChange} placeholder="password"/>
+                <input type="password" name="Password" value={userData.Password} onChange={handleChange} placeholder="password"/>
                 </div>
                 <div className="formInput col-6 pt-5">
                 <label for="role">Confirm Password </label>
-                <input type="text"  placeholder="Confirm Password"/>
+                <input type="password"  placeholder="Confirm Password"/>
                 </div>
                 <div className="col-6 pt-5">
                 <button onClick={handlAdduser} >Add user</button>

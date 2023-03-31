@@ -67,7 +67,7 @@ let Role = 'user'
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">UserID</th>
+                {/* <th scope="col">UserID</th> */}
                 <th scope="col">EmailID</th>
                 <th scope="col">Password</th>
                 <th scope="col">Role</th>
@@ -78,7 +78,7 @@ let Role = 'user'
                  return (
             <tbody>
               <tr key={post.UserID}>
-                <td>{post.UserID}</td>
+                {/* <td>{post.UserID}</td> */}
                 <td>{post.EmailID}</td>
                 <td>{post.Password}</td>
                 <td>{post.Role}</td>
