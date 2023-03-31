@@ -48,13 +48,13 @@ useEffect(() =>{
 },{});
 debugger
 const userData = JSON.parse(sessionStorage.getItem('userData'));
-
+let Role = 'user'
   return (
     <div className="datatable">
       <div className="datatableTitle">
         All Users
       
-        {userData.Role==="admin" ?  <Link to="/users/new" className="link">
+        {Role === "user" ?  <Link to="/users/new" className="link">
         Add New User
         </Link> : ''}
         
