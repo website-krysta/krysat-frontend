@@ -46,16 +46,21 @@ useEffect(() =>{
   getApidata();
   
 },{});
-
-
+debugger
+const userData = JSON.parse(sessionStorage.getItem('userData'));
 
   return (
     <div className="datatable">
       <div className="datatableTitle">
         All Users
-        <Link to="/users/new" className="link">
+      
+        {userData.Role==="admin" ?  <Link to="/users/new" className="link">
         Add New User
-        </Link>
+        </Link> : ''}
+        
+        {/* <Link to="/users/new" className="link">
+        Add New User
+        </Link> */}
       </div>
      
  
