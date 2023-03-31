@@ -53,14 +53,8 @@ let Role = 'user'
     <div className="datatable">
       <div className="datatableTitle">
         All Users
-      
-        {Role === "user" ?  <Link to="/users/new" className="link">
-        Add New User
-        </Link> : ''}
-        
-        {/* <Link to="/users/new" className="link">
-        Add New User
-        </Link> */}
+        {Role === "user"  ? <Link to="/users/new" className="link">Add New User</Link> : <Link to="/users/new" className="link"> New User</Link> }
+       
       </div>
      
  
