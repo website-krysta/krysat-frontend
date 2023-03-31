@@ -33,7 +33,7 @@ const handlAdduser = async (event) => {
     navigate('/users')
   }
   catch(error){
-      alert('Add fail')
+      alert('User adding fail please try agian !')
   }
 }
 

@@ -33,7 +33,7 @@ const Login = () => {
       navigate('/users')
     }
     catch(error){
-        alert('loging fail')
+        alert('Please Enter Valid Credentials')
     }
     
   }
