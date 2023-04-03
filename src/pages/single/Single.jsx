@@ -1,9 +1,9 @@
 import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/Chart";
-import List from "../../components/table/Table";
-import { useNavigate,useParams,Link } from 'react-router-dom';
+// import Chart from "../../components/chart/Chart";
+// import List from "../../components/table/Table";
+import {useParams,Link } from 'react-router-dom';
 import { useState,useEffect } from "react";
 import axios from "axios";
 
@@ -19,7 +19,7 @@ const Single = () => {
     UserStatus: true
   });
   const getUserdata = async ()=>{
-    let id = 13;
+    
     try{
      debugger
      let res = await axios.get(`https://saimythribuilders.com/api/userget/${userId}/`);
@@ -32,7 +32,7 @@ const Single = () => {
  }
 
  useEffect (()=>{
-  getUserdata()
+  getUserdata();
   
 },{})
 
