@@ -9,7 +9,7 @@ import {useNavigate } from 'react-router-dom';
 
 const Rawmaterialform = () => {
   const navigate = useNavigate();
-  
+  const [differenceQty, setDifferenceQty] = useState("");
   const [materialinfo, setmaterialinfo] = useState({
         
     Id: 3,
@@ -26,33 +26,7 @@ const Rawmaterialform = () => {
     MaterialID: '',
     VendorCode: ''
     
-        // Id: 5,
-        // TransactionDate: "2023-04-07T17:35:51Z",
-        // BatchNo: "1112",
-        // OrderedQuantity: "3000",
-        // ReceivedQuantity: "3000",
-        // AmountPaid: "9000",
-        // DamagedQty: null,
-        // DamagedResion: null,
-        // LossofAmount: null,
-        // AddedTimestamp: "2023-04-07T17:35:51Z",
-        // UpdatedTimestamp: "2023-04-07T17:35:51Z",
-        // MaterialID: 12,
-        // VendorCode: 99854
         
-        //   Id: 7,
-        //   TransactionDate: '2023-04-07T17:35:51Z',
-        //   BatchNo: '1116',
-        //   OrderedQuantity: '4500',
-        //   ReceivedQuantity: '4500',
-        //   AmountPaid: '399998',
-        //   DamagedQty: null,
-        //   DamagedResion: null,
-        //   LossofAmount: null,
-        //   AddedTimestamp: '2023-04-07T17:35:51Z',
-        //   UpdatedTimestamp: '2023-04-07T17:35:51Z',
-        //   MaterialID: '123456',
-        //   VendorCode: '99854'
       
     
 })
@@ -61,6 +35,7 @@ const handleChange = (event) => {
     ...materialinfo,
     [event.target.name]: event.target.value
   });
+  calculateDifference();
 };
 
 const handlAddmaterial = async (event) => {
@@ -77,6 +52,11 @@ const handlAddmaterial = async (event) => {
 }
 
 
+// ------------ calculate difference-----------------
+const calculateDifference = () => {
+    const difference = parseFloat(materialinfo.OrderedQuantity) - parseFloat(materialinfo.ReceivedQuantity);
+    setDifferenceQty(difference.toFixed(2));
+  };
 
 // -----------------------------
 const [options, setOptions] = useState([]);
@@ -165,7 +145,7 @@ useEffect (()=>{
                       </div>
                       <div className="formInput col-8">
                           <label >Damaged Qty </label>
-                          <input type="number" name="DamagedQty" value={materialinfo.DamagedQty} onChange={handleChange} placeholder="damaged qty" />
+                          <input type="number" name="DamagedQty" value={differenceQty} onChange={handleChange} placeholder="damaged qty" />
                       </div>
                       <div className="formInput col-8">
                           <label >Damaged Reason </label>

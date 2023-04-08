@@ -54,6 +54,7 @@ const handladdvendor = async (event) => {
     let res = await axios.post('https://saimythribuilders.com/api/vendor/add/',vendorData );
     navigate('/products/new')
     handleClose()
+    alert("Sucessfully Created")
   }
   catch(error){
       alert('User adding fail please try agian !')

@@ -56,8 +56,9 @@ export default function Newrawmeterial() {
     debugger
     try{
       let res = await axios.post('https://saimythribuilders.com/api/meterial/add/',rameterialData );
-      alert("sucessfully submited")
+      navigate('/products/new')
       handleClose()
+      alert("Sucessfully Created")
       
     }
     catch(error){
