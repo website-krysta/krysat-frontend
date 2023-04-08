@@ -42,7 +42,7 @@ const [options, setOptions] = useState([]);
 const getmeterialdata = async ()=>{
    try{
     
-    let res = await axios.get('http://127.0.0.1:8000/api/meterial/lis/');
+    let res = await axios.get('https://saimythribuilders.com/api/meterial/lis/');
     setOptions(res.data)
     
    }
@@ -56,7 +56,7 @@ const [voptions, setvOptions] = useState([]);
 const getvendordata = async ()=>{
    try{
     
-    let res = await axios.get('http://127.0.0.1:8000/api/vendor/list/');
+    let res = await axios.get('https://saimythribuilders.com/api/vendor/list/');
     setvOptions(res.data)
     
    }

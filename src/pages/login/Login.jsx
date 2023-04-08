@@ -30,7 +30,7 @@ const Login = () => {
     event.preventDefault();
     try{
       debugger;
-      let res = await axios.post('http://127.0.0.1:8000/api/user/',userData );
+      let res = await axios.post('https://saimythribuilders.com/api/user/',userData );
       // Store user data in session storage
         sessionStorage.setItem('userData', JSON.stringify(res.data));
       navigate('/users')

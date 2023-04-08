@@ -67,7 +67,7 @@ const handlAddmaterial = async (event) => {
   event.preventDefault();
   try{
     debugger
-    let res = await axios.post('http://127.0.0.1:8000/api/addRawmaterial/add/', materialinfo );
+    let res = await axios.post('https://saimythribuilders.com/api/addRawmaterial/add/', materialinfo );
     navigate('/products/new')
     alert("Raw material add sucessfully")
   }
@@ -84,7 +84,7 @@ const [options, setOptions] = useState([]);
 const getmeterialdata = async ()=>{
    try{
     
-    let res = await axios.get('http://127.0.0.1:8000/api/meterial/list/');
+    let res = await axios.get('https://saimythribuilders.com/api/meterial/list/');
     setOptions(res.data)
     
    }
@@ -99,7 +99,7 @@ const [voptions, setvOptions] = useState([]);
 const getvendordata = async ()=>{
    try{
     
-    let res = await axios.get('http://127.0.0.1:8000/api/vendor/list/');
+    let res = await axios.get('https://saimythribuilders.com/api/vendor/list/');
     setvOptions(res.data)
     
    }

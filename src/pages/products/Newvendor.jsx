@@ -51,7 +51,7 @@ const handladdvendor = async (event) => {
   event.preventDefault();
   debugger
   try{
-    let res = await axios.post('http://127.0.0.1:8000/api/vendor/add/',vendorData );
+    let res = await axios.post('https://saimythribuilders.com/api/vendor/add/',vendorData );
     navigate('/products/new')
     handleClose()
   }
