@@ -104,7 +104,7 @@ useEffect (()=>{
       <div className="new">
           <div class="row">
               <h1 className="text-center text-primary pt-4">Add Raw Material</h1>
-              <div className="col-md-8 addproduct_form  pb-5">
+              <div className="col-md-8 addproduct_form  pb-5 pt-5">
 
                   <form className="pt-5">
                       <div className="formInput1 col-8">
