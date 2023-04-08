@@ -68,7 +68,11 @@ export default function Addpacking() {
             <input type="text" name="name" onChange={handleChange}  className="form-control pt-3" id="name" placeholder="name" required />
           </div>
           <div className="mb-3">
-            <input type="number" name="quantity" onChange={handleChange}  className="form-control pt-3" id="quantity"  placeholder="quantity" required />
+          <select className="popdropdown"  name="QtyType"  value="" onChange={handleChange}  >
+                    <option value="">-- Select QtyType --</option>
+                      <option value="kg">kg</option>
+                      <option value="grams">grams</option>
+                    </select>
           </div>
           
           <div className="center-btn">

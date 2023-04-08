@@ -137,7 +137,7 @@ useEffect (()=>{
                       </div>
                   </form>
               </div>
-              <div className="col-md-4 pt-5 ">
+              <div className="col-md-4 ">
                 <div className="pt-5">
                   <AddPacking/>
                 </div>

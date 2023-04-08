@@ -100,7 +100,7 @@ export default function Newrawmeterial() {
             <input type="text" name="MaterialName" value={rameterialData.MaterialName} onChange={handleChange}  className="form-control pt-3" id="MaterialName" placeholder="MaterialName" required />
           </div>
           <div className="formInput col-6 mb-3">
-                <label for="role">User Role</label>
+                {/* <label for="role">Quantity Type</label> */}
                     <select className="popdropdown"  name="QtyType"  value={rameterialData.QtyType} onChange={handleChange}  >
                     <option value="">-- Select QtyType --</option>
                       <option value="kg">kg</option>
