@@ -67,7 +67,8 @@ useEffect (()=>{
                 <div className="formInput col-6">
                 <label for="role">User Role</label>
                     <select id="role"  name="Role" value={userData.Role} onChange={handleChange}>
-                      <option value="admin">admin</option>
+                    <option value="">-- Select Role --</option>
+                      <option value="admin">Admin</option>
                       <option value="user">User</option>
                     </select>
                 </div>

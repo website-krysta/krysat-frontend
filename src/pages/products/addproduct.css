@@ -18,3 +18,17 @@
     display: flex;
     justify-content: center;
   }
+
+
+  .popdropdown{
+    width: 380px;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid rgb(211, 209, 209);
+}
+
+#login-form .form-control {
+  border: none;
+  border-bottom: 1px solid rgb(205, 201, 201);
+  width: 380px;
+}

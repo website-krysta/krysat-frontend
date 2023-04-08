@@ -1,49 +1,86 @@
 import "./productlist.scss";
 import './addproduct.css' 
-// import Sidebar from "../../components/sidebar/Sidebar";
-// import Navbar from "../../components/navbar/Navbar";
-// import AddIcon from "@mui/icons-material/Add";
-// import StoreIcon from "@mui/icons-material/Store";
 import Newrawmeterial from "../products/Newrawmeterial"
 import Newvendor from "../products/Newvendor"
-// import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 
 const Rawmaterialform = () => {
   const navigate = useNavigate();
-  // const [file, setFile] = useState("");
   
-  const [userData, setUserdata] = useState({
+  const [materialinfo, setmaterialinfo] = useState({
         
-        UserID: '',
-        EmailID: '',
-        Password: '',
-        Role: '',
-        UserStatus: true
+    Id: 3,
+    TransactionDate: "2023-04-07T17:35:51Z",
+    BatchNo: "",
+    OrderedQuantity:"",
+    ReceivedQuantity: "",
+    AmountPaid: "",
+    DamagedQty: null,
+    DamagedResion: null,
+    LossofAmount: null,
+    AddedTimestamp: "2023-04-07T17:35:51Z",
+    UpdatedTimestamp: "2023-04-07T17:35:51Z",
+    MaterialID: '',
+    VendorCode: ''
+    
+        // Id: 5,
+        // TransactionDate: "2023-04-07T17:35:51Z",
+        // BatchNo: "1112",
+        // OrderedQuantity: "3000",
+        // ReceivedQuantity: "3000",
+        // AmountPaid: "9000",
+        // DamagedQty: null,
+        // DamagedResion: null,
+        // LossofAmount: null,
+        // AddedTimestamp: "2023-04-07T17:35:51Z",
+        // UpdatedTimestamp: "2023-04-07T17:35:51Z",
+        // MaterialID: 12,
+        // VendorCode: 99854
+        
+        //   Id: 7,
+        //   TransactionDate: '2023-04-07T17:35:51Z',
+        //   BatchNo: '1116',
+        //   OrderedQuantity: '4500',
+        //   ReceivedQuantity: '4500',
+        //   AmountPaid: '399998',
+        //   DamagedQty: null,
+        //   DamagedResion: null,
+        //   LossofAmount: null,
+        //   AddedTimestamp: '2023-04-07T17:35:51Z',
+        //   UpdatedTimestamp: '2023-04-07T17:35:51Z',
+        //   MaterialID: '123456',
+        //   VendorCode: '99854'
+      
+    
 })
 const handleChange = (event) => {
-  setUserdata({
-    ...userData,
+    setmaterialinfo({
+    ...materialinfo,
     [event.target.name]: event.target.value
   });
 };
 
-const handlAdduser = async (event) => {
+const handlAddmaterial = async (event) => {
   event.preventDefault();
   try{
-    let res = await axios.post('http://127.0.0.1:8000/api/useradd/',userData );
-    navigate('/users')
+    debugger
+    let res = await axios.post('http://127.0.0.1:8000/api/addRawmaterial/add/', materialinfo );
+    navigate('/products/new')
+    alert("Raw material add sucessfully")
   }
   catch(error){
-      alert('User adding fail please try agian !')
+      alert('Meterial adding fail please try agian !')
   }
 }
 
-// get rameterial form data
+
+
+// -----------------------------
 const [options, setOptions] = useState([]);
+// const [selectedOption, setSelectedOption] = useState(null);
 const getmeterialdata = async ()=>{
    try{
     
@@ -58,6 +95,7 @@ const getmeterialdata = async ()=>{
 
 // get vendor form data
 const [voptions, setvOptions] = useState([]);
+// const [selectedvOption, setSelectedvOption] = useState(null);
 const getvendordata = async ()=>{
    try{
     
@@ -70,9 +108,13 @@ const getvendordata = async ()=>{
    }
 }
 
+// const handlevendorChange = (event) => {
+//     setSelectedvOption(event.target.value);
+//   }
+
 
 useEffect (()=>{
-//   handlAdduser();
+  handlAddmaterial();
   getmeterialdata();
   getvendordata();
 },{})
@@ -86,37 +128,55 @@ useEffect (()=>{
 
                   <form>
                       <div className="formInput1 col-8">
-                          <label for="role">Raw Material</label>
-                          <select id="role" name="Role" value={options} onChange={(event) => setOptions(event.target.value)}>
-                          {options.map((option) => (
-                              <option value="option.MaterialCode">{option.MaterialCode}</option>
-                          ))}
+                          <label >Raw Material</label>
+                          <select id="role" name='MaterialID' value={materialinfo.MaterialID} onChange={handleChange} >
+                                <option value="">-- select material --</option>
+                                {options.map((option) => (
+                                    <option key={option.MaterialCode}  value={option.MaterialID}>{option.MaterialID}</option>
+                                ))}
                           </select>
                       </div>
                       <div className="formInput1 col-8">
-                          <label for="role">Vendor</label>
-                          <select id="role" name="vendorlist" value={voptions} onChange={(event) => setvOptions(event.target.value)}>
+                          <label >Vendor</label>
+                          <select id="role" name="VendorCode" value={materialinfo.VendorCode} onChange={handleChange}>
+                          <option value="">-- select vendor --</option>
                           {voptions.map((voption) => (
-                              <option value="voption.VendorCode">{voption.VendorCode}</option>
+                              <option key={voption.VendorCode} value={voption.VendorCode}>{voption.VendorName}</option>
                           ))}
                           </select>
                       </div>
-
                       <div className="formInput col-8">
-                          <label>Total Purchased Qty</label>
-                          <input type="password" name="Password" value={userData.Password} onChange={handleChange} placeholder="total purchased qty" />
+                          <label >Batch No</label>
+                          <input type="text" name="BatchNo" value={materialinfo.BatchNo} onChange={handleChange} placeholder="batch no" />
                       </div>
 
                       <div className="formInput col-8">
-                          <label >Total Recevied Qty </label>
-                          <input type="password2" placeholder="total recevied qty" />
+                          <label>OrderedQuantity</label>
+                          <input type="number" name="OrderedQuantity" value={materialinfo.OrderedQuantity} onChange={handleChange} placeholder="ordered quantity" />
+                      </div>
+
+                      <div className="formInput col-8">
+                          <label >ReceivedQuantity </label>
+                          <input type="text" name="ReceivedQuantity"  value={materialinfo.ReceivedQuantity} onChange={handleChange}  placeholder="received quantity" />
                       </div>
                       <div className="formInput col-8">
                           <label >Amount Paid</label>
-                          <input type="text" name="EmailID" value={userData.EmailID} onChange={handleChange} placeholder="amount paid" />
+                          <input type="number" name="AmountPaid" value={materialinfo.AmountPaid} onChange={handleChange} placeholder="amount paid" />
+                      </div>
+                      <div className="formInput col-8">
+                          <label >Damaged Qty </label>
+                          <input type="number" name="DamagedQty" value={materialinfo.DamagedQty} onChange={handleChange} placeholder="damaged qty" />
+                      </div>
+                      <div className="formInput col-8">
+                          <label >Damaged Reason </label>
+                          <input type="text" name="DamagedResion" value={materialinfo.DamagedResion} onChange={handleChange}  placeholder="damaged reasion" />
+                      </div>
+                      <div className="formInput col-8">
+                          <label >Lose of Amount </label>
+                          <input type="number" name="LossofAmount" value={materialinfo.LossofAmount} onChange={handleChange} placeholder="loase of amount" />
                       </div>
                       <div className="formInput col-12 ">
-                          <button onClick={handlAdduser} >Add Product</button>
+                          <button onClick={handlAddmaterial} >Add Material</button>
                       </div>
                   </form>
               </div>

@@ -53,6 +53,7 @@ const handladdvendor = async (event) => {
   try{
     let res = await axios.post('http://127.0.0.1:8000/api/vendor/add/',vendorData );
     navigate('/products/new')
+    handleClose()
   }
   catch(error){
       alert('User adding fail please try agian !')

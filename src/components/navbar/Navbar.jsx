@@ -1,5 +1,6 @@
 import "./navbar.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
@@ -44,12 +45,13 @@ const Navbar = () => {
           <div className="item">
             <ListOutlinedIcon className="icon" />
           </div> */}
-          <div className="item">
-            <img
+          <div className="item ">
+          <AccountCircleIcon className="usericon" />
+            {/* <img
               src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
               alt=""
               className="avatar"
-            />
+            /> */}
           </div>
         </div>
       </div>

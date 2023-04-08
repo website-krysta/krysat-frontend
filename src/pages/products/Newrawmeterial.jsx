@@ -1,4 +1,5 @@
 // import * as React from 'react';
+import "../new/new.scss";
 import "./productlist.scss";
 import './addproduct.css' 
 import Button from '@mui/material/Button';
@@ -28,11 +29,12 @@ export default function Newrawmeterial() {
 
 //  start main function
   const now = new Date();
+  // const [selectedvOption, setSelectedvOption] = useState(null);
   const [rameterialData, setrameterialData] = useState({
     MaterialID: '2',
     MaterialCode: '',
     MaterialName: '',
-    QtyType:"kg",
+    QtyType:'',
     TotalQuantity: 10,
     ConsumedQuantity:'12',
     AddedTimestamp:'2023-04-05T13:05:52Z',
@@ -54,14 +56,19 @@ export default function Newrawmeterial() {
     debugger
     try{
       let res = await axios.post('http://127.0.0.1:8000/api/meterial/add/',rameterialData );
-      navigate('/products/new')
+      alert("sucessfully submited")
+      handleClose()
+      
     }
     catch(error){
         alert('User adding fail please try agian !')
     }
   }
 
-
+  // const handlevendorChange = (event) => {
+  //   debugger
+  //   setSelectedvOption(event.target.value);
+  // }
   useEffect (()=>{
     handladdrwamaterial();
   },{})
@@ -91,13 +98,15 @@ export default function Newrawmeterial() {
           <div className="mb-3">
             <input type="text" name="MaterialName" value={rameterialData.MaterialName} onChange={handleChange}  className="form-control pt-3" id="MaterialName" placeholder="MaterialName" required />
           </div>
-          <div className="mb-3 formInput1">
-          <label for="qtype">Quantity Type</label>
-          <select id="qtype" name="QtyType" value="{rameterialData.QtyType}" onChange={handleChange}>
+          <div className="formInput col-6 mb-3">
+                <label for="role">User Role</label>
+                    <select className="popdropdown"  name="QtyType"  value={rameterialData.QtyType} onChange={handleChange}  >
+                    <option value="">-- Select QtyType --</option>
                       <option value="kg">kg</option>
                       <option value="grams">grams</option>
                     </select>
-          </div>
+                </div>
+        
           
           <div className="center-btn">
           <button type="submit" onClick={handladdrwamaterial}  className="btn login-btn text-center px-5">Submit</button>
