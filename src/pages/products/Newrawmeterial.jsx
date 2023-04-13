@@ -11,7 +11,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from '@mui/icons-material/Close';
-import axios from "axios";
+import axios from "../../api/axios";
 import {useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 
@@ -35,12 +35,10 @@ export default function Newrawmeterial() {
     MaterialCode: '',
     MaterialName: '',
     QtyType:'',
-    TotalQuantity: 10,
-    ConsumedQuantity:'12',
+    TotalQuantity: '0',
+    ConsumedQuantity:'0',
     AddedTimestamp:'2023-04-05T13:05:52Z',
     UpdatedTimestamp:'2023-04-05T13:05:52Z'
-    
-
   });
 
   const handleChange = (event) => {
@@ -55,7 +53,7 @@ export default function Newrawmeterial() {
     event.preventDefault();
     debugger
     try{
-      let res = await axios.post('https://saimythribuilders.com/api/meterial/add/',rameterialData );
+      let res = await axios.post('/api/meterial/add/',rameterialData );
       navigate('/products/new')
       handleClose()
       alert("Sucessfully Created")
@@ -76,11 +74,11 @@ export default function Newrawmeterial() {
   
 
   return (
-    <div>
+    <div className="mainpop">
         
-      <Button variant="outlined" onClick={handleClickOpen}>
-      <AddIcon className="icon" /> New Raw Material
-      </Button>
+      <a variant="outlined" className='addbtn' onClick={handleClickOpen}>
+      <AddIcon className="icon" /> New
+      </a>
       
       <Dialog open={open} onClose={handleClose}>
         <div className='d-flex justify-content-between'>
@@ -94,20 +92,24 @@ export default function Newrawmeterial() {
         <DialogContent>
         <form id="login-form" >
           <div className="mb-3">
-            <input type="number" name="MaterialCode" value={rameterialData.MaterialCode} onChange={handleChange}  className="form-control pt-3" id="MaterialCode"  placeholder="MaterialCode" required />
+            <input type="text" name="MaterialCode" value={rameterialData.MaterialCode} onChange={handleChange}  className="form-control pt-3" id="MaterialCode"  placeholder="MaterialCode" required />
           </div>
           <div className="mb-3">
             <input type="text" name="MaterialName" value={rameterialData.MaterialName} onChange={handleChange}  className="form-control pt-3" id="MaterialName" placeholder="MaterialName" required />
           </div>
           <div className="formInput col-6 mb-3">
-                {/* <label for="role">Quantity Type</label> */}
                     <select className="popdropdown"  name="QtyType"  value={rameterialData.QtyType} onChange={handleChange}  >
                     <option value="">-- Select QtyType --</option>
                       <option value="kg">kg</option>
                       <option value="grams">grams</option>
                     </select>
                 </div>
-        
+          {/* <div className="mb-3">
+            <input type="number" name="TotalQuantity" value={rameterialData.TotalQuantity} onChange={handleChange}  className="form-control pt-3" id="TotalQuantity"  placeholder="TotalQuantity" required />
+          </div>
+          <div className="mb-3">
+            <input type="number" name="ConsumedQuantity" value={rameterialData.ConsumedQuantity} onChange={handleChange}  className="form-control pt-3" id="ConsumedQuantity"  placeholder="ConsumedQuantity" required />
+          </div> */}
           
           <div className="center-btn">
           <button type="submit" onClick={handladdrwamaterial}  className="btn login-btn text-center px-5">Submit</button>

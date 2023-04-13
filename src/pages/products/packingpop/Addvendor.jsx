@@ -25,8 +25,8 @@ export default function AddPackingvendor() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-      <AddIcon className="icon" /> New  Vendor
+      <Button className='addbtn' variant="outlined" onClick={handleClickOpen}>
+      <AddIcon className="icon" /> New  
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <div className='d-flex justify-content-between'>

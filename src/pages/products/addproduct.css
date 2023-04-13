@@ -21,14 +21,50 @@
 
 
   .popdropdown{
-    width: 380px;
+    width: 300px;
     padding: 5px;
     border: none;
     border-bottom: 1px solid rgb(211, 209, 209);
 }
 
-#login-form .form-control {
-  border: none;
+#vendorform .form-control {
+  /* border: none; */
   border-bottom: 1px solid rgb(205, 201, 201);
-  width: 380px;
+  width: 300px;
+}
+
+.meterial-form .addbtn{
+  background-color: rgb(255, 255, 255) !important;
+  color: black !important;
+}
+
+.input-group-append .addbtn{
+   background-color: transparent !important;
+   color: black !important;
+   width: -50px !important ;
+   margin-top: -140px;
+}
+.meaterialform .selectbox{
+  width: 220px;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  margin-left: px;
+
+}
+.meaterialform .add{
+ margin-top: -10px;
+
+
+}
+
+
+.input-group-append{
+  /* background-color: red; */
+  padding: 10px;
+}
+.mainpop a{
+  text-decoration: none !important;
+}
+.mainpop a:hover{
+  cursor: pointer;
 }

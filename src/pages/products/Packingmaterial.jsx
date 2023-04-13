@@ -80,73 +80,104 @@ useEffect (()=>{
     <div className="new">
             <div class="row">
               <h1 className="text-center text-primary pt-4">Add Packing Material </h1>
-              <div className="col-md-8 addproduct_form  pb-5">
-                
-              <form>
-                      <div className="formInput1 col-8">
-                          <label for="role">Packing Material</label>
-                          <select id="role" name="Role" value={options} onChange={(event) => setOptions(event.target.value)}>
-                          <option value="">-- select packing material --</option>
-                          {options.map((option) => (
-                            
-                              <option value="option.MaterialCode">{option.MaterialCode}</option>
-                          ))}
-                          </select>
-                      </div>
-                      <div className="formInput1 col-8">
-                          <label for="role">Vendor</label>
-                          <select id="role" name="vendorlist" value={voptions} onChange={(event) => setvOptions(event.target.value)}>
-                          <option value="">-- select vendor --</option>
-                          {voptions.map((voption) => (
-                              <option value="voption.VendorCode">{voption.VendorCode}</option>
-                          ))}
-                          </select>
-                      </div>
-                      <div className="formInput col-8">
-                          <label >Batch No</label>
-                          <input type="text" name="batchno" value={userData.EmailID} onChange={handleChange} placeholder="batch no" />
-                      </div>
+              <div className="col-md-4 addproduct_form  pb-5">
 
-                      <div className="formInput col-8">
-                          <label>Total Purchased Qty</label>
-                          <input type="number" name="totalpq" value={userData.Password} onChange={handleChange} placeholder="total purchased qty" />
-                      </div>
-
-                      <div className="formInput col-8">
-                          <label >Total Recevied Qty </label>
-                          <input type="number" name="totalrq" placeholder="total recevied qty" />
-                      </div>
-                      <div className="formInput col-8">
-                          <label >Amount Paid</label>
-                          <input type="text" name="EmailID" value={userData.EmailID} onChange={handleChange} placeholder="amount paid" />
-                      </div>
-                      <div className="formInput col-8">
-                          <label >Damaged Qty </label>
-                          <input type="number" name="damagedqty" placeholder="damaged qty" />
-                      </div>
-                      <div className="formInput col-8">
-                          <label >Damaged Reason </label>
-                          <input type="text" name="totalrq" placeholder="damaged reasion" />
-                      </div>
-                      <div className="formInput col-8">
-                          <label >Lose of Amount </label>
-                          <input type="number" name="loa" placeholder="loase of amount" />
-                      </div>
-                      <div className="formInput col-12 ">
-                          <button onClick={handlAdduser} >Add Product</button>
-                      </div>
-                  </form>
+<form className="meaterialform">
+          <div className="row pt-2 px-3  d-flex justify-content-center align-items-center ">
+              <div className="col-8">
+              <select  name='MaterialID' value="" onChange={handleChange} class="custom-select form-control py-2 selectbox " id="" >
+                    <option value="">-- select material --  </option>
+                    {options.map((option) => (
+                        <option key={option.MaterialCode} value={option.MaterialID}>{option.MaterialName}</option>
+                    ))}
+                </select>
               </div>
-              <div className="col-md-4 ">
-                <div className="pt-5">
-                  <AddPacking/>
-                </div>
-                <div className="pt-5">
-                  <Addvendor />
+              <div className="col-4 add">
+              <div class="input-group-append">
+                    <AddPacking />
                 </div>
               </div>
-            </div>
           </div>
+          <div className="row pt-2 px-3  d-flex justify-content-center align-items-center">
+                  <div className="col-8">
+                  <select  name="VendorCode" value="" onChange={handleChange} class="custom-select form-control py-2 selectbox " id="inputGroupSelect04">
+                  <option value="">-- select vendor --</option>
+                  {voptions.map((voption) => (
+                      <option key={voption.VendorCode} value={voption.VendorCode}>{voption.VendorName}</option>
+                  ))}
+              </select>
+                  </div>
+                  <div className="col-4 add">
+                  <div class="input-group-append">
+                  <Addvendor/>
+                  </div>
+                  </div>
+          </div>
+    <div className="col-11">
+        <input type="text" name="BatchNo" value="" onChange={handleChange} className="form-control pt-3" placeholder="batch no" />
+    </div>
+    <div className="col-11">                         
+        <input type="number" name="OrderedQuantity" value="" onChange={handleChange} className="form-control pt-3" placeholder="ordered quantity" />
+    </div>
+    <div className="col-11">                      
+        <input type="text" name="ReceivedQuantity"  value="" onChange={handleChange} className="form-control pt-3"  placeholder="received quantity" />
+    </div>
+    <div className="col-11">
+        <input type="number" name="AmountPaid" value="" onChange={handleChange} className="form-control pt-3" placeholder="amount paid" />
+    </div>
+    
+    <div className="">
+        <button onClick="" >Add Package</button>
+    </div>
+</form>
+</div>
+
+<div className="col-md-4">
+<form id="vendorform" >
+    <div className="formInput1 mb-3 mt-2">
+        <input type="text" name="VendorCode" onChange={handleChange} className="form-control pt-3" id="code" placeholder="vendor code" required />
+    </div>
+    <div className="formInput1">
+        <input type="text" name="VendorName" onChange={handleChange} className="form-control pt-3" id="name" placeholder="name" required />
+    </div>
+    <div className="">
+        <input type="email" name="EmailID" onChange={handleChange} className="form-control pt-3" id="email1" placeholder="email" required />
+    </div>
+    <div className="">
+        <input type="phone" name="Phone" onChange={handleChange} className="form-control pt-3" id="exampleInputphone" placeholder="phone" required />
+    </div>
+    <div className="">
+        <input type="text" name="VendorShopName" onChange={handleChange} className="form-control pt-3" id="ShopName" placeholder="ShopName" required />
+    </div>
+    <div className="">
+        <input type="text" name="Address" onChange={handleChange} className="form-control pt-3" id="exampleInputaddress" placeholder="address" required />
+    </div>
+    <div className="">
+        <input type="text" name="City" onChange={handleChange} className="form-control pt-3" id="city" placeholder="city" required />
+    </div>
+    <div className="">
+        <input type="text" name="State" onChange={handleChange} className="form-control pt-3" id="examplestate" placeholder="state" required />
+    </div>
+</form>
+
+</div>
+<div className="col-md-4">
+<form id="vendorform" >
+    <div className="mt-2">
+        <input type="number" name="VendorCode" onChange={handleChange} className="form-control pt-3" id="code" placeholder="Damaged Qty" required />
+    </div>
+    <div className="">
+        <input type="text" name="VendorName" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
+    </div>
+    <div className="">
+        <input type="number" name="EmailID" onChange={handleChange} className="form-control pt-3" id="LooS of Amount" placeholder="loss of Amount" required />
+    </div>
+   
+</form>
+</div>
+</div>
+</div>
+
      
   );
 };

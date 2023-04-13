@@ -3,38 +3,53 @@ import './addproduct.css'
 import Newrawmeterial from "../products/Newrawmeterial"
 import Newvendor from "../products/Newvendor"
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import {useNavigate } from 'react-router-dom';
 
 
 const Rawmaterialform = () => {
-  const navigate = useNavigate();
-  const [differenceQty, setDifferenceQty] = useState("");
+//   const navigate = useNavigate();
+  const [DamagedQty, setDifferenceQty] = useState("");
+//   const [damagedData, setdamagedData] = useState({
+//     DamagedQty:'',
+//     DamagedResion:'',
+//     LossofAmount:''
+
+//   });
+
   const [materialinfo, setmaterialinfo] = useState({
         
-    Id: 3,
-    TransactionDate: "2023-04-07T17:35:51Z",
+    Id: 0,
+    TransactionDate: "",
     BatchNo: "",
     OrderedQuantity:"",
     ReceivedQuantity: "",
     AmountPaid: "",
-    DamagedQty: null,
-    DamagedResion: null,
-    LossofAmount: null,
-    AddedTimestamp: "2023-04-07T17:35:51Z",
-    UpdatedTimestamp: "2023-04-07T17:35:51Z",
+    AddedTimestamp: "",
+    UpdatedTimestamp: "",
     MaterialID: '',
-    VendorCode: ''
-    
-        
-      
-    
-})
+    VendorID: '',
+    DamgeID:0,
+    DamagedQty:'',
+    DamagedResion:'',
+    LossofAmount:''
+});
+
+// const handleChangedamagedData = (event) =>{
+//     debugger
+//     setdamagedData({
+//         ...damagedData,
+//         [event.target.name]: event.target.value
+//     })
+// }
+
 const handleChange = (event) => {
     setmaterialinfo({
     ...materialinfo,
-    [event.target.name]: event.target.value
+    [event.target.name]: event.target.value,
+    
   });
+  getselectvendordata(materialinfo.VendorID);
   calculateDifference();
 };
 
@@ -42,13 +57,30 @@ const handlAddmaterial = async (event) => {
   event.preventDefault();
   try{
     debugger
-    let res = await axios.post('https://saimythribuilders.com/api/addRawmaterial/add/', materialinfo );
-    navigate('/products/new')
+    let res = await axios.post('/api/addRawmaterial/add/', materialinfo );
     alert("Raw material add sucessfully")
   }
   catch(error){
-      alert('Meterial adding fail please try agian !')
+      alert('Meterial adding fail please try agian!')
   }
+
+  setmaterialinfo({
+        
+    Id: "",
+    TransactionDate: "",
+    BatchNo: "",
+    OrderedQuantity:"",
+    ReceivedQuantity: "",
+    AmountPaid: "",
+    AddedTimestamp: "",
+    UpdatedTimestamp: "",
+    MaterialID: '',
+    VendorID: '',
+    DamgeID:"",
+    DamagedQty:'',
+    DamagedResion:'',
+    LossofAmount:''
+});
 }
 
 
@@ -56,15 +88,14 @@ const handlAddmaterial = async (event) => {
 const calculateDifference = () => {
     const difference = parseFloat(materialinfo.OrderedQuantity) - parseFloat(materialinfo.ReceivedQuantity);
     setDifferenceQty(difference.toFixed(2));
+
   };
 
 // -----------------------------
 const [options, setOptions] = useState([]);
-// const [selectedOption, setSelectedOption] = useState(null);
 const getmeterialdata = async ()=>{
    try{
-    
-    let res = await axios.get('https://saimythribuilders.com/api/meterial/list/');
+    let res = await axios.get('/api/meterial/list/');
     setOptions(res.data)
     
    }
@@ -75,11 +106,10 @@ const getmeterialdata = async ()=>{
 
 // get vendor form data
 const [voptions, setvOptions] = useState([]);
-// const [selectedvOption, setSelectedvOption] = useState(null);
 const getvendordata = async ()=>{
    try{
     
-    let res = await axios.get('https://saimythribuilders.com/api/vendor/list/');
+    let res = await axios.get('/api/vendor/list/');
     setvOptions(res.data)
     
    }
@@ -88,9 +118,19 @@ const getvendordata = async ()=>{
    }
 }
 
-// const handlevendorChange = (event) => {
-//     setSelectedvOption(event.target.value);
-//   }
+
+const [vendorData, setvendorData] = useState([])
+const getselectvendordata = async (VendorID)=>{
+   try{
+    let res = await axios.get(`/api/vendor/${VendorID}/`);
+    setvendorData(res.data)
+    console.log(vendorData)
+   }
+   catch(error){
+    console.log(error)
+   }
+}
+
 
 
 useEffect (()=>{
@@ -101,74 +141,120 @@ useEffect (()=>{
 
     
   return (
-      <div className="new">
+      <div className="new1">
+         <form className="meaterialform">
           <div class="row">
-              <h1 className="text-center text-primary pt-4">Add Raw Material</h1>
-              <div className="col-md-8 addproduct_form  pb-5">
-
-                  <form className="pt-5">
-                      <div className="formInput1 col-8">
-                          <label >Raw Material</label>
-                          <select id="role" name='MaterialID' value={materialinfo.MaterialID} onChange={handleChange} >
-                                <option value="">-- select material --</option>
-                                {options.map((option) => (
-                                    <option key={option.MaterialCode}  value={option.MaterialID}>{option.MaterialID}</option>
-                                ))}
-                          </select>
+              <h1 className="text-center text-primary pt-4"></h1>
+              <div className="col-md-4 addproduct_form  pb-5">
+                            <div className="row pt-2  mb-3 d-flex justify-content-center align-items-center ">
+                                <div className="col-8 ">
+                                <select  name='MaterialID' value={materialinfo.MaterialID} onChange={handleChange} class="custom-select form-control py-2 selectbox selectbox px-4" id="" >
+                                      <option value="">-- select material --  </option>
+                                      {options.map((option) => (
+                                          <option key={option.MaterialID} value={option.MaterialID}>{option.MaterialName}</option>
+                                      ))}
+                                  </select>
+                                </div>
+                                <div className="col-4 add">
+                                <div class="input-group-append">
+                                      <Newrawmeterial />
+                                  </div>
+                                </div>
+                            </div>
+                            {/* <div className="row pt-2  mb-3 d-flex justify-content-center align-items-center">
+                                    <div className="col-8">
+                                    <select  name="VendorID" value={materialinfo.VendorID} onChange={handleChange} class="custom-select form-control py-2 selectbox " id="inputGroupSelect04">
+                                    <option >-- select vendor --</option>
+                                    {voptions.map((voption) => (
+                                        <option key={voption.VendorID} value={voption.VendorID}>{voption.VendorName}</option>
+                                    ))}
+                                </select>
+                                    </div>
+                                    <div className="col-4 add ">
+                                    <div class="input-group-append">
+                                    <Newvendor/>
+                                    </div>
+                                    </div>
+                            </div> */}
+                      <div className="col-11 mb-3">
+                          <input type="text" name="BatchNo" value={materialinfo.BatchNo} onChange={handleChange} className="form-control pt-3" placeholder="batch no" />
                       </div>
-                      <div className="formInput1 col-8">
-                          <label >Vendor</label>
-                          <select id="role" name="VendorCode" value={materialinfo.VendorCode} onChange={handleChange}>
-                          <option value="">-- select vendor --</option>
-                          {voptions.map((voption) => (
-                              <option key={voption.VendorCode} value={voption.VendorCode}>{voption.VendorName}</option>
-                          ))}
-                          </select>
+                      <div className="col-11 mb-3">                         
+                          <input type="number" name="OrderedQuantity" value={materialinfo.OrderedQuantity} onChange={handleChange} className="form-control pt-3" placeholder="ordered quantity" />
                       </div>
-                      <div className="formInput col-8">
-                          <label >Batch No</label>
-                          <input type="text" name="BatchNo" value={materialinfo.BatchNo} onChange={handleChange} placeholder="batch no" />
+                      <div className="col-11 mb-3">                      
+                          <input type="text" name="ReceivedQuantity"  value={materialinfo.ReceivedQuantity} onChange={handleChange} className="form-control pt-3"  placeholder="received quantity" />
                       </div>
-
-                      <div className="formInput col-8">
-                          <label>OrderedQuantity</label>
-                          <input type="number" name="OrderedQuantity" value={materialinfo.OrderedQuantity} onChange={handleChange} placeholder="ordered quantity" />
+                      <div className="col-11 mb-3">
+                          <input type="number" name="AmountPaid" value={materialinfo.AmountPaid} onChange={handleChange} className="form-control pt-3" placeholder="amount paid" />
                       </div>
-
-                      <div className="formInput col-8">
-                          <label >ReceivedQuantity </label>
-                          <input type="text" name="ReceivedQuantity"  value={materialinfo.ReceivedQuantity} onChange={handleChange}  placeholder="received quantity" />
-                      </div>
-                      <div className="formInput col-8">
-                          <label >Amount Paid</label>
-                          <input type="number" name="AmountPaid" value={materialinfo.AmountPaid} onChange={handleChange} placeholder="amount paid" />
-                      </div>
-                      <div className="formInput col-8">
-                          <label >Damaged Qty </label>
-                          <input type="number" name="DamagedQty" value={differenceQty} onChange={handleChange} placeholder="damaged qty" />
-                      </div>
-                      <div className="formInput col-8">
-                          <label >Damaged Reason </label>
-                          <input type="text" name="DamagedResion" value={materialinfo.DamagedResion} onChange={handleChange}  placeholder="damaged reasion" />
-                      </div>
-                      <div className="formInput col-8">
-                          <label >Lose of Amount </label>
-                          <input type="number" name="LossofAmount" value={materialinfo.LossofAmount} onChange={handleChange} placeholder="loase of amount" />
-                      </div>
-                      <div className="formInput col-12 ">
+                      
+                      <div className="">
                           <button onClick={handlAddmaterial} >Add Material</button>
                       </div>
-                  </form>
+                
               </div>
-              <div className="col-md-4">
-                  <div className="pt-5">
-                      <Newrawmeterial />
-                  </div>
-                  <div className="pt-5">
-                      <Newvendor />
-                  </div>
+
+              <div className="col-md-4 ">
+                  <div className="row pt-2  mb-3 d-flex justify-content-center align-items-center">
+                                    <div className="col-8">
+                                    <select  name="VendorID" value={materialinfo.VendorID} onChange={handleChange} class="custom-select form-control py-2 selectbox px-4 " id="inputGroupSelect04">
+                                    <option >--- select vendor ---</option>
+                                    {voptions.map((voption) => (
+                                        <option key={voption.VendorID} value={voption.VendorID}>{voption.VendorName}</option>
+                                    ))}
+                                </select>
+                                    </div>
+                                    <div className="col-4 add ">
+                                    <div class="input-group-append">
+                                    <Newvendor/>
+                                    </div>
+                                    </div>
+                            </div>
+                      <div className="formInput1 mb-3 mt-2">
+                          <input type="text" value={vendorData.VendorCode} name="" onChange={handleChange} className="form-control pt-3" id="code" placeholder="vendor code" required />
+                      </div>
+                      <div className="formInput1 mb-3">
+                          <input type="text" value={vendorData.VendorName}  name="VendorName" onChange={handleChange} className="form-control pt-3" id="name" placeholder="name" required />
+                      </div>
+                      <div className="mb-3">
+                          <input type="email" value={vendorData.EmailID} name="EmailID" onChange={handleChange} className="form-control pt-3" id="email1" placeholder="email" required />
+                      </div>
+                      <div className="mb-3">
+                          <input type="phone" value={vendorData.Phone} name="Phone" onChange={handleChange} className="form-control pt-3" id="exampleInputphone" placeholder="phone" required />
+                      </div>
+                      <div className="mb-3">
+                          <input type="text" value={vendorData.RegisteredName} name="RegisteredName" onChange={handleChange} className="form-control pt-3" id="RegisteredName" placeholder="RegisteredName" required />
+                      </div>
+                      <div className="mb-3">
+                          <input type="text" value={vendorData.Address} name="Address" onChange={handleChange} className="form-control pt-3" id="exampleInputaddress" placeholder="address" required />
+                      </div>
+                      <div className="mb-3">
+                          <input type="text" value={vendorData.City} name="City" onChange={handleChange} className="form-control pt-3" id="city" placeholder="city" required />
+                      </div>
+                      <div className="mb-3">
+                          <input type="text" value={vendorData.State}  name="State" onChange={handleChange} className="form-control pt-3" id="examplestate" placeholder="state" required />
+                      </div>
+                      <div className="mb-3">
+                          <input type="text" value={vendorData.Zip}  name="Zip" onChange={handleChange} className="form-control pt-3" id="Zip" placeholder="Zip Code" required />
+                      </div>
+
+              </div>
+              <div className="col-md-4" id="vendorform" >
+              
+                      <div className="mt-2 mb-3">
+                          <input type="number" value={DamagedQty} name="DamagedQty" onChange={handleChange} className="form-control pt-3" id="code" placeholder="Damaged Qty" required />
+                      </div>
+                      <div className="mb-3">
+                          <input type="text" value={materialinfo.DamagedResion} name="DamagedResion" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
+                      </div>
+                      <div className="mb-3">
+                          <input type="number" value={materialinfo.LossofAmount} name="LossofAmount" onChange={handleChange} className="form-control pt-3" id="LooS of Amount" placeholder="loss of Amount" required />
+                      </div>
+                
               </div>
           </div>
+          </form>
       </div>
 
   );

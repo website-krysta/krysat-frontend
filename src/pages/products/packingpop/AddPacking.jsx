@@ -46,8 +46,8 @@ export default function Addpacking() {
   return (
     <div>
         
-      <Button variant="outlined" onClick={handleClickOpen}>
-      <AddIcon className="icon" /> New Packing
+      <Button className='addbtn' variant="outlined" onClick={handleClickOpen}>
+      <AddIcon className="icon" /> New
       </Button>
       
       <Dialog open={open} onClose={handleClose}>
