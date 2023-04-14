@@ -5,6 +5,8 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreIcon from "@mui/icons-material/Store";
+import Groups3Icon from '@mui/icons-material/Groups3';
+import ScienceIcon from '@mui/icons-material/Science';
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -60,12 +62,18 @@ const Sidebar = () => {
           <Link to="/products/new" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Raw Meterial</span>
+              <span>Raw Material</span>
+            </li>
+          </Link>
+          <Link to="/formula" style={{ textDecoration: "none" }}>
+            <li>
+              <ScienceIcon className="icon" />
+              <span>Formula</span>
             </li>
           </Link>
           <Link to="/labour" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <Groups3Icon className="icon" />
               <span>Labour</span>
             </li>
           </Link>

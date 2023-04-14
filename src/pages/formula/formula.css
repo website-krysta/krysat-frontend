@@ -1,0 +1,11 @@
+.labourform .show-material{
+    /* background-color: red; */
+    width: 100% !important;
+    width: 800px !important;
+    display: flex;
+    justify-content: center;
+}
+/* .labourform .show-material .material-item{
+   background-color: aliceblue;
+   padding: 10px;
+} */

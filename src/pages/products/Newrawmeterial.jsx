@@ -78,7 +78,7 @@ export default function Newrawmeterial() {
       
       <Dialog open={open} onClose={handleClose}>
         <div className='d-flex justify-content-between'>
-            <DialogTitle>Add Raw Meterial</DialogTitle>
+            <DialogTitle>Add Raw Material</DialogTitle>
             <DialogActions>
             <Button onClick={handleClose}> <CloseIcon className="icon" /></Button>
             </DialogActions>

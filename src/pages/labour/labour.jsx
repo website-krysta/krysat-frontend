@@ -23,6 +23,7 @@ const Labour = () => {
         console.log(error)
        }
     }
+    
     const handleuserDelete =  async(id) => {
      
        try{
