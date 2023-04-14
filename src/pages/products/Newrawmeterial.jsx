@@ -64,10 +64,6 @@ export default function Newrawmeterial() {
     }
   }
 
-  // const handlevendorChange = (event) => {
-  //   debugger
-  //   setSelectedvOption(event.target.value);
-  // }
   useEffect (()=>{
     handladdrwamaterial();
   },{})

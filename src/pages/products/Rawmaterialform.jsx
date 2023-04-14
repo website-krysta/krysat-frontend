@@ -10,13 +10,7 @@ import {useNavigate } from 'react-router-dom';
 const Rawmaterialform = () => {
 //   const navigate = useNavigate();
   const [DamagedQty, setDifferenceQty] = useState("");
-//   const [damagedData, setdamagedData] = useState({
-//     DamagedQty:'',
-//     DamagedResion:'',
-//     LossofAmount:''
-
-//   });
-
+  
   const [materialinfo, setmaterialinfo] = useState({
         
     Id: 0,
@@ -35,13 +29,7 @@ const Rawmaterialform = () => {
     LossofAmount:''
 });
 
-// const handleChangedamagedData = (event) =>{
-//     debugger
-//     setdamagedData({
-//         ...damagedData,
-//         [event.target.name]: event.target.value
-//     })
-// }
+
 
 const handleChange = (event) => {
     setmaterialinfo({
@@ -161,32 +149,17 @@ useEffect (()=>{
                                   </div>
                                 </div>
                             </div>
-                            {/* <div className="row pt-2  mb-3 d-flex justify-content-center align-items-center">
-                                    <div className="col-8">
-                                    <select  name="VendorID" value={materialinfo.VendorID} onChange={handleChange} class="custom-select form-control py-2 selectbox " id="inputGroupSelect04">
-                                    <option >-- select vendor --</option>
-                                    {voptions.map((voption) => (
-                                        <option key={voption.VendorID} value={voption.VendorID}>{voption.VendorName}</option>
-                                    ))}
-                                </select>
-                                    </div>
-                                    <div className="col-4 add ">
-                                    <div class="input-group-append">
-                                    <Newvendor/>
-                                    </div>
-                                    </div>
-                            </div> */}
                       <div className="col-11 mb-3">
-                          <input type="text" name="BatchNo" value={materialinfo.BatchNo} onChange={handleChange} className="form-control pt-3" placeholder="batch no" />
+                          <input type="text" name="BatchNo" value={materialinfo.BatchNo} onChange={handleChange} className="form-control pt-3" placeholder="Batch no" />
                       </div>
                       <div className="col-11 mb-3">                         
-                          <input type="number" name="OrderedQuantity" value={materialinfo.OrderedQuantity} onChange={handleChange} className="form-control pt-3" placeholder="ordered quantity" />
+                          <input type="number" name="OrderedQuantity" value={materialinfo.OrderedQuantity} onChange={handleChange} className="form-control pt-3" placeholder="Ordered quantity" />
                       </div>
                       <div className="col-11 mb-3">                      
-                          <input type="text" name="ReceivedQuantity"  value={materialinfo.ReceivedQuantity} onChange={handleChange} className="form-control pt-3"  placeholder="received quantity" />
+                          <input type="text" name="ReceivedQuantity"  value={materialinfo.ReceivedQuantity} onChange={handleChange} className="form-control pt-3"  placeholder="Received quantity" />
                       </div>
                       <div className="col-11 mb-3">
-                          <input type="number" name="AmountPaid" value={materialinfo.AmountPaid} onChange={handleChange} className="form-control pt-3" placeholder="amount paid" />
+                          <input type="number" name="AmountPaid" value={materialinfo.AmountPaid} onChange={handleChange} className="form-control pt-3" placeholder="Amount paid" />
                       </div>
                       
                       <div className="">
@@ -215,25 +188,25 @@ useEffect (()=>{
                           <input type="text" value={vendorData.VendorCode} name="" onChange={handleChange} className="form-control pt-3" id="code" placeholder="vendor code" required />
                       </div>
                       <div className="formInput1 mb-3">
-                          <input type="text" value={vendorData.VendorName}  name="VendorName" onChange={handleChange} className="form-control pt-3" id="name" placeholder="name" required />
+                          <input type="text" value={vendorData.VendorName}  name="VendorName" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Name" required />
                       </div>
                       <div className="mb-3">
-                          <input type="email" value={vendorData.EmailID} name="EmailID" onChange={handleChange} className="form-control pt-3" id="email1" placeholder="email" required />
+                          <input type="email" value={vendorData.EmailID} name="EmailID" onChange={handleChange} className="form-control pt-3" id="email1" placeholder="Email" required />
                       </div>
                       <div className="mb-3">
-                          <input type="phone" value={vendorData.Phone} name="Phone" onChange={handleChange} className="form-control pt-3" id="exampleInputphone" placeholder="phone" required />
+                          <input type="phone" value={vendorData.Phone} name="Phone" onChange={handleChange} className="form-control pt-3" id="exampleInputphone" placeholder="Phone" required />
                       </div>
                       <div className="mb-3">
                           <input type="text" value={vendorData.RegisteredName} name="RegisteredName" onChange={handleChange} className="form-control pt-3" id="RegisteredName" placeholder="RegisteredName" required />
                       </div>
                       <div className="mb-3">
-                          <input type="text" value={vendorData.Address} name="Address" onChange={handleChange} className="form-control pt-3" id="exampleInputaddress" placeholder="address" required />
+                          <input type="text" value={vendorData.Address} name="Address" onChange={handleChange} className="form-control pt-3" id="exampleInputaddress" placeholder="Address" required />
                       </div>
                       <div className="mb-3">
-                          <input type="text" value={vendorData.City} name="City" onChange={handleChange} className="form-control pt-3" id="city" placeholder="city" required />
+                          <input type="text" value={vendorData.City} name="City" onChange={handleChange} className="form-control pt-3" id="city" placeholder="City" required />
                       </div>
                       <div className="mb-3">
-                          <input type="text" value={vendorData.State}  name="State" onChange={handleChange} className="form-control pt-3" id="examplestate" placeholder="state" required />
+                          <input type="text" value={vendorData.State}  name="State" onChange={handleChange} className="form-control pt-3" id="examplestate" placeholder="State" required />
                       </div>
                       <div className="mb-3">
                           <input type="text" value={vendorData.Zip}  name="Zip" onChange={handleChange} className="form-control pt-3" id="Zip" placeholder="Zip Code" required />
@@ -249,7 +222,7 @@ useEffect (()=>{
                           <input type="text" value={materialinfo.DamagedResion} name="DamagedResion" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
                       </div>
                       <div className="mb-3">
-                          <input type="number" value={materialinfo.LossofAmount} name="LossofAmount" onChange={handleChange} className="form-control pt-3" id="LooS of Amount" placeholder="loss of Amount" required />
+                          <input type="number" value={materialinfo.LossofAmount} name="LossofAmount" onChange={handleChange} className="form-control pt-3" id="LooS of Amount" placeholder="Loss of Amount" required />
                       </div>
                 
               </div>
