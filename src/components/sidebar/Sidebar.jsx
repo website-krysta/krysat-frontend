@@ -63,6 +63,12 @@ const Sidebar = () => {
               <span>Raw Meterial</span>
             </li>
           </Link>
+          <Link to="/labour" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Labour</span>
+            </li>
+          </Link>
         
           <li onClick={handleLogout}>
             <ExitToAppIcon className="icon" />

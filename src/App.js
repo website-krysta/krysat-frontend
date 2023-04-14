@@ -7,6 +7,8 @@ import Edituser from "./pages/new/Update";
 import Productlist from "./pages/products/Productlist";
 import Newproduct from "./pages/products/Newproduct";
 import Newrawmeterial from "./pages/products/Newrawmeterial"
+import Labour from "./pages/labour/labour"
+import Addlabour from "./pages/labour/addlabour"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -44,6 +46,12 @@ function App() {
                 path="newrawmeterial"
                 element={<Newrawmeterial/>}
               />
+            </Route>
+            <Route path="labour">
+              <Route index element={<Labour />} />
+              <Route  path="new"
+                  element={<Addlabour inputs={productInputs} title="Add labour" />} />
+        
             </Route>
           </Route>
         </Routes>
