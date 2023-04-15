@@ -40,7 +40,7 @@ const handleChange = (event) => {
   [event.target.name]: event.target.value,
   
 });
-getselectvendordata(productinfo.VendorID);
+// getselectvendordata(productinfo.VendorID);
 calculateDifference();
 };
 
@@ -109,19 +109,29 @@ const getvendordata = async ()=>{
  }
 }
 
+// const vid = productinfo.VendorID
+// const [vendorData, setvendorData] = useState([])
+// const getselectvendordata = async (VendorID)=>{
+//  try{
+//   let res = await axios.get(`/api/vendor/${VendorID}/`);
+//   setvendorData(res.data)
+//   console.log(vendorData)
+//  }
+//  catch(error){
+//   console.log(error)
+//  }
+// }
 
+
+const vid = productinfo.VendorID
 const [vendorData, setvendorData] = useState([])
-const getselectvendordata = async (VendorID)=>{
- try{
-  let res = await axios.get(`/api/vendor/${VendorID}/`);
-  setvendorData(res.data)
-  console.log(vendorData)
- }
- catch(error){
-  console.log(error)
- }
-}
-
+    axios.get(`/api/vendor/${vid}/`)
+    .then((res)=>{
+        setvendorData(res.data)
+        console.log(vendorData)
+    }).catch((error)=>{
+        console.log(error)
+    })
 
 
 useEffect (()=>{

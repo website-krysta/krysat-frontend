@@ -37,7 +37,7 @@ const handleChange = (event) => {
     [event.target.name]: event.target.value,
     
   });
-  getselectvendordata(materialinfo.VendorID);
+//   getselectvendordata(materialinfo.VendorID);
   calculateDifference();
 };
 
@@ -106,18 +106,18 @@ const getvendordata = async ()=>{
    }
 }
 
+const vid = materialinfo.VendorID
+const [vendorData, setvendorData] = useState({})
 
-const [vendorData, setvendorData] = useState([])
-const getselectvendordata = async (VendorID)=>{
-   try{
-    let res = await axios.get(`/api/vendor/${VendorID}/`);
-    setvendorData(res.data)
-    console.log(vendorData)
-   }
-   catch(error){
-    console.log(error)
-   }
-}
+    axios.get(`/api/vendor/${vid}/`)
+    .then((res)=>{
+        setvendorData(res.data)
+        console.log(vendorData)
+    }).catch((error)=>{
+        console.log(error)
+    })
+    
+
 
 
 
@@ -125,8 +125,12 @@ useEffect (()=>{
   handlAddmaterial();
   getmeterialdata();
   getvendordata();
-},{})
+//   getselectvendordata();
+  getmeterialdata();
+  getvendordata();
+},[])
 
+// getselectvendordata, handlAddmaterial
     
   return (
       <div className="new1">
