@@ -89,12 +89,17 @@ const Formula = () => {
                                                 </div>);
                                                 })}
 
-                                                {checkedItems.map((post)=>{         
+                                                {checkedItems.map((post)=>{  
+                                                    let value = "dinesh"+12345       
                                                     return (
                                                         <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
-                                                        <input type="text" value={post[0]} name="FormulaName"  className="form-control text-center" id="FormulaName" placeholder="Material Qty"  />
+                                                        <input type="text" value="" name="FormulaName"  className="form-control text-center" id="FormulaName" placeholder="Material Qty"  />
                                                     </div>
                                                     )})}
+
+                                                    <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
+                                                        <input type="text" value="" name="FinalQuantity"  className="form-control text-center" id="FinalQuantity" placeholder="FinalQuantity"  />
+                                                    </div>
                                                     
                                                 {/* ending logic */}
 

@@ -84,16 +84,23 @@ const calculateDifference = () => {
 
 // -----------------------------
 const [options, setOptions] = useState([]);
-const getmeterialdata = async ()=>{
- try{
-  let res = await axios.get('/api/packing/list/');
-  setOptions(res.data)
+axios.get(`/api/packing/list/`)
+.then((res)=>{
+    setOptions(res.data)
+   
+}).catch((error)=>{
+    console.log(error)
+})
+// const getmeterialdata = async ()=>{
+//  try{
+//   let res = await axios.get('/api/packing/list/');
+//   setOptions(res.data)
   
- }
- catch(error){
-  console.log(error)
- }
-}
+//  }
+//  catch(error){
+//   console.log(error)
+//  }
+// }
 
 // get vendor form data
 const [voptions, setvOptions] = useState([]);
@@ -124,7 +131,7 @@ const [vendorData, setvendorData] = useState([])
 
 useEffect (()=>{
 handlAddmaterial();
-getmeterialdata();
+// getmeterialdata();
 getvendordata();
 },{})
 

@@ -27,9 +27,9 @@ export default function Addpacking() {
 //  start main function
   const now = new Date();
   // const [selectedvOption, setSelectedvOption] = useState(null);
-  const [productData, setproductData] = useState({
-    ProductID: '2',
-    ProductCode: '',
+  const [packingData, setpackingData] = useState({
+    PackingMaterialID: '2',
+    PackingMaterialCode: '',
     ProductName: '',
     QtyType:'',
     TotalQuantity: '0',
@@ -39,8 +39,8 @@ export default function Addpacking() {
   });
 
   const handleChange = (event) => {
-    setproductData({
-      ...productData,
+    setpackingData({
+      ...packingData,
       [event.target.name]: event.target.value
     });
   };
@@ -50,14 +50,14 @@ export default function Addpacking() {
     event.preventDefault();
     debugger
     try{
-      let res = await axios.post('/api/packing/add/',productData );
+      let res = await axios.post('/api/packing/add/',packingData );
       navigate('/products/new')
       handleClose()
       alert("Sucessfully Created")
       
     }
     catch(error){
-        alert('User adding fail please try agian !')
+        alert('Packing adding fail please try agian !')
     }
   }
 
@@ -85,23 +85,23 @@ export default function Addpacking() {
         <DialogContent>
         <form id="login-form" >
           <div className="mb-3">
-            <input type="text" name="MaterialCode" value={productData.MaterialCode} onChange={handleChange}  className="form-control pt-3" id="MaterialCode"  placeholder="MaterialCode" required />
+            <input type="text" name="PackingMaterialCode" value={packingData.PackingMaterialCode} onChange={handleChange}  className="form-control pt-3" id="PackingMaterialCode"  placeholder="PackingMaterialCode" required />
           </div>
           <div className="mb-3">
-            <input type="text" name="MaterialName" value={productData.MaterialName} onChange={handleChange}  className="form-control pt-3" id="MaterialName" placeholder="MaterialName" required />
+            <input type="text" name="PackingMaterialName" value={packingData.PackingMaterialName} onChange={handleChange}  className="form-control pt-3" id="PackingMaterialName" placeholder="PackingMaterialName" required />
           </div>
           <div className="formInput col-6 mb-3">
-                    <select className="popdropdown"  name="QtyType"  value={productData.QtyType} onChange={handleChange}  >
+                    <select className="popdropdown"  name="QtyType"  value={packingData.QtyType} onChange={handleChange}  >
                     <option value="">-- Select QtyType --</option>
                       <option value="kg">kg</option>
                       <option value="grams">grams</option>
                     </select>
                 </div>
           {/* <div className="mb-3">
-            <input type="number" name="TotalQuantity" value={productData.TotalQuantity} onChange={handleChange}  className="form-control pt-3" id="TotalQuantity"  placeholder="TotalQuantity" required />
+            <input type="number" name="TotalQuantity" value={packingData.TotalQuantity} onChange={handleChange}  className="form-control pt-3" id="TotalQuantity"  placeholder="TotalQuantity" required />
           </div>
           <div className="mb-3">
-            <input type="number" name="ConsumedQuantity" value={productData.ConsumedQuantity} onChange={handleChange}  className="form-control pt-3" id="ConsumedQuantity"  placeholder="ConsumedQuantity" required />
+            <input type="number" name="ConsumedQuantity" value={packingData.ConsumedQuantity} onChange={handleChange}  className="form-control pt-3" id="ConsumedQuantity"  placeholder="ConsumedQuantity" required />
           </div> */}
           
           <div className="center-btn">
