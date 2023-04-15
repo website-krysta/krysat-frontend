@@ -4,23 +4,25 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { Link, useNavigate } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
 
 
 const Formula = () => {
 
- const navigate = useNavigate();
   
-
+ const [checkedItems, setCheckedItems] = useState([]);
   //  start main function
-  const [checkedItems, setCheckedItems] = useState({});
-  const handleCheckboxChange = (event, itemId) => {
+  const handleItemCheck = (itemId) => {
+   
     debugger
-    setCheckedItems({
-      ...checkedItems,
-      [itemId]: event.target.checked
-    });
+    const isChecked = checkedItems.includes(itemId);
+    if (isChecked) {
+      setCheckedItems(prevCheckedItems => prevCheckedItems.filter(item => item !== itemId));
+    } else {
+      setCheckedItems(prevCheckedItems => [...prevCheckedItems, itemId]);
+    }
   };
+
 
   const now = new Date();
   let [materialData , setmaterialData] = useState([]);
@@ -72,7 +74,14 @@ const Formula = () => {
                                                 <div className="col-2 p-3 px-5 material-tail">
                                                     <div className="material-item">
                                                         <div className="d-flex px-2 ">
-                                                        <input type="checkbox" className="px-5" onChange={(event) => handleCheckboxChange(event, post.MaterialID)} id="{post.MaterialID}" name="{post.MaterialID}" value="{post.MaterialID}" />&nbsp;
+                                                        <input type="checkbox" 
+                                                        className="px-5" 
+                                                        checked={checkedItems.includes(post.MaterialID)}
+                                                        onChange={() => handleItemCheck(post.MaterialID)} 
+                                                        // onChange={(event) => handleCheckboxChange(event, post.MaterialID)} 
+                                                        id="{post.MaterialID}" 
+                                                        name="{post.MaterialID}" 
+                                                        value="{post.MaterialID}" />&nbsp;
                                                         <label for="vehicle1">{post.MaterialName}</label><br></br>
                                                         </div>
                                                     </div>
@@ -80,8 +89,14 @@ const Formula = () => {
                                                 </div>);
                                                 })}
 
-                                        {/* ending logic */}
-
+                                                {checkedItems.map((post)=>{         
+                                                    return (
+                                                        <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
+                                                        <input type="text" value={post[0]} name="FormulaName"  className="form-control text-center" id="FormulaName" placeholder="Material Qty"  />
+                                                    </div>
+                                                    )})}
+                                                    
+                                                {/* ending logic */}
 
                                                     </div>
                                                   </div>

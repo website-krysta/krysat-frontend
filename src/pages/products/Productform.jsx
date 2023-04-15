@@ -162,16 +162,16 @@ return (
                                 </div>
                               </div>
                           </div>
-                    <div className="col-11 mb-3">
+                    <div className="col-12 mb-3">
                         <input type="text" name="BatchNo" value={productinfo.BatchNo} onChange={handleChange} className="form-control pt-3" placeholder="Batch no" />
                     </div>
-                    <div className="col-11 mb-3">                         
+                    <div className="col-12 mb-3">                         
                         <input type="number" name="OrderedQuantity" value={productinfo.OrderedQuantity} onChange={handleChange} className="form-control pt-3" placeholder="Ordered quantity" />
                     </div>
-                    <div className="col-11 mb-3">                      
+                    <div className="col-12 mb-3">                      
                         <input type="text" name="ReceivedQuantity"  value={productinfo.ReceivedQuantity} onChange={handleChange} className="form-control pt-3"  placeholder="Received quantity" />
                     </div>
-                    <div className="col-11 mb-3">
+                    <div className="col-12 mb-3">
                         <input type="number" name="AmountPaid" value={productinfo.AmountPaid} onChange={handleChange} className="form-control pt-3" placeholder="Amount paid" />
                     </div>
                     
@@ -232,7 +232,7 @@ return (
                         <input type="number" value={DamagedQty} name="DamagedQty" onChange={handleChange} className="form-control pt-3" id="code" placeholder="Damaged Qty" required />
                     </div>
                     <div className="mb-3">
-                        <input type="text" value={productinfo.DamagedResion} name="DamagedResion" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
+                        <textarea cols={3} rows={6} type="text" value={productinfo.DamagedResion} name="DamagedResion" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
                     </div>
                     <div className="mb-3">
                         <input type="number" value={productinfo.LossofAmount} name="LossofAmount" onChange={handleChange} className="form-control pt-3" id="LooS of Amount" placeholder="Loss of Amount" required />
