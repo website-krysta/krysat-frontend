@@ -28,14 +28,14 @@ const New = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top d-flex justify-content-between align-items-center ">
+        {/* <div className="top d-flex justify-content-between align-items-center ">
           <h1>Add Raw Material/Product </h1>
           <Link to="/users" className="link" >
             <button className="btn btn-warning">
               Back
             </button>
           </Link>
-        </div>
+        </div> */}
 
         <div className="bottom" >
           <div className="right" >
