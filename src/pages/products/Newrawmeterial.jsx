@@ -54,8 +54,8 @@ export default function Newrawmeterial() {
     debugger
     try{
       let res = await axios.post('/api/meterial/add/',rameterialData );
-      navigate('/products/new')
       handleClose()
+      navigate('/invoice/new')
       alert("Sucessfully Created")
       
     }

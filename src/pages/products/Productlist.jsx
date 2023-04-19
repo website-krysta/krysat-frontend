@@ -1,14 +1,14 @@
 import "./productlist.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
-import Productdata from "../../components/producttable/productdata"
+import Invoice from "../../pages/invoiceData/Invoice"
 const Productlist = () => {
   return (
     <div className="list">
       <Sidebar/>
       <div className="listContainer">
         <Navbar/>
-        <Productdata/>
+        <Invoice/>
 
       </div>
     </div>

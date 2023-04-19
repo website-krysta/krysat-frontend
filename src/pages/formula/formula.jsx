@@ -81,7 +81,7 @@ const Formula = () => {
                                                         // onChange={(event) => handleCheckboxChange(event, post.MaterialID)} 
                                                         id="{post.MaterialID}" 
                                                         name="{post.MaterialID}" 
-                                                        value="{post.MaterialID}" />&nbsp;
+                                                        value="{post.MaterialName}" />&nbsp;
                                                         <label for="vehicle1">{post.MaterialName}</label><br></br>
                                                         </div>
                                                     </div>

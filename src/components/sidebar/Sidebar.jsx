@@ -7,6 +7,9 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreIcon from "@mui/icons-material/Store";
 import Groups3Icon from '@mui/icons-material/Groups3';
 import ScienceIcon from '@mui/icons-material/Science';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -59,10 +62,10 @@ const Sidebar = () => {
               <span>Users</span>
             </li>
           </Link>
-          <Link to="/products/new" style={{ textDecoration: "none" }}>
+          <Link to="/invoice" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Raw Material</span>
+              <span>Add Material</span>
             </li>
           </Link>
           <Link to="/formula" style={{ textDecoration: "none" }}>
@@ -71,13 +74,32 @@ const Sidebar = () => {
               <span>Formula</span>
             </li>
           </Link>
+          {/* ------------------------------- */}
+          <Link to="/stock" style={{ textDecoration: "none" }}>
+            <li>
+              <InventoryIcon className="icon" />
+              <span>Stock</span>
+            </li>
+          </Link>
+          <Link to="/production" style={{ textDecoration: "none" }}>
+            <li>
+              <PrecisionManufacturingIcon className="icon" />
+              <span>Production</span>
+            </li>
+          </Link>
+          {/* --------------------------------------------- */}
           <Link to="/labour" style={{ textDecoration: "none" }}>
             <li>
               <Groups3Icon className="icon" />
               <span>Labour</span>
             </li>
           </Link>
-        
+          <Link to="/reports" style={{ textDecoration: "none" }}>
+            <li>
+              <SummarizeIcon className="icon" />
+              <span>Reports</span>
+            </li>
+          </Link>
           <li onClick={handleLogout}>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>

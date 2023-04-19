@@ -51,8 +51,8 @@ export default function Addpacking() {
     debugger
     try{
       let res = await axios.post('/api/packing/add/',packingData );
-      navigate('/products/new')
       handleClose()
+      navigate('/invoice/new')
       alert("Sucessfully Created")
       
     }

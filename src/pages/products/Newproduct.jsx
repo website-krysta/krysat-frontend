@@ -16,6 +16,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const New = () => {
+  const invoiceData = JSON.parse(localStorage.getItem('invoiceinfo'));
+  // let invoicID = invoiceData['ID']
+  let inwordNo = invoiceData['InwardNumber']
 
   const [selectedOption, setSelectedOption] = useState('option1');
   
@@ -40,6 +43,12 @@ const New = () => {
         <div className="bottom" >
           <div className="right" >
             <div className="row">
+            <div className="col-12 d-flex justify-content-center pt-5">
+                  <div className="col-4 mb-3 d-flex ">
+                       
+                        <input type="text" name="" value={inwordNo} className="form-control text-center" placeholder="Inward Number"/>
+                  </div>
+              </div>
               <div className="col-12 radio-btn-sec mb-5">
                 <div className="d-flex justify-content-center ">
                   <div className="form-check pt-5 px-3">
@@ -61,7 +70,7 @@ const New = () => {
                       onChange={handleChange}
                     />
                     <label className="form-check-label1" for="flexRadioDefault2">
-                      Product
+                      White Labeling
                     </label>
                   </div>
                   <div className="form-check pt-5  px-4">

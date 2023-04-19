@@ -49,8 +49,8 @@ export default function AddProduct() {
     debugger
     try{
       let res = await axios.post('/api/product/add/',productData );
-      navigate('/products/new')
       handleClose()
+      navigate('/invoice/new')
       alert("Sucessfully Created")
       
     }

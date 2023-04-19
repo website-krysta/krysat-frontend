@@ -10,7 +10,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Packingmaterial = () => {
   const navigate = useNavigate();
-
+  const invoiceData = JSON.parse(localStorage.getItem('invoiceinfo'));
+  let invoicID = invoiceData['ID']
+  let vendorID = invoiceData['VendorID']
 //   const navigate = useNavigate();
 const [DamagedQty, setDifferenceQty] = useState("");
   
@@ -26,6 +28,7 @@ const [packinginfo, setpackinginfo] = useState({
   UpdatedTimestamp: "",
   PackingMaterialID: '',
   VendorID: '',
+  InvoiceID:'',
   DamgeID:0,
   DamagedQty:'',
   DamagedResion:'',
@@ -48,6 +51,8 @@ const handlAddmaterial = async (event) => {
 event.preventDefault();
 try{
   debugger
+  packinginfo.InvoiceID = invoicID 
+  packinginfo.VendorID = vendorID
   let res = await axios.post('/api/packing/packingdetails/add/', packinginfo );
   alert("Packing add sucessfully")
 }
@@ -84,17 +89,32 @@ const calculateDifference = () => {
 
 // -----------------------------
 const [options, setOptions] = useState([]);
-axios.get(`/api/packing/list/`)
-.then((res)=>{
-    setOptions(res.data)
+const getpackingdata = async ()=>{
+    try{
+     let res = await axios.get('/api/packing/list/');
+     setOptions(res.data)
+     
+    }
+    catch(error){
+     console.log(error)
+    }
+   }
+// axios.get(`/api/packing/list/`)
+// .then((res)=>{
+//     setOptions(res.data)
    
-}).catch((error)=>{
-    console.log(error)
-})
-// const getmeterialdata = async ()=>{
+// }).catch((error)=>{
+//     console.log(error)
+// })
+
+
+// get vendor form data
+// const [voptions, setvOptions] = useState([]);
+// const getvendordata = async ()=>{
 //  try{
-//   let res = await axios.get('/api/packing/list/');
-//   setOptions(res.data)
+  
+//   let res = await axios.get('/api/vendor/list/');
+//   setvOptions(res.data)
   
 //  }
 //  catch(error){
@@ -102,37 +122,22 @@ axios.get(`/api/packing/list/`)
 //  }
 // }
 
-// get vendor form data
-const [voptions, setvOptions] = useState([]);
-const getvendordata = async ()=>{
- try{
-  
-  let res = await axios.get('/api/vendor/list/');
-  setvOptions(res.data)
-  
- }
- catch(error){
-  console.log(error)
- }
-}
+// const vid = packinginfo.VendorID
+// const [vendorData, setvendorData] = useState([])
 
-const vid = packinginfo.VendorID
-const [vendorData, setvendorData] = useState([])
-
-    axios.get(`/api/vendor/${vid}/`)
-    .then((res)=>{
-        setvendorData(res.data)
-        console.log(vendorData)
-    }).catch((error)=>{
-        console.log(error)
-    })
+//     axios.get(`/api/vendor/${vid}/`)
+//     .then((res)=>{
+//         setvendorData(res.data)
+//         console.log(vendorData)
+//     }).catch((error)=>{
+//         console.log(error)
+//     })
 
 
 
 useEffect (()=>{
 handlAddmaterial();
-// getmeterialdata();
-getvendordata();
+getpackingdata();
 },{})
 
   
@@ -141,7 +146,7 @@ return (
        <form className="meaterialform">
         <div class="row">
             <h1 className="text-center text-primary pt-4"></h1>
-            <div className="col-md-4 addproduct_form  pb-5">
+            <div className="col-md-6 addproduct_form  pb-5">
                           <div className="row pt-2  mb-3 d-flex justify-content-center align-items-center ">
                               <div className="col-8 ">
                               <select  name='PackingMaterialID' value={packinginfo.PackingMaterialID} onChange={handleChange} class="custom-select form-control py-2 selectbox selectbox px-4" id="" >
@@ -176,52 +181,8 @@ return (
               
             </div>
 
-            <div className="col-md-4 ">
-                <div className="row pt-2  mb-3 d-flex justify-content-center align-items-center">
-                                  <div className="col-8">
-                                  <select  name="VendorID" value={packinginfo.VendorID} onChange={handleChange} class="custom-select form-control py-2 selectbox px-4 " id="inputGroupSelect04">
-                                  <option >--- select vendor ---</option>
-                                  {voptions.map((voption) => (
-                                      <option key={voption.VendorID} value={voption.VendorID}>{voption.VendorName}</option>
-                                  ))}
-                              </select>
-                                  </div>
-                                  <div className="col-4 add ">
-                                  <div class="input-group-append">
-                                  <Newvendor/>
-                                  </div>
-                                  </div>
-                          </div>
-                    <div className="formInput1 mb-3 mt-2">
-                        <input type="text" value={vendorData.VendorCode} name="" onChange={handleChange} className="form-control pt-3" id="code" placeholder="vendor code" required />
-                    </div>
-                    <div className="formInput1 mb-3">
-                        <input type="text" value={vendorData.VendorName}  name="VendorName" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Name" required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="email" value={vendorData.EmailID} name="EmailID" onChange={handleChange} className="form-control pt-3" id="email1" placeholder="Email" required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="phone" value={vendorData.Phone} name="Phone" onChange={handleChange} className="form-control pt-3" id="exampleInputphone" placeholder="Phone" required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="text" value={vendorData.RegisteredName} name="RegisteredName" onChange={handleChange} className="form-control pt-3" id="RegisteredName" placeholder="RegisteredName" required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="text" value={vendorData.Address} name="Address" onChange={handleChange} className="form-control pt-3" id="exampleInputaddress" placeholder="Address" required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="text" value={vendorData.City} name="City" onChange={handleChange} className="form-control pt-3" id="city" placeholder="city" required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="text" value={vendorData.State}  name="State" onChange={handleChange} className="form-control pt-3" id="examplestate" placeholder="State" required />
-                    </div>
-                    <div className="mb-3">
-                        <input type="text" value={vendorData.Zip}  name="Zip" onChange={handleChange} className="form-control pt-3" id="Zip" placeholder="Zip Code" required />
-                    </div>
-
-            </div>
-            <div className="col-md-4" id="vendorform" >
+           
+            <div className="col-md-6" id="vendorform" >
             
                     <div className="mt-2 mb-3">
                         <input type="number" value={DamagedQty} name="DamagedQty" onChange={handleChange} className="form-control pt-3" id="code" placeholder="Damaged Qty" required />

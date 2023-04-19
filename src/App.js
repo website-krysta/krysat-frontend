@@ -7,6 +7,7 @@ import Edituser from "./pages/new/Update";
 import Productlist from "./pages/products/Productlist";
 import Newproduct from "./pages/products/Newproduct";
 import Newrawmeterial from "./pages/products/Newrawmeterial"
+import Addinvoice from "./pages/invoiceData/Addinvoice"
 import Labour from "./pages/labour/labour"
 import Addlabour from "./pages/labour/addlabour"
 import Formula from "./pages/formula/formula";
@@ -36,7 +37,7 @@ function App() {
                 element={<New inputs={userInputs} title="Add New User" />}
               />
             </Route>
-            <Route path="products">
+            <Route path="invoice">
               <Route index element={<Productlist />} />
               <Route path=":productId" element={<Single />} />
               <Route
@@ -47,6 +48,11 @@ function App() {
                 path="newrawmeterial"
                 element={<Newrawmeterial/>}
               />
+                  <Route
+                path="addinvoice"
+                element={<Addinvoice/>}
+              />
+              
             </Route>
             <Route path="labour">
               <Route index element={<Labour />} />
