@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import AddIcon from '@mui/icons-material/Add';
-
+// import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 const Invoice = () => {
 
   let [invoiceData , setinvoiceData] = useState([]);
@@ -40,6 +40,7 @@ const Invoice = () => {
                 <th scope="col">Inward Number</th>
                 <th scope="col">Invoice Date</th>
                 <th scope="col">Recieved Date</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             {invoiceData.map((post)=>{
@@ -50,6 +51,12 @@ const Invoice = () => {
                 <td>{post.InwardNumber}</td>
                 <td>{post.InvoiceDate}</td>
                 <td>{post.RecievedDate}</td>
+                <td>
+                  <button
+                    // onClick={() => navigate(`//${post.ID}`)}
+                    className='btn btn-warning'>Edit
+                  </button>
+                </td>
               </tr>
             </tbody>);
             })}
