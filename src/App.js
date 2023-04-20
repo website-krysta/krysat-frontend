@@ -11,6 +11,8 @@ import Addinvoice from "./pages/invoiceData/Addinvoice"
 import Labour from "./pages/labour/labour"
 import Addlabour from "./pages/labour/addlabour"
 import Formula from "./pages/formula/formula";
+import Stockhome from "./pages/stock/Stockhome";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -61,6 +63,11 @@ function App() {
             </Route>
             <Route path="formula">
               <Route index element={<Formula />} />
+              {/* <Route  path="new"
+                  element={<Addlabour inputs={productInputs} title="Add labour" />} /> */}
+            </Route>
+            <Route path="stock">
+              <Route index element={<Stockhome />} />
               {/* <Route  path="new"
                   element={<Addlabour inputs={productInputs} title="Add labour" />} /> */}
             </Route>
