@@ -80,8 +80,8 @@ const handleChange = (event) => {
   
 //   handleFormula
 const [aFormula, setaFormula] = useState([]); 
-const handleFormula = async (event) =>{
-    debugger;
+const  handleFormula = async (event) =>{
+    debugger; 
     event.preventDefault();
     const formulaObject = {
         materialiData:aMaterial,
@@ -91,9 +91,24 @@ const handleFormula = async (event) =>{
       setaFormula(formulaObject);
   try{
     debugger
-    let res = await axios.post('api/formula/add/',formulaObject );
-    // navigate('/users')
-    alert('Formula adding sucessfully')
+    let sum = 0;
+    for (var key in formulaObject['formulaname']) {
+        if (key !== "FormulaName"){
+            if (formulaObject['formulaname'].hasOwnProperty(key)) {
+              sum += parseInt(formulaObject['formulaname'][key]);
+            }
+        }
+       
+    }
+    if (sum < 100) {
+        alert("Formula Quantity is less than 100%.");
+      } else if (sum === 100) {
+        let res = await axios.post('api/formula/add/',formulaObject );
+        alert('Formula adding sucessfully')
+      } else {
+        alert("Formula Quantity is greater than 100%.");
+      }
+    
   }
   catch(error){
       alert('Formula adding fail please try agian !')
@@ -158,7 +173,7 @@ const handleFormula = async (event) =>{
                                                     return (
                                                         <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                             <label for="password">{post.materialname} :&nbsp;</label>
-                                                            <input type="number"  name={post.materialid} onChange={handleChange}  className="form-control text-center" id="qty" placeholder="Material Qty"  />
+                                                            <input type="number"  name={post.materialid} onChange={handleChange}  className="form-control text-center"  min="0" id="qty" placeholder="Please Enter Material Qty"  />
                                                         </div>
                                                     )})}
                                                 {/* ending logic */}

@@ -1,11 +1,14 @@
 // import "./product.scss";
-import { Link } from "react-router-dom";
+import { Link ,useParams, useNavigate  } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import AddIcon from '@mui/icons-material/Add';
+
 // import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 
 const Materialstock = () => {
+
+  const navigate = useNavigate();
   let [mstockData , setmstockData] = useState([]);
   const getmaterialstock = async ()=>{
     try{
@@ -40,23 +43,23 @@ const Materialstock = () => {
                 <th scope="col">MaterialName</th>
                 <th scope="col">QtyType</th>
                 <th scope="col">Available Qty</th>
-                {/* <th scope="col">Actions</th> */}
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             {mstockData.map((post)=>{
                  return (
             <tbody>
-              <tr key={post.ID}>
+              <tr key={post.MaterialID}>
                 <td>{post.MaterialCode}</td>
                 <td>{post.MaterialName}</td>
                 <td>{post.QtyType}</td>
                 <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
-                {/* <td>
+                <td>
                   <button
-                    onClick={() => navigate(`//${post.ID}`)}
-                    className='btn btn-warning'>Edit
+                    onClick={() => navigate(`/stock/materiallist/${post.MaterialID}`)}
+                    className='btn btn-warning'>Details
                   </button>
-                </td> */}
+                </td>
               </tr>
             </tbody>);
             })}

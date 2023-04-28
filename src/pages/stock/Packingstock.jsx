@@ -47,8 +47,8 @@ const Packingstock = () => {
                  return (
             <tbody>
               <tr key={post.ID}>
-                <td>{post.MaterialCode}</td>
-                <td>{post.MaterialName}</td>
+                <td>{post.PackingMaterialCode}</td>
+                <td>{post.PackingMaterialName}</td>
                 <td>{post.QtyType}</td>
                 <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
                 {/* <td>

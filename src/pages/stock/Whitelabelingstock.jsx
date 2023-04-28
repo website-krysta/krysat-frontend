@@ -47,8 +47,8 @@ const Whitelabelingstock = () => {
                  return (
             <tbody>
               <tr key={post.ID}>
-                <td>{post.MaterialCode}</td>
-                <td>{post.MaterialName}</td>
+                <td>{post.ProductCode}</td>
+                <td>{post.ProductName}</td>
                 <td>{post.QtyType}</td>
                 <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
                 {/* <td>

@@ -1,18 +1,19 @@
-import "./productlist.scss"
+import "../products/productlist.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
-import Invoice from "../../pages/invoiceData/Invoice"
-const InvoiceDatalist = () => {
+import Formulalist from "./Formulalist";
+
+const Formulamain = () => {
   return (
     <div className="list">
       <Sidebar/>
       <div className="listContainer">
         <Navbar/>
-        <Invoice/>
+        <Formulalist/>
 
       </div>
     </div>
   )
 }
 
-export default InvoiceDatalist;
+export default Formulamain;

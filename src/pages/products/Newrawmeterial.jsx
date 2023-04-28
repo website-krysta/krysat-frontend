@@ -98,6 +98,7 @@ export default function Newrawmeterial() {
                     <option value="">-- Select QtyType --</option>
                       <option value="kg">kg</option>
                       <option value="grams">grams</option>
+                      <option value="grams">liters</option>
                     </select>
                 </div>
           {/* <div className="mb-3">

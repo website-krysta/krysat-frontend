@@ -10,7 +10,7 @@ import {useNavigate } from 'react-router-dom';
 const Rawmaterialform = () => {
 //   const navigate = useNavigate();
 const invoiceData = JSON.parse(localStorage.getItem('invoiceinfo'));
-let invoicID = invoiceData['ID']
+let invoicID = invoiceData['InvoiceID']
 let vendorID = invoiceData['VendorID']
   const [DamagedQty, setDifferenceQty] = useState("");
   

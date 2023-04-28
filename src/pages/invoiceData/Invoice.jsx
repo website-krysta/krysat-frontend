@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
 // import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 const Invoice = () => {
 
+  const navigate = useNavigate();
   let [invoiceData , setinvoiceData] = useState([]);
   const getinvoiceata = async ()=>{
     try{
@@ -46,14 +48,14 @@ const Invoice = () => {
             {invoiceData.map((post)=>{
                  return (
             <tbody>
-              <tr key={post.ID}>
+              <tr key={post.InvoiceID}>
                 <td>{post.InvoiceNumber}</td>
                 <td>{post.InwardNumber}</td>
                 <td>{post.InvoiceDate}</td>
                 <td>{post.RecievedDate}</td>
                 <td>
                   <button
-                    // onClick={() => navigate(`//${post.ID}`)}
+                    onClick={() => navigate(`/invoice/editinvoice/${post.InvoiceID}`)}
                     className='btn btn-warning'>Edit
                   </button>
                 </td>

@@ -4,7 +4,7 @@ import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import Edituser from "./pages/new/Update";
-import Productlist from "./pages/products/Productlist";
+import InvoiceDatalist from "./pages/products/Productlist";
 import Newproduct from "./pages/products/Newproduct";
 import Newrawmeterial from "./pages/products/Newrawmeterial"
 import Addinvoice from "./pages/invoiceData/Addinvoice"
@@ -12,7 +12,9 @@ import Labour from "./pages/labour/labour"
 import Addlabour from "./pages/labour/addlabour"
 import Formula from "./pages/formula/formula";
 import Stockhome from "./pages/stock/Stockhome";
-
+import Formulamain from "./pages/formula/Formulamain";
+import EditInvoice from "./pages/invoiceData/Editinvoice"
+import MaterialstockList from "./pages/stock/MaterialStockList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -20,6 +22,9 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
+import UpdateRawmaterial from "./pages/stock/UpdateMaterial";
+
+
 function App() {
   const { darkMode } = useContext(DarkModeContext);
 
@@ -40,8 +45,8 @@ function App() {
               />
             </Route>
             <Route path="invoice">
-              <Route index element={<Productlist />} />
-              <Route path=":productId" element={<Single />} />
+              <Route index element={<InvoiceDatalist />} />
+              <Route path="editinvoice/:InvoiceID" element={<EditInvoice />} />
               <Route
                 path="new"
                 element={<Newproduct inputs={productInputs} title="Add Product" />}
@@ -62,14 +67,13 @@ function App() {
                   element={<Addlabour inputs={productInputs} title="Add labour" />} />
             </Route>
             <Route path="formula">
-              <Route index element={<Formula />} />
-              {/* <Route  path="new"
-                  element={<Addlabour inputs={productInputs} title="Add labour" />} /> */}
+              <Route index element={<Formulamain />} />
+              <Route  path="new" element={<Formula />} />
             </Route>
             <Route path="stock">
               <Route index element={<Stockhome />} />
-              {/* <Route  path="new"
-                  element={<Addlabour inputs={productInputs} title="Add labour" />} /> */}
+              <Route path="materiallist/:MaterialID" element={<MaterialstockList />} />
+              <Route path="updatematerial/:addMaterialID" element={<UpdateRawmaterial />} />
             </Route>
           </Route>
         </Routes>

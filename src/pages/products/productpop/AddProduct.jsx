@@ -73,7 +73,7 @@ export default function AddProduct() {
       
       <Dialog open={open} onClose={handleClose}>
         <div className='d-flex justify-content-between'>
-            <DialogTitle>Add Product</DialogTitle>
+            <DialogTitle>Add White Labeling</DialogTitle>
             <DialogActions>
             <Button onClick={handleClose}> <CloseIcon className="icon" /></Button>
             </DialogActions>
@@ -93,6 +93,7 @@ export default function AddProduct() {
                     <option value="">-- Select QtyType --</option>
                       <option value="kg">kg</option>
                       <option value="grams">grams</option>
+                      <option value="grams">liters</option>
                     </select>
                 </div>
           {/* <div className="mb-3">
