@@ -15,6 +15,8 @@ import Stockhome from "./pages/stock/Stockhome";
 import Formulamain from "./pages/formula/Formulamain";
 import EditInvoice from "./pages/invoiceData/Editinvoice"
 import MaterialstockList from "./pages/stock/MaterialStockList";
+import ProductionHome from "./pages/production/Productionhome";
+import UpdateRawmaterial from "./pages/stock/UpdateMaterial";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -22,7 +24,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
-import UpdateRawmaterial from "./pages/stock/UpdateMaterial";
+
 
 
 function App() {
@@ -74,6 +76,9 @@ function App() {
               <Route index element={<Stockhome />} />
               <Route path="materiallist/:MaterialID" element={<MaterialstockList />} />
               <Route path="updatematerial/:addMaterialID" element={<UpdateRawmaterial />} />
+            </Route>
+            <Route path="production">
+              <Route index element={<ProductionHome />} />
             </Route>
           </Route>
         </Routes>
