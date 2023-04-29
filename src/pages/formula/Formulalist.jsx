@@ -38,13 +38,13 @@ const Formulalist = () => {
               <tr>
                 <th scope="col">Formula Name</th>
                 <th scope="col">Total MaterialsUsed</th>
-                <th scope="col">AddedTimeStamp</th>
+                <th scope="col">Date</th>
               </tr>
             </thead>
             {formulaData.map((post)=>{
                  return (
             <tbody>
-              <tr key={post.ID}>
+              <tr key={post.FormulaID}>
                 <td>{post.FormulaName}</td>
                 <td>{post.TotalMaterialsUsed}</td>
                 <td>{post.AddedTimeStamp}</td>

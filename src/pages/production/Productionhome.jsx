@@ -11,7 +11,7 @@ const ProductionHome = () => {
 
     const navigate = useNavigate();
     const [formulaData, setformulaData] = useState({
-        RawMaterialID:''
+        FormulaID:''
     });
     
 
@@ -36,15 +36,25 @@ const ProductionHome = () => {
       }
     }
     
-    const fid = formulaData.RawMaterialID
+    const fid = formulaData.FormulaID
     const [formulamaterialData, setformulamaterialData] = useState([])
     debugger;
-        axios.get(`/api/formulamaterialiitems/${fid}/`)
-        .then((res)=>{
-            setformulamaterialData(res.data)
-        }).catch((error)=>{
-            console.log(error)
-        })
+    axios.get('api/formulaviewSet/')
+    .then((res)=>{
+        setformulamaterialData(res.data)
+    }).catch((error)=>{
+        console.log(error)
+    })
+
+
+    const filteredData = formulamaterialData.filter(obj => obj.forumula.FormulaID === parseInt(fid));
+       
+    // axios.get(`/api/formulamaterialiitems/${fid}/`)
+        // .then((res)=>{
+        //     setformulamaterialData(res.data)
+        // }).catch((error)=>{
+        //     console.log(error)
+        // })
     
 
 
@@ -74,22 +84,45 @@ const ProductionHome = () => {
                                             <h1 className="text-center text-primary pt-4"></h1>
                                             <div className="col-md-12">
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
-                                                    <input type="text"  name="FormulaName"   className="form-control text-center" id="FormulaName" placeholder="Please Enter FormulaName" required />
+                                                    <input type="text"  name="FormulaName"   className="form-control text-center" id="FormulaName" placeholder="Please Required Qty" required />
                                                 </div>
                                                 <div className="col-md-12 d-flex justify-content-center ">
-                                                    <select  name='RawMaterialID' value={formulaData.ID} onChange={handleChange}  class="custom-select form-control text-center py-2 selectbox selectbox px-4" id="" >
+                                                    <select  name='FormulaID' value={formulaData.FormulaID} onChange={handleChange}  class="custom-select form-control text-center py-2 selectbox selectbox px-4" id="" >
                                                         <option>-- select Formula --  </option>
                                                         {options.map((option) => (
-                                                            <option key={option.ID} value={option.ID}>{option.FormulaName}</option>
+                                                            <option key={option.FormulaID} value={option.FormulaID}>{option.FormulaName}</option>
                                                         ))}
                                                     </select>
                                                 </div>
                                                 <div className="col-md-12">
-                                                    <ul>
-                                                    {formulamaterialData.map((materialinfo) => (
-                                                            <li>{materialinfo.RawMaterialID} : {materialinfo.Quantity} %</li>
+                                                <table class="table mt-4">
+                                                <thead>
+                                                           <tr>
+                                                             <th scope="col">MaterialName</th>
+                                                             <th scope="col">Required Qty</th>
+                                                             <th scope="col">Avaliable Qty</th>
+                                                             <th scope="col">Status</th>
+                                                           </tr>
+                                                         </thead>
+                                                    {filteredData.map((materialinfo) => (
+                                                        
+                                                         
+                                        
+                                                         <tbody>
+                                                           <tr key={materialinfo.forumula.FormulaID}>
+                                                             <td>{materialinfo.material.MaterialName}</td>
+                                                             <td>{materialinfo.Quantity} %</td>
+                                                             {/* <td>{materialinfo.material.MaterialName}</td> */}
+                                                             <td>{materialinfo.material.TotalQuantity} %</td>
+                                                             <td>{materialinfo.Quantity >= materialinfo.material.TotalQuantity ? (<p className="text-danger">Stock Not Avaliable</p>) :( <p className="text-success">Stock Avaliable</p>)}</td>
+                                                             
+                                                           </tr>
+                                                         </tbody>
+                                                        
+                                                    
+                                                            // <li>{materialinfo.material.MaterialName} : {materialinfo.Quantity} %  --- {materialinfo.material.MaterialName} : {materialinfo.material.TotalQuantity} %</li>
                                                         ))}
-                                                    </ul>
+                                                     </table>
 
                                                 </div>
                                                 
