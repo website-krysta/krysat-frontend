@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Productform = () => {
   const navigate = useNavigate();
-  const invoiceData = JSON.parse(localStorage.getItem('invoiceinfo'));
+  const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
   let invoicID = invoiceData['InvoiceID']
   let vendorID = invoiceData['VendorID']
 //   const navigate = useNavigate();

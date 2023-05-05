@@ -16,7 +16,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const New = () => {
-  const invoiceData = JSON.parse(localStorage.getItem('invoiceinfo'));
+  const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
   // let invoicID = invoiceData['ID']
   let inwordNo = invoiceData['InwardNumber']
 

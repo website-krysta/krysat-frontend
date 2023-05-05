@@ -38,12 +38,13 @@ const AddInvoice = () => {
     event.preventDefault();
 
     try{
-      let res = await axios.post('api/invoice/add/',invoiceData );
       debugger;
-      navigate('/invoice/new')
+      let res = await axios.post('api/invoice/add/',invoiceData );
       const jsonString = JSON.stringify(res.data);
-      localStorage.setItem('invoiceinfo', jsonString);
+      sessionStorage.setItem('invoiceinfo', jsonString);
       
+      navigate('/invoice/new')
+
       alert("Sucessfully adding invoice Record")
     }
     catch(error){
