@@ -1,5 +1,5 @@
-import "./formula.css"
-import "../labour/labour.css"
+// import "./formula.css"
+// import "../labour/labour.css"
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
@@ -7,33 +7,35 @@ import axios from "../../api/axios";
 // import { Link, useNavigate } from 'react-router-dom';
 
 
-const Formula = () => {
+const Packingproduct = () => {
 
  const [checkedItems, setCheckedItems] = useState([]);  
  const [aMaterial, setaMaterial] = useState([]); 
   //  start main function
-  const handleItemCheck = (itemId,itemName) => {
+  const handleItemCheck = (itemId,itemName,totqty) => {
     debugger;
     const listItems = [];
     for (let i = 0; i < aMaterial.length; i++) {
-        const item_id = aMaterial[i].materialid;
+        const item_id = aMaterial[i].PackingMaterialID;
         listItems.push(item_id)
     }
     const isChecked = listItems.includes(itemId);
     if (isChecked) {
-        setaMaterial(aMaterial => aMaterial.filter(item => item.materialid !== itemId))
+        setaMaterial(aMaterial => aMaterial.filter(item => item.PackingMaterialID !== itemId))
         setCheckedItems(prevCheckedItems => prevCheckedItems.filter(item => item !== itemId),itemName)
+        setCheckedItems(prevCheckedItems => prevCheckedItems.filter(item => item !== itemId),totqty)
     
     } else {
         
         const materialObject = {
-            materialid:itemId,
-            materialname:itemName
+            PackingMaterialID:itemId,
+            PackingMaterialName:itemName,
+            PackingtotQty:totqty
           };
           // Set the object as state
           setaMaterial([...aMaterial, materialObject]);
         //   setoMaterial(materialObject);
-        setCheckedItems(prevCheckedItems => [...prevCheckedItems, itemId,itemName]);
+        setCheckedItems(prevCheckedItems => [...prevCheckedItems, itemId,itemName,totqty]);
     }
   };
 
@@ -48,28 +50,14 @@ const handleChange = (event) => {
 };
 
 
-//   const [selectMaterial, setselectMaterial] = useState([]);
-//   const getselectmaterialdata = async ()=>{
-//     debugger;
-//     for (let i = 0; i < checkedItems.length; i++) {
-//         const materialId = checkedItems[i];
-//         try{
-//         let res = await axios.get(`/meterial/${materialId}/`);
-//         setselectMaterial(res.data)
-//         }
-//         catch(error){
-//         console.log(error)
-//         }
-//     }
-//  };
 
 
   const now = new Date();
   let [materialData , setmaterialData] = useState([]);
   const getmaterialData = async ()=>{
      try{
-      
-      let res = await axios.get('api/meterial/list/');
+      debugger
+      let res = await axios.get('api/packing/list/');
       setmaterialData(res.data)
       console.log(materialData )
      }
@@ -78,48 +66,34 @@ const handleChange = (event) => {
      }
   }
   
-//   handleFormula
-const [aFormula, setaFormula] = useState([]); 
-const  handleFormula = async (event) =>{
-    debugger; 
+//   handleProduction
+const productionData = JSON.parse(localStorage.getItem('production'));
+const [aPackingData, setaPackingData] = useState([]); 
+const  handleProduction = async (event) =>{
     event.preventDefault();
-    const formulaObject = {
-        materialiData:aMaterial,
-        formulaname:qtyData
+    const packing_Object = {
+        PackingMaterialIData:aMaterial,
+        packingQty:qtyData,
+        productionData:productionData
       };
-      // Set the object as state
-      setaFormula(formulaObject);
-  try{
-    debugger
-    let sum = 0;
-    for (var key in formulaObject['formulaname']) {
-        if (key !== "FormulaName"){
-            if (formulaObject['formulaname'].hasOwnProperty(key)) {
-              sum += parseInt(formulaObject['formulaname'][key]);
-            }
-        }
-       
-    }
-    if (sum < 100) {
-        alert("Formula Quantity is less than 100%.");
-      } else if (sum === 100) {
-        let res = await axios.post('api/formula/add/',formulaObject );
-        alert('Formula adding sucessfully')
-      } else {
-        alert("Formula Quantity is greater than 100%.");
+
+      try{
+        debugger
+        let res = await axios.post('api/production/packingadd/', packing_Object );
+        alert("Packing Product sucessfully")
       }
-    
-  }
-  catch(error){
-      alert('Formula adding fail please try agian !')
-  }
+      catch(error){
+          alert('Packing Productfail please try agian!')
+      }
+
+
 }
 
   
   useEffect (()=>{
     getmaterialData();
-    handleFormula();
-    // getselectmaterialdata();
+    handleProduction();
+   
   },{})
 
   return (
@@ -132,17 +106,13 @@ const  handleFormula = async (event) =>{
                       <div className="row">
                           <div className="datatable">
                               <div className="datatableTitle">
-                                  Add Formula
+                                  Packing List
                               </div>
                               <div>
                                       <form className="labourform">
                                           <div class="row">
                                               <h1 className="text-center text-primary pt-4"></h1>
                                               <div className="col-md-12">
-                                                  <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
-                                                      <input type="text"  name="FormulaName" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please Enter FormulaName" required />
-                                                  </div>
-
                                                   <div className="show-material">
                                                     <div className="row">
                                                     
@@ -150,43 +120,49 @@ const  handleFormula = async (event) =>{
 
                                                 {materialData.map((post)=>{         
                                                     return (
-                                                <div className="col-2 p-3 px-5 material-tail">
+                                                <div className="col-3 p-3 px-5 material-tail">
                                                     <div className="material-item">
                                                         <div className="d-flex px-2 ">
                                                         <input type="checkbox" 
                                                         className="px-5" 
-                                                        checked={checkedItems.includes(post.MaterialID)}
-                                                        onChange={() => handleItemCheck(post.MaterialID,post.MaterialName)} 
-                                                        // onChange={(event) => handleCheckboxChange(event, post.MaterialID)} 
-                                                        id="{post.MaterialID}" 
-                                                        name="{post.MaterialID}" 
-                                                        value="{post.MaterialName}" />&nbsp;
-                                                        <label for="vehicle1">{post.MaterialName}</label><br></br>
+                                                        checked={checkedItems.includes(post.PackingMaterialID)}
+                                                        onChange={() => handleItemCheck(post.PackingMaterialID,post.PackingMaterialName,post.TotalQuantity
+                                                            )} 
+                                                        
+                                                        id="{post.PackingMaterialID}" 
+                                                        name="{post.PackingMaterialID}" 
+                                                        value="{post.PackingMaterialName}" />&nbsp;&nbsp;
+                                                        <label for="vehicle1">{post.PackingMaterialName}</label><br></br>
                                                         </div>
                                                     </div>
                                                     
                                                 </div>);
                                                 })}
 
-                                                {aMaterial.map((post)=>{  
-                                                    let value = "dinesh"+12345       
+                                                {aMaterial.map((post)=>{ 
+                                                    // const selectedMaterial = materialData.find((item) => item.forumula.PackingMaterialID === post.PackingMaterialID)   
                                                     return (
                                                         <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                             <div class="col-3 text-end">
-                                                            <label for="password">{post.materialname} :&nbsp;</label>
+                                                            <label for="password">{post.PackingMaterialName} :&nbsp;</label>
                                                             </div>
-                                                            <div class="col-9">
-                                                            <input type="number"  name={post.materialid} onChange={handleChange}  className="form-control text-center"  min="0" id="qty" placeholder="Please Enter Material Qty"  />
+                                                            <div class="col-5">
+                                                            <input type="number"  name={post.PackingMaterialID} onChange={handleChange}  className="form-control text-center"  min="0" id="qty" placeholder="Please Enter Material Qty"  />
                                                             </div>
+                                                            <div class="col-4 text-end">
+                                                            <label for="password">{post.PackingtotQty} &nbsp;&nbsp;&nbsp;</label>
+                                                            </div>
+                                                            
+                                                            
                                                         </div>
                                                     )})}
-                                                {/* ending logic */}
+                                               
 
                                                     </div>
                                                   </div>
                                                 <div className="d-flex justify-content-center">
                                                     <div>
-                                                    <button onClick={handleFormula} >Add</button>
+                                                    <button onClick={handleProduction} >Add Production</button>
                                                 </div>
                                                    
                                                 </div>
@@ -207,4 +183,4 @@ const  handleFormula = async (event) =>{
   );
 };
 
-export default Formula;
+export default Packingproduct;

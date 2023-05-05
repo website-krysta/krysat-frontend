@@ -17,6 +17,7 @@ import EditInvoice from "./pages/invoiceData/Editinvoice"
 import MaterialstockList from "./pages/stock/MaterialStockList";
 import ProductionHome from "./pages/production/Productionhome";
 import UpdateRawmaterial from "./pages/stock/UpdateMaterial";
+import Packingproduct from "./pages/production/PackingProducts";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -79,6 +80,7 @@ function App() {
             </Route>
             <Route path="production">
               <Route index element={<ProductionHome />} />
+              <Route path="packingproduct" element={<Packingproduct />} />
             </Route>
           </Route>
         </Routes>

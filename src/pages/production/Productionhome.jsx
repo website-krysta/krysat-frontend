@@ -11,7 +11,12 @@ const ProductionHome = () => {
 
     const navigate = useNavigate();
     const [formulaData, setformulaData] = useState({
-        FormulaID:''
+        ProductionID:'',
+        FormulaID: '', 
+        TransactionDate:'',  
+        ProductionQuantity:'',
+        AddedTimeStamp:'',
+        UpdatedTimeStamp:''
     });
     
 
@@ -19,17 +24,21 @@ const ProductionHome = () => {
     const handleChange = (event) => {
         setformulaData({
         ...formulaData,
-      
         [event.target.name]: event.target.value,
         
       });
     };
     
+  
+
+
     const [options, setOptions] = useState([]);
     const getformulaData = async ()=>{
+        
       try{
         let res = await axios.get('api/formula/list/');
         setOptions(res.data)
+       
       }
       catch(error){
         console.log(error)
@@ -38,32 +47,74 @@ const ProductionHome = () => {
     
     const fid = formulaData.FormulaID
     const [formulamaterialData, setformulamaterialData] = useState([])
-    debugger;
-    axios.get('api/formulaviewSet/')
-    .then((res)=>{
-        setformulamaterialData(res.data)
-    }).catch((error)=>{
-        console.log(error)
-    })
-
+    const [prevProductionData , setprevProductionData] = useState([])
 
     const filteredData = formulamaterialData.filter(obj => obj.forumula.FormulaID === parseInt(fid));
-       
-    // axios.get(`/api/formulamaterialiitems/${fid}/`)
-        // .then((res)=>{
-        //     setformulamaterialData(res.data)
-        // }).catch((error)=>{
-        //     console.log(error)
-        // })
+    const result = filteredData.find(item => (item.Quantity/100)*formulaData.ProductionQuantity >= item.material.TotalQuantity);
+    // debugger;
+   const getjointabledata = async () => {
+    try{
+        let res = await axios.get('api/formulaviewSet/')
+        setformulamaterialData(res.data)
+    }
+    catch(error){
+        console.log(error)
+    }
+    }
+
+    const getproductionData = async () => {
+        try{
+            debugger
+            let res = await axios.get('api/production/list/')
+            setprevProductionData(res.data)
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
     
+    const maxProductionID = prevProductionData.reduce((max, production) => {
+        if (production.ProductionID > max) {
+            return production.ProductionID;
+        } else {
+            return max;
+        }
 
+    }, 0);  
 
+    const newProduct = { 
+        ProductionID:(maxProductionID+1).toString(),
+        FormulaID: formulaData.FormulaID, 
+        TransactionDate:formulaData.TransactionDate,
+        ProductionQuantity:formulaData.ProductionQuantity,
+        AddedTimeStamp:formulaData.AddedTimeStamp,
+        UpdatedTimeStamp:formulaData.UpdatedTimeStamp,
+    }
+    const handleproduction = async (event) => {
+        event.preventDefault();
+       
+        try{
+        debugger;
+        let res = await axios.post('api/production/add/',newProduct );
+        navigate('/production/packingproduct')
+  
+        const production_info = JSON.stringify(newProduct);
+        localStorage.setItem('production', production_info);
+        }
+        catch(error){
+            alert('Please check production details')
+        }
+    }
+  
   
  
 
 
     useEffect(() => {
         getformulaData();
+        getjointabledata();
+        getproductionData();
+        handleproduction();
 
     }, {});
 
@@ -77,14 +128,15 @@ const ProductionHome = () => {
                         <div className="row">
                             <div className="datatable">
                                 <div className="datatableTitle">
-                                    Add Formula
+                                Production 
                                 </div>
                                 <form className="labourform">
                                         <div className="row">
                                             <h1 className="text-center text-primary pt-4"></h1>
                                             <div className="col-md-12">
+                                           
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
-                                                    <input type="text"  name="FormulaName"   className="form-control text-center" id="FormulaName" placeholder="Please Required Qty" required />
+                                                    <input type="number"  name="ProductionQuantity" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please Required Qty" required />
                                                 </div>
                                                 <div className="col-md-12 d-flex justify-content-center ">
                                                     <select  name='FormulaID' value={formulaData.FormulaID} onChange={handleChange}  class="custom-select form-control text-center py-2 selectbox selectbox px-4" id="" >
@@ -111,27 +163,30 @@ const ProductionHome = () => {
                                                          <tbody>
                                                            <tr key={materialinfo.forumula.FormulaID}>
                                                              <td>{materialinfo.material.MaterialName}</td>
-                                                             <td>{materialinfo.Quantity} %</td>
-                                                             {/* <td>{materialinfo.material.MaterialName}</td> */}
-                                                             <td>{materialinfo.material.TotalQuantity} %</td>
-                                                             <td>{materialinfo.Quantity >= materialinfo.material.TotalQuantity ? (<p className="text-danger">Stock Not Avaliable</p>) :( <p className="text-success">Stock Avaliable</p>)}</td>
+                                                             <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity} ({materialinfo.Quantity} %)</td>
+                                                             <td>{materialinfo.material.TotalQuantity}</td>
+                                                             <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity >= materialinfo.material.TotalQuantity ? (<p className="text-danger">Stock Not Avaliable</p>) :( <p className="text-success">Stock Avaliable</p>)}</td>
                                                              
                                                            </tr>
                                                          </tbody>
-                                                        
-                                                    
-                                                            // <li>{materialinfo.material.MaterialName} : {materialinfo.Quantity} %  --- {materialinfo.material.MaterialName} : {materialinfo.material.TotalQuantity} %</li>
+
                                                         ))}
                                                      </table>
 
                                                 </div>
-                                                
-                                        
-                                              <div className="d-flex justify-content-center">
-                                                    <div>
-                                                        <button >Next</button>
+                                                {result ? (
+                                                        <div className="d-flex justify-content-center">
+                                                        <div></div>
                                                     </div>
-                                              </div>
+                                                    ) : (
+                                                        <div className="d-flex justify-content-center">
+                                                        <div>
+                                                            <button onClick={handleproduction}>Next</button>
+                                                        </div>
+                                                    </div>
+                                                    )}
+                                                                                                
+                                                
           
                                             </div>
 

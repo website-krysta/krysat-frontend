@@ -106,7 +106,7 @@ const [vendorData, setvendorData] = useState({})
             <div className="row">
               <div className="datatable">
                 <div className="datatableTitle">
-                  Edit Invoice Details
+                Update Invoice
                 </div>
                 <div>
                   <form className="labourform">
