@@ -82,12 +82,13 @@ function App() {
               <Route index element={<Stockhome />} />
               <Route path="materiallist/:MaterialID" element={<MaterialstockList />} />
               <Route path="updatematerial/:addMaterialID" element={<UpdateRawmaterial />} />
+              
               {/* whitelabeling */}
               <Route path="whitelabeling/:ProductID" element={<Updatewhitelabeling/>} />
-              {/* <Route path="updatematerial/:addMaterialID" element={<UpdateRawmaterial />} /> */}
+            
                {/* packing */}
                <Route path="packinglist/:PackingMaterialID" element={<Updatepackingstock/>} />
-              {/* <Route path="updatematerial/:addMaterialID" element={<UpdateRawmaterial />} /> */}
+            
 
             </Route>
             <Route path="production">
