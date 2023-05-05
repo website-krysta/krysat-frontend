@@ -1,11 +1,13 @@
 // import "./product.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import AddIcon from '@mui/icons-material/Add';
 // import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 
 const Packingstock = () => {
+  
+  const navigate = useNavigate();
   let [mstockData , setmstockData] = useState([]);
   const getpackingstock = async ()=>{
     try{
@@ -40,23 +42,23 @@ const Packingstock = () => {
                 <th scope="col">MaterialName</th>
                 <th scope="col">QtyType</th>
                 <th scope="col">Available Qty</th>
-                {/* <th scope="col">Actions</th> */}
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             {mstockData.map((post)=>{
                  return (
             <tbody>
-              <tr key={post.ID}>
+              <tr key={post.PackingMaterialID}>
                 <td>{post.PackingMaterialCode}</td>
                 <td>{post.PackingMaterialName}</td>
                 <td>{post.QtyType}</td>
                 <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
-                {/* <td>
-                  <button
-                    onClick={() => navigate(`//${post.ID}`)}
-                    className='btn btn-warning'>Edit
+                
+                <td><button
+                    onClick={() => navigate(`/stock/packinglist/${post.PackingMaterialID}`)}
+                    className='btn btn-warning'>Details
                   </button>
-                </td> */}
+                </td>
               </tr>
             </tbody>);
             })}

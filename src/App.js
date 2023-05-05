@@ -15,6 +15,8 @@ import Stockhome from "./pages/stock/Stockhome";
 import Formulamain from "./pages/formula/Formulamain";
 import EditInvoice from "./pages/invoiceData/Editinvoice"
 import MaterialstockList from "./pages/stock/MaterialStockList";
+import Updatewhitelabeling from "./pages/stock/Updatewhitelabeling";
+import Updatepackingstock from "./pages/stock/Updatepackingstock";
 import ProductionHome from "./pages/production/Productionhome";
 import UpdateRawmaterial from "./pages/stock/UpdateMaterial";
 import Packingproduct from "./pages/production/PackingProducts";
@@ -25,6 +27,9 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
+
+
+
 
 
 
@@ -77,6 +82,13 @@ function App() {
               <Route index element={<Stockhome />} />
               <Route path="materiallist/:MaterialID" element={<MaterialstockList />} />
               <Route path="updatematerial/:addMaterialID" element={<UpdateRawmaterial />} />
+              {/* whitelabeling */}
+              <Route path="whitelabeling/:ProductID" element={<Updatewhitelabeling/>} />
+              {/* <Route path="updatematerial/:addMaterialID" element={<UpdateRawmaterial />} /> */}
+               {/* packing */}
+               <Route path="packinglist/:PackingMaterialID" element={<Updatepackingstock/>} />
+              {/* <Route path="updatematerial/:addMaterialID" element={<UpdateRawmaterial />} /> */}
+
             </Route>
             <Route path="production">
               <Route index element={<ProductionHome />} />

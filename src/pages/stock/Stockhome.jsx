@@ -5,6 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Materialstock from "../stock/Materialstock"
 import Packingstock from "../stock/Packingstock"
 import Whitelabelingstock from "./Whitelabelingstock";
+import Productionstock from './Productionstock';
 // import Newrawmeterial from "../products/Newrawmeterial"
 // import Newvendor from "../products/Newvendor"
 // import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
@@ -39,7 +40,7 @@ const Stockhome = () => {
                       onChange={handleChange}
                     />
                     <label className="form-check-label1" for="flexRadioDefault1">
-                      Raw Material
+                    &nbsp; Raw Material
                     </label>
                   </div>
                   <div className="form-check pt-5  px-4">
@@ -50,7 +51,7 @@ const Stockhome = () => {
                       onChange={handleChange}
                     />
                     <label className="form-check-label1" for="flexRadioDefault2">
-                      White Labeling
+                    &nbsp; White Labeling
                     </label>
                   </div>
                   <div className="form-check pt-5  px-4">
@@ -61,7 +62,18 @@ const Stockhome = () => {
                       onChange={handleChange}
                     />
                     <label className="form-check-label1" for="flexRadioDefault2">
-                      Packing Material
+                    &nbsp; Packing Material
+                    </label>
+                  </div>
+                  <div className="form-check pt-5  px-4">
+                    <input
+                      type="radio"
+                      value="option4"
+                      checked={selectedOption === 'option4'}
+                      onChange={handleChange}
+                    />
+                    <label className="form-check-label1" for="flexRadioDefault2">
+                     &nbsp; Production
                     </label>
                   </div>
                 </div>
@@ -76,6 +88,9 @@ const Stockhome = () => {
             )}
             {selectedOption === 'option3' && (
               <Packingstock />
+            )}
+             {selectedOption === 'option4' && (
+              <Productionstock />
             )}
 
 

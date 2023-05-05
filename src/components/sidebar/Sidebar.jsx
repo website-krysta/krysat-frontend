@@ -94,12 +94,12 @@ const Sidebar = () => {
               <span>Labour</span>
             </li>
           </Link>
-          <Link to="/reports" style={{ textDecoration: "none" }}>
+          {/* <Link to="/reports" style={{ textDecoration: "none" }}>
             <li>
               <SummarizeIcon className="icon" />
               <span>Reports</span>
             </li>
-          </Link>
+          </Link> */}
           <li onClick={handleLogout}>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>

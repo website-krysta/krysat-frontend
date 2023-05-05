@@ -7,18 +7,18 @@ import axios from "../../api/axios";
 import { Link,useParams,useNavigate } from 'react-router-dom';
 
 
-const MaterialstockList = () => {
+const Updatepackingstock = () => {
 
   const navigate = useNavigate();
-  const { MaterialID } = useParams();
+  const { PackingMaterialID } = useParams();
   // let [selectedData ,setselectedData] = useState([]);
   const [mstockData , setmstockData] = useState([]);
 
 
-  const getmaterialstock = async ()=>{
+  const getpackingstock = async ()=>{
     try{
      debugger;
-     let res = await axios.get('api/materialviewSet/');
+     let res = await axios.get('api/PackingViewSet/');
       setmstockData(res.data) 
     }
     catch(error){
@@ -27,11 +27,11 @@ const MaterialstockList = () => {
 
     }
       
-    const filteredData = mstockData.filter(obj => obj.MaterialID ===parseInt(MaterialID));
+    const filteredData = mstockData.filter(obj => obj.PackingMaterialID ===parseInt(PackingMaterialID));
 
 
  useEffect(() =>{
-  getmaterialstock();
+  getpackingstock();
 },[]);
 
   return (
@@ -56,8 +56,8 @@ const MaterialstockList = () => {
             <thead>
               <tr>
                
-                <th scope="col">Material Name</th>
-                <th scope="col">Material Code</th>
+                <th scope="col">Packing Name</th>
+                <th scope="col">Packing Code</th>
                 <th scope="col">Batch No</th>
                 <th scope="col">QtyType</th>
                 <th scope="col">Purchaged Qty</th>
@@ -73,10 +73,10 @@ const MaterialstockList = () => {
                  return (
             <tbody>
               <tr key={post.Id}>
-                <td>{post.Material.MaterialName}</td>
-                <td>{post.Material.MaterialCode}</td>
+                <td>{post.Packing.PackingMaterialName}</td>
+                <td>{post.Packing.PackingMaterialCode}</td>
                 <td>{post.BatchNo}</td>
-                <td>{post.Material.QtyType}</td>
+                <td>{post.Packing.QtyType}</td>
                 <td>{post.OrderedQuantity}</td>
                 <td>{post.ReceivedQuantity}</td>
                 <td>{post.Vendor.VendorName}</td>
@@ -107,4 +107,4 @@ const MaterialstockList = () => {
   );
 };
 
-export default MaterialstockList;
+export default Updatepackingstock;
