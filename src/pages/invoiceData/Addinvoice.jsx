@@ -43,7 +43,7 @@ const AddInvoice = () => {
       const jsonString = JSON.stringify(res.data);
       sessionStorage.setItem('invoiceinfo', jsonString);
       
-      navigate('/invoice/new')
+      navigate('/invoice/new',{state:{datainvoice:res.data}})
 
       alert("Sucessfully adding invoice Record")
     }

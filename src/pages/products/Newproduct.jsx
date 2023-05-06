@@ -12,13 +12,17 @@ import Newvendor from "../products/Newvendor"
 // import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useLocation } from 'react-router-dom';
 
 
 const New = () => {
-  const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
+  // const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
   // let invoicID = invoiceData['ID']
-  let inwordNo = invoiceData['InwardNumber']
+  // get data from navigate compontent or parent component
+  debugger;
+  const invoiceifo = useLocation();
+  debugger;
+  // let inwordNo = invoiceData['InwardNumber']
 
   const [selectedOption, setSelectedOption] = useState('option1');
   
@@ -37,7 +41,7 @@ const New = () => {
             <div className="col-12 d-flex justify-content-center pt-5">
                   <div className="col-4 mb-3 d-flex ">
                        
-                        <input type="text" name="" value={inwordNo} className="form-control text-center" placeholder="Inward Number"/>
+                        <input type="text" name="" value={invoiceifo.state.datainvoice.InwardNumber} className="form-control text-center" placeholder="Inward Number"/>
                   </div>
               </div>
               <div className="col-12 radio-btn-sec mb-5">
@@ -80,13 +84,13 @@ const New = () => {
             </div>
 
             {selectedOption === 'option1' && (
-              <Rawmaterialform />
+              <Rawmaterialform data={invoiceifo.state.datainvoice}/>
             )}
             {selectedOption === 'option2' && (
-              <Productform />
+              <Productform data={invoiceifo.state.datainvoice}/>
             )}
             {selectedOption === 'option3' && (
-              <Packingmaterial />
+              <Packingmaterial data={invoiceifo.state.datainvoice}/>
             )}
 
 

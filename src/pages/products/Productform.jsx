@@ -8,12 +8,15 @@ import axios from "../../api/axios";
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const Productform = () => {
+const Productform = (props) => {
+
   const navigate = useNavigate();
-  const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
-  let invoicID = invoiceData['InvoiceID']
-  let vendorID = invoiceData['VendorID']
+//   const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
+//   let invoicID = invoiceData['InvoiceID']
+//   let vendorID = invoiceData['VendorID']
 //   const navigate = useNavigate();
+let invoicID  =  props.data.InvoiceID
+let vendorID = props.data.VendorID
 const [DamagedQty, setDifferenceQty] = useState("");
   
 const [productinfo, setproductinfo] = useState({

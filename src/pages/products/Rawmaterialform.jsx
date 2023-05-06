@@ -7,11 +7,14 @@ import axios from "../../api/axios";
 import {useNavigate } from 'react-router-dom';
 
 
-const Rawmaterialform = () => {
+const Rawmaterialform = (props) => {
 //   const navigate = useNavigate();
 const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
-let invoicID = invoiceData['InvoiceID']
-let vendorID = invoiceData['VendorID']
+// let invoicID = invoiceData['InvoiceID'],invoiceData['VendorID']
+debugger;
+let invoicID  =  props.data.InvoiceID
+let vendorID = props.data.VendorID
+debugger;
   const [DamagedQty, setDifferenceQty] = useState("");
   
   const [materialinfo, setmaterialinfo] = useState({
