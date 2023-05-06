@@ -46,10 +46,10 @@ const EditInvoice = () => {
       const jsonString = JSON.stringify(res.data);
       sessionStorage.setItem('invoiceinfo', jsonString);
       
-      alert("Sucessfully adding invoice Record")
+      alert("Sucessfully update invoice Record")
     }
     catch(error){
-        alert('invoice adding fail please try agian !')
+        alert('invoice update fail please try agian !')
     }
   }
   
