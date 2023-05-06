@@ -44,7 +44,7 @@ const EditInvoice = () => {
       debugger;
       navigate('/invoice/new')
       const jsonString = JSON.stringify(res.data);
-      localStorage.setItem('invoiceinfo', jsonString);
+      sessionStorage.setItem('invoiceinfo', jsonString);
       
       alert("Sucessfully adding invoice Record")
     }
