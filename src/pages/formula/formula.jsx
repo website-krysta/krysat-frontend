@@ -176,7 +176,7 @@ const  handleFormula = async (event) =>{
                                                             <label for="password">{post.materialname} :&nbsp;</label>
                                                             </div>
                                                             <div class="col-9">
-                                                            <input type="number"  name={post.materialid} onChange={handleChange}  className="form-control text-center"  min="0" id="qty" placeholder="Please Enter Material Qty"  />
+                                                            <input type="number"  name={post.materialid} onChange={handleChange}  className="form-control text-center"  min="0" id="qty" placeholder="Please Enter Material %"  />
                                                             </div>
                                                         </div>
                                                     )})}
