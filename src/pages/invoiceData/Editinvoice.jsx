@@ -42,10 +42,9 @@ const EditInvoice = () => {
         debugger
       let res = await axios.post('api/invoice/add/',invoiceData );
       debugger;
-      navigate('/invoice/new')
       const jsonString = JSON.stringify(res.data);
       sessionStorage.setItem('invoiceinfo', jsonString);
-      
+      navigate('/invoice/new')
       alert("Sucessfully update invoice Record")
     }
     catch(error){
