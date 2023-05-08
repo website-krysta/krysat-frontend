@@ -9,9 +9,9 @@ const UpdateRawmaterial= () => {
 
 const { addMaterialID } = useParams();
 
-const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
-let invoicID = invoiceData['InvoiceID']
-let vendorID = invoiceData['VendorID']
+// const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
+// let invoicID = invoiceData['InvoiceID']
+// let vendorID = invoiceData['VendorID']
 
 // const [ getMdata , setMdata ] = useState([]); 
 
@@ -53,8 +53,8 @@ const handlAddmaterial = async (event) => {
   event.preventDefault();
   try{
     debugger
-    materialinfo.InvoiceID = invoicID 
-    materialinfo.VendorID = vendorID
+    // materialinfo.InvoiceID = invoicID 
+    // materialinfo.VendorID = vendorID
     let res = await axios.post('/api/addRawmaterial/add/', materialinfo );
     alert("Raw material add sucessfully")
   }
