@@ -35,15 +35,14 @@ const EditInvoice = () => {
   };
   
   
-  const handlAddInvoice= async (event) => {
+  const handlUpedateInvoice= async (event) => {
     event.preventDefault();
 
     try{
         debugger
-      let res = await axios.post('api/invoice/add/',invoiceData );
+      let res = await axios.post(`api/invoce/updateinvoice/${invoiceData.InvoiceID}/`,invoiceData );
       debugger;
       const jsonString = JSON.stringify(res.data);
-      // sessionStorage.setItem('invoiceinfo', jsonString);
       navigate('/invoice/new',{state:{datainvoice:res.data}})
       alert("Sucessfully update invoice Record")
     }
@@ -52,11 +51,10 @@ const EditInvoice = () => {
     }
   }
   
-  // get invoice data base don id  form data
+  // get invoice data based on id  form data
 //   const [inoiceData, setInvoiceData] = useState([]);
   const getinvoiceData = async ()=>{
     try{
-        debugger;
      let res = await  axios.get(`api/invoce/getinvoice/${InvoiceID}/`);
      setinvoiceData(res.data)
     }
@@ -81,6 +79,7 @@ const getvendordata = async ()=>{
 
 const vid = invoiceData.VendorID
 const [vendorData, setvendorData] = useState({})
+
     axios.get(`/api/vendor/${invoiceData.VendorID}/`)
     .then((res)=>{
         setvendorData(res.data)
@@ -90,9 +89,10 @@ const [vendorData, setvendorData] = useState({})
     
   
   useEffect (()=>{
-    handlAddInvoice();
+    handlUpedateInvoice();
     getvendordata();
     getinvoiceData();
+
   },{})
 
   return (
@@ -112,6 +112,7 @@ const [vendorData, setvendorData] = useState({})
                     <div class="row">
                       <div className="col-md-6">
                         <h1 className="text-center text-primary pt-4"></h1>
+                        <label>Vendor Name</label>
                         <div class="input-group mb-3">
                             <select class="form-select" name="VendorID" value={invoiceData.VendorID} onChange={handleChange} id="inputGroupSelect04" aria-label="Example select with button addon" disabled>
                             <option >--- select vendor ---</option>
@@ -147,7 +148,7 @@ const [vendorData, setvendorData] = useState({})
                             <input type="date" value={invoiceData.RecievedDate} name="RecievedDate" onChange={handleChange} className="form-control" id="RecievedDate" placeholder="RecievedDate" required />
                           </div>
                           <div className="">
-                            <button onClick={handlAddInvoice} >Add Invoice</button>
+                            <button onClick={handlUpedateInvoice} >Add Invoice</button>
                           </div>
 
                         </div>
