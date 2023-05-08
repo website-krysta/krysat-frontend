@@ -4,11 +4,11 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-// import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Formula = () => {
-
+    const navgate = useNavigate()
  const [checkedItems, setCheckedItems] = useState([]);  
  const [aMaterial, setaMaterial] = useState([]); 
   //  start main function
@@ -89,6 +89,7 @@ const  handleFormula = async (event) =>{
       };
       // Set the object as state
       setaFormula(formulaObject);
+      navgate('/formula/')
   try{
     debugger
     let sum = 0;
