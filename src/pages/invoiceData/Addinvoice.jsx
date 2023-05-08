@@ -23,7 +23,7 @@ const AddInvoice = () => {
     RecievedDate :'',
     VendorID :'',
     AddedTimeStamp :'',
-    updatedTimeStamp :'',
+    UpdatedTimeStamp :'',
   });
   
   const handleChange = (event) => {
@@ -75,13 +75,14 @@ const getvendordata = async ()=>{
 
 const vid = invoiceData.VendorID
 const [vendorData, setvendorData] = useState({})
+useEffect(() => {
     axios.get(`/api/vendor/${vid}/`)
     .then((res)=>{
         setvendorData(res.data)
     }).catch((error)=>{
         console.log(error)
     })
-    
+  }, [vid]);
   
   useEffect (()=>{
     handlAddInvoice();

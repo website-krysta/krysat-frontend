@@ -79,13 +79,14 @@ const getvendordata = async ()=>{
 
 const vid = invoiceData.VendorID
 const [vendorData, setvendorData] = useState({})
-
+  useEffect(() => {
     axios.get(`/api/vendor/${invoiceData.VendorID}/`)
     .then((res)=>{
         setvendorData(res.data)
     }).catch((error)=>{
         console.log(error)
     })
+  }, [invoiceData.VendorID]);
     
   
   useEffect (()=>{

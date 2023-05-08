@@ -47,11 +47,12 @@ const MaterialstockList = () => {
             <div className="datatable">
       <div className="datatableTitle">
         Raw Material Stock list
-  
+      
       </div>
      
       <div>
         <div className="main">
+     
         <table class="table">
             <thead>
               <tr>
@@ -85,7 +86,7 @@ const MaterialstockList = () => {
                 {format(new Date(post.AddedTimestamp), 'dd-MM-yyyy')}
                 <td>
                   <button
-                    onClick={() => navigate(`/stock/updatematerial/${post.Id}`)}
+                    onClick={() => navigate(`/stock/updatematerial/${post.Id}`,{state:{post:post}})}
                     className='btn btn-warning'>Edit
                   </button>
                 </td>

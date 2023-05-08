@@ -4,11 +4,12 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-// import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useLocation } from 'react-router-dom';
 
 
-const Packingproduct = () => {
-
+const Packingproduct = (props) => {
+const productionifo = useLocation();
+const navigate = useNavigate();
  const [checkedItems, setCheckedItems] = useState([]);  
  const [aMaterial, setaMaterial] = useState([]); 
   //  start main function
@@ -67,9 +68,11 @@ const handleChange = (event) => {
   }
   
 //   handleProduction
-const productionData = JSON.parse(localStorage.getItem('production'));
+const productionData = productionifo.state.data
+// JSON.parse(localStorage.getItem('production'));
 const [aPackingData, setaPackingData] = useState([]); 
 const  handleProduction = async (event) =>{
+    debugger;
     event.preventDefault();
     const packing_Object = {
         PackingMaterialIData:aMaterial,
@@ -81,6 +84,7 @@ const  handleProduction = async (event) =>{
         debugger
         let res = await axios.post('api/production/packingadd/', packing_Object );
         alert("Packing Product sucessfully")
+        navigate('/stock/')
       }
       catch(error){
           alert('Packing Productfail please try agian!')

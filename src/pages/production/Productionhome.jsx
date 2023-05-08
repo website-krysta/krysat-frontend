@@ -96,10 +96,10 @@ const ProductionHome = () => {
         try{
         debugger;
         let res = await axios.post('api/production/add/',newProduct );
-        navigate('/production/packingproduct')
+        navigate('/production/packingproduct',{state:{data:newProduct}})
   
-        const production_info = JSON.stringify(newProduct);
-        localStorage.setItem('production', production_info);
+        // const production_info = JSON.stringify(newProduct);
+        // localStorage.setItem('production', production_info);
         }
         catch(error){
             alert('Please check production details')
