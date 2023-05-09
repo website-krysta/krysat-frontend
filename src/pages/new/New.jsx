@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 // import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -29,8 +29,9 @@ const handleChange = (event) => {
 const handlAdduser = async (event) => {
   event.preventDefault();
   try{
-    let res = await axios.post('https://saimythribuilders.com/api/useradd/',userData );
+    let res = await axios.post('api/useradd/',userData );
     navigate('/users')
+    alert('User adding Sucessfully')
   }
   catch(error){
       alert('User adding fail please try agian !')

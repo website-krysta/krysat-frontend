@@ -27,7 +27,7 @@ const Labour = () => {
     const handleuserDelete =  async(id) => {
      
        try{
-        await axios.delete(`https://saimythribuilders.com/api/deleteuser/${id}/`)
+        await axios.delete(`api/deleteuser/${id}/`)
         const updateuser = labourdata.filter(user => user.UserID !== id);
         setlabourdata(updateuser);
                 

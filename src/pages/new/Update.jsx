@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 // import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import { useNavigate,useParams,Link } from 'react-router-dom';
 
 
@@ -27,10 +27,9 @@ const handleChange = (event) => {
   });
 };
 const getUserdata = async ()=>{
-    let id = 13;
     try{
      debugger
-     let res = await axios.get(`https://saimythribuilders.com/api/userget/${userId}/`);
+     let res = await axios.get(`api/userget/${userId}/`);
      setUserdata(res.data)
     
     }
@@ -43,11 +42,12 @@ const handlUpdateuser = async (event) => {
     event.preventDefault();
         try{
             debugger
-            let res = await axios.post(`https://saimythribuilders.com/api/userupdate/${userId}/`,userData );
+            let res = await axios.post(`api/userupdate/${userId}/`,userData );
             navigate('/users')
+            alert('User update sucessfully')
         }
         catch(error){
-            alert('update fail')
+            alert('User update fail')
         }
     };
 

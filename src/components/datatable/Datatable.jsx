@@ -6,7 +6,7 @@ import RestoreFromTrashIcon from '@mui/icons-material/RestoreFromTrash';
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -19,7 +19,7 @@ const Datatable = () => {
   const getApidata = async ()=>{
      try{
       
-      let res = await axios.get('https://saimythribuilders.com/api/user/');
+      let res = await axios.get('/api/user/');
       setmydata(res.data)
       console.log(mydata )
      }
@@ -30,7 +30,7 @@ const Datatable = () => {
   const handleuserDelete =  async(id) => {
    
      try{
-      await axios.delete(`https://saimythribuilders.com/api/deleteuser/${id}/`)
+      await axios.delete(`/api/deleteuser/${id}/`)
       const updateuser = mydata.filter(user => user.UserID !== id);
       setmydata(updateuser);
               
@@ -60,7 +60,7 @@ let Role = 'user'
         All Users
 
         <Link to="/users/new" className="link">Add New User</Link>
-        {/* {Role === "user"  ? <Link to="/users/new" className="link">Add New User</Link> : <Link to="/users/new" className="link"> New User</Link> } */}
+       
        
       </div>
      
@@ -70,7 +70,6 @@ let Role = 'user'
         <table class="table">
             <thead>
               <tr>
-                {/* <th scope="col">UserID</th> */}
                 <th scope="col">EmailID</th>
                 <th scope="col">Password</th>
                 <th scope="col">Role</th>
@@ -81,7 +80,6 @@ let Role = 'user'
                  return (
             <tbody>
               <tr key={post.UserID}>
-                {/* <td>{post.UserID}</td> */}
                 <td>{post.EmailID}</td>
                 <td>{post.Password}</td>
                 <td>{post.Role}</td>

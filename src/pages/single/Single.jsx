@@ -5,7 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 // import List from "../../components/table/Table";
 import {useParams,Link } from 'react-router-dom';
 import { useState,useEffect } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 
 
 
@@ -22,7 +22,7 @@ const Single = () => {
     
     try{
      debugger
-     let res = await axios.get(`https://saimythribuilders.com/api/userget/${userId}/`);
+     let res = await axios.get(`api/userget/${userId}/`);
      setUserdata(res.data)
     
     }

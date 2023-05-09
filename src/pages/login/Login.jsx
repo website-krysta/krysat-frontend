@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
-import axios from "axios";
+import axios from "../../api/axios";
 // import { getuserlist } from "../../components/apiist/Api";
 
 
@@ -30,7 +30,7 @@ const Login = () => {
     event.preventDefault();
     try{
       debugger;
-      let res = await axios.post('https://saimythribuilders.com/api/user/',userData );
+      let res = await axios.post('api/user/',userData );
       // Store user data in session storage
         sessionStorage.setItem('userData', JSON.stringify(res.data));
       navigate('/users')
