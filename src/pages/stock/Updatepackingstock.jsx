@@ -46,7 +46,7 @@ const Updatepackingstock = () => {
             <div className="row">
             <div className="datatable">
       <div className="datatableTitle">
-        Raw Material Stock list
+        Packing Stock list
   
       </div>
      

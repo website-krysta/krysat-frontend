@@ -86,7 +86,7 @@ const MaterialstockList = () => {
                 {format(new Date(post.AddedTimestamp), 'dd-MM-yyyy')}
                 <td>
                   <button
-                    onClick={() => navigate(`/stock/updatematerial/${post.Id}`,{state:{post:post}})}
+                    onClick={() => navigate(`/stock/updatematerial/${post.Id}`)}
                     className='btn btn-warning'>Edit
                   </button>
                 </td>

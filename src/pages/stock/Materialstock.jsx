@@ -15,7 +15,7 @@ const Materialstock = () => {
   
   const [filterValue, setFilterValue] = useState('');
   const [pageNumber, setPageNumber] = useState(0);
-  const materialsPerPage = 4;
+  const materialsPerPage = 10;
   const pagesVisited = pageNumber * materialsPerPage;
 
 

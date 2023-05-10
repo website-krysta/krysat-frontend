@@ -9,116 +9,136 @@ const UpdateRawmaterial= () => {
 
 const { addMaterialID } = useParams();
 
-// const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
-// let invoicID = invoiceData['InvoiceID']
-// let vendorID = invoiceData['VendorID']
-
-// const [ getMdata , setMdata ] = useState([]); 
-
-  const [DamagedQty, setDifferenceQty] = useState("");
-  
-  const [materialinfo, setmaterialinfo] = useState({
-        
-    Id: 0,
+const [DamagedQty, setDifferenceQty] = useState({DamagedQty:12});
+const [materialDetails, setmaterialDetails] = useState({
+    Id: '',
     TransactionDate: "",
     BatchNo: "",
-    OrderedQuantity:"",
+    OrderedQuantity: "",
     ReceivedQuantity: "",
     AmountPaid: "",
     AddedTimestamp: "",
     UpdatedTimestamp: "",
-    MaterialID: '',
-    InvoiceID:'',
-    VendorID:'',
-    DamgeID:0,
+    MaterialID: "",
+    VendorID: "",
+    DamgeID: "",
     DamagedQty:'',
-    DamagedResion:'',
-    LossofAmount:''
-});
+    InvoiceID: ""
+})
+const [damagedInfo, setdamagedInfo] = useState({
+  DamagedQty: "",
+  DamagedResion: "",
+  LossofAmount: ""
+})
+const [rawmaterialInfo, setrawmaterialInfo] = useState({
+  MaterialID: "",
+  MaterialCode: "",
+  MaterialName: "",
+  QtyType: "",
+  TotalQuantity: "",
+  ConsumedQuantity: "",
+  AddedTimestamp: "",
+  UpdatedTimestamp: ""
+})
 
-
+const [invoiceInfo, setinvoiceInfo] = useState({
+  InvoiceID: "",
+  InvoiceNumber: "",
+  InwardNumber: "",
+  InvoiceDate: "",
+  RecievedDate: "",
+  VendorID: 8,
+  AddedTimeStamp: "",
+  UpdatedTimeStamp: ""
+})
 
 const handleChange = (event) => {
-    setmaterialinfo({
-    ...materialinfo,
-  
+  setmaterialDetails({
+    ...materialDetails,
     [event.target.name]: event.target.value,
     
   });
-//   getselectvendordata(materialinfo.VendorID);
-  calculateDifference();
+  // calculateDifference();
 };
+const handleDamagedChange = (event) => {
+  setdamagedInfo({
+    ...damagedInfo,
+    [event.target.name]: event.target.value,
+    
+  });
+  // calculateDifference();
+};
+const handleDamagedQtyChange = (event) => {
+  const newDamagedQty = event.target.value;
+  setdamagedInfo((prevState) => ({
+    ...prevState,
+    DamagedQty: newDamagedQty
+  }));
+};
+const handlerawmaterialChange = (event) => {
+  setrawmaterialInfo({
+    ...rawmaterialInfo,
+    [event.target.name]: event.target.value,
+    
+  });
+
+};
+
+
+
+
+useEffect(() => {
+  async function fetchData() {  
+    debugger
+    const materialdetails  = await axios.get(`api/addRawmaterial/${addMaterialID}/`);
+    const damageddata  = await axios.get(`api/damaged/${materialdetails.data.DamgeID}/`);
+    const rawMaterialdata  = await axios.get(`api/meterial/${materialdetails.data.MaterialID}/`);
+    const invoiceData  = await axios.get(`api/invoce/getinvoice/${materialdetails.data.InvoiceID}/`);
+
+    setmaterialDetails(materialdetails.data);
+    setdamagedInfo(damageddata.data[0]);
+    setrawmaterialInfo(rawMaterialdata.data[0]);
+    setinvoiceInfo(invoiceData.data);
+  }
+
+    fetchData();
+  }, [addMaterialID]);
+
+
+
 
 const handlAddmaterial = async (event) => {
   event.preventDefault();
+  let rawMaterial_Data = {
+    materialDetails:materialDetails,
+    damaged:damagedInfo,
+    rawmaterial:rawmaterialInfo,
+    invoice:invoiceInfo,
+  };
+
   try{
     debugger
-    // materialinfo.InvoiceID = invoicID 
-    // materialinfo.VendorID = vendorID
-    let res = await axios.post('/api/addRawmaterial/add/', materialinfo );
-    alert("Raw material add sucessfully")
+    let res = await axios.post('api/updateRawmaterial/update/',rawMaterial_Data);
+    alert("Raw material Update sucessfully")
   }
   catch(error){
-      alert('Meterial adding fail please try agian!')
+      alert('Meterial Update fail please try agian!')
   }
 
-  setmaterialinfo({
-        
-    Id: "",
-    TransactionDate: "",
-    BatchNo: "",
-    OrderedQuantity:"",
-    ReceivedQuantity: "",
-    AmountPaid: "",
-    AddedTimestamp: "",
-    UpdatedTimestamp: "",
-    MaterialID: '',
-    VendorID: '',
-    DamgeID:"",
-    DamagedQty:'',
-    DamagedResion:'',
-    LossofAmount:''
-});
 }
 
 
 // ------------ calculate difference-----------------
 const calculateDifference = () => {
-    const difference = parseFloat(materialinfo.OrderedQuantity) - parseFloat(materialinfo.ReceivedQuantity);
+    const difference = (materialDetails.OrderedQuantity) - (materialDetails.ReceivedQuantity);
     setDifferenceQty(difference.toFixed(2));
+    debugger;
 
   };
 
-// -----------------------------
-// const [ getMdata , setMdata ] = useState([]);
-// const getmaterialData = async ()=>{
-//   try{
-//     debugger;
-//     let res = await axios.get(`/api/rawmaterial_item/${addMaterialID}/`);
-//     setMdata(res.data)
-//     console.log(getMdata)
-//   }
-//   catch(error){
-//     console.log(error)
-//   }
-// }
-const [data, setData] = useState([]);
-const [filterdata, setfilterdata] = useState([]);
-  useEffect(() => {
-    debugger;
-    axios.get('/api/materialviewSet/')
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
-
-
-    const filteredData = data.filter(obj => obj.Id === parseInt(addMaterialID));
-
+  
+  
    
 useEffect (()=>{
   handlAddmaterial();
@@ -127,7 +147,6 @@ useEffect (()=>{
 // getselectvendordata, handlAddmaterial
     
   return (
-  
       <div className="new">
           <Sidebar />
           <div className="newContainer">
@@ -140,39 +159,36 @@ useEffect (()=>{
                               <div className="datatableTitle">
                                   Raw Material updaate
                               </div>
-
                               <div>
                                   <div className="main">
                                       <form className="meaterialform">
-                                      {filteredData.map((post)=>{
-                                        return (
                                           <div class="row">
                                               <h1 className="text-center text-primary pt-4"></h1>
                                               <div className="col-md-6 addproduct_form  pb-5">
 
                                                   <div className="col-12 mb-3 mt-2">
                                                   <label> Material Name</label>
-                                                      <input type="text" name="MaterialName" value={filteredData[0].Material.MaterialName} onChange={handleChange} className="form-control pt-2" placeholder="Batch no"  disabled/>
+                                                      <input type="text" name="MaterialName"  value={rawmaterialInfo.MaterialName} onChange={handlerawmaterialChange} className="form-control pt-2" placeholder="Material Name"  disabled/>
                                                   </div>
                                                   <div className="col-12 mb-3">
                                                   <label>Batch No</label>
-                                                      <input type="text" name="BatchNo" value={filteredData[0].BatchNo} onChange={handleChange} className="form-control pt-3" placeholder="Batch no" />
+                                                      <input type="number" name="BatchNo" value={materialDetails.BatchNo}   onChange={handleChange} className="form-control pt-3" placeholder="Batch no" />
                                                   </div>
                                                   <div className="col-12 mb-3">
                                                   <label>Ordered Quantity</label>
-                                                      <input type="number" name="OrderedQuantity" value={filteredData[0].OrderedQuantity}  onChange={handleChange} className="form-control pt-3" placeholder="Ordered quantity" />
+                                                      <input type="number" name="OrderedQuantity" value={materialDetails.OrderedQuantity}  onChange={handleChange} className="form-control pt-3" placeholder="Ordered quantity" />
                                                   </div>
                                                   <div className="col-12 mb-3">
                                                   <label>Received Quantity</label>
-                                                      <input type="text" name="ReceivedQuantity" value={filteredData[0].ReceivedQuantity} onChange={handleChange} className="form-control pt-3" placeholder="Received quantity" />
+                                                      <input type="number" name="ReceivedQuantity" value={materialDetails.ReceivedQuantity} onChange={handleChange} className="form-control pt-3" placeholder="Received quantity" />
                                                   </div>
                                                   <div className="col-12 mb-3">
                                                   <label> Amount Paid</label>
-                                                      <input type="number" name="AmountPaid" value={filteredData[0].AmountPaid}  onChange={handleChange} className="form-control pt-3" placeholder="Amount paid" />
+                                                      <input type="number" name="AmountPaid" value={materialDetails.AmountPaid}  onChange={handleChange} className="form-control pt-3" placeholder="Amount paid" />
                                                   </div>
 
                                                   <div className="">
-                                                      <button onClick={handlAddmaterial} >Add Material</button>
+                                                      <button onClick={handlAddmaterial} >Update Material</button>
                                                   </div>
 
                                               </div>
@@ -180,24 +196,24 @@ useEffect (()=>{
 
                                                   <div className="mt-2 mb-3">
                                                   <label> Inward Number</label>
-                                                      <input type="text" name="inward number" value={filteredData[0].invoice.InwardNumber} onChange={handleChange} className="form-control pt-2" id="code" disabled />
+                                                      <input type="text" name="inwardnumber" value={invoiceInfo.InwardNumber} onChange={handleChange} className="form-control pt-2" id="code" disabled />
                                                   </div>
                                                   <div className="mt-2 mb-3">
                                                   <label>Damaged Qty</label>
-                                                      <input type="number" name="DamagedQty" value={filteredData[0].Damaged.DamagedQty}  onChange={handleChange} className="form-control pt-3" id="code" placeholder="Damaged Qty" required />
+                                                      <input type="number" name="DamagedQty" value={materialDetails.OrderedQuantity-materialDetails.ReceivedQuantity}  onChange={handleDamagedChange} className="form-control pt-3" id="code" placeholder="Damaged Qty" required />
                                                   </div>
                                                   <div className="mb-3">
                                                   <label> Damaged Resion</label>
-                                                      <textarea cols={3} rows={6} type="text" value={filteredData[0].Damaged.DamagedResion}  name="DamagedResion" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
+                                                      <textarea cols={3} rows={6} type="text" value={damagedInfo.DamagedResion}  name="DamagedResion" onChange={handleDamagedChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
                                                   </div>
                                                   <div className="mb-3">
                                                   <label> Loss of Amount</label>
-                                                      <input type="number" value={filteredData[0].Damaged.LossofAmount}  name="LossofAmount" onChange={handleChange} className="form-control pt-3" id="LooS of Amount" placeholder="Loss of Amount" required />
+                                                      <input type="number" value={damagedInfo.LossofAmount}  name="LossofAmount" onChange={handleDamagedChange} className="form-control pt-3" id="LooS of Amount" placeholder="Loss of Amount" required />
                                                   </div>
 
                                               </div>
                                           </div>
-                                        )})}
+                                      
                                       </form>
                                   </div>
                               </div>
