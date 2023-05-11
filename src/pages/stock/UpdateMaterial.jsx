@@ -3,11 +3,12 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { useParams } from 'react-router-dom';
+import { useParams ,useNavigate} from 'react-router-dom';
 
 const UpdateRawmaterial= () => {
 
 const { addMaterialID } = useParams();
+const navigate = useNavigate();
 
 const [DamagedQty, setDifferenceQty] = useState({DamagedQty:12});
 const [materialDetails, setmaterialDetails] = useState({
@@ -120,6 +121,7 @@ const handlAddmaterial = async (event) => {
     debugger
     let res = await axios.post('api/updateRawmaterial/update/',rawMaterial_Data);
     alert("Raw material Update sucessfully")
+    navigate('/stock/')
   }
   catch(error){
       alert('Meterial Update fail please try agian!')
