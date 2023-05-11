@@ -89,7 +89,7 @@ const  handleFormula = async (event) =>{
       };
       // Set the object as state
       setaFormula(formulaObject);
-      navgate('/formula/')
+    
   try{
     debugger
     let sum = 0;
@@ -105,6 +105,7 @@ const  handleFormula = async (event) =>{
         alert("Formula Quantity is less than 100%.");
       } else if (sum === 100) {
         let res = await axios.post('api/formula/add/',formulaObject );
+        navgate('/formula/')
         alert('Formula adding sucessfully')
       } else {
         alert("Formula Quantity is greater than 100%.");
