@@ -134,11 +134,8 @@ const ProductionHome = () => {
                                         <div className="row">
                                             <h1 className="text-center text-primary pt-4"></h1>
                                             <div className="col-md-12">
-                                           
-                                                <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
-                                                    <input type="number"  name="ProductionQuantity" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please Required Qty" required />
-                                                </div>
-                                                <div className="col-md-12 d-flex justify-content-center ">
+                                                 
+                                            <div className="col-md-12 d-flex justify-content-center ">
                                                     <select  name='FormulaID' value={formulaData.FormulaID} onChange={handleChange}  class="custom-select form-control text-center py-2 selectbox selectbox px-4" id="" >
                                                         <option>-- select Formula --  </option>
                                                         {options.map((option) => (
@@ -146,6 +143,10 @@ const ProductionHome = () => {
                                                         ))}
                                                     </select>
                                                 </div>
+                                                <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
+                                                    <input type="number"  name="ProductionQuantity" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please Required Qty" required />
+                                                </div>
+                                                
                                                 <div className="col-md-12">
                                                 <table class="table mt-4">
                                                 <thead>
