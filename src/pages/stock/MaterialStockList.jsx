@@ -65,7 +65,7 @@ const MaterialstockList = () => {
                 <th scope="col">Recived Qty</th>
                 <th scope="col">VendorName</th>
                 <th scope="col">DamagedQty </th>
-                <th scope="col">InwardNumber </th>
+                <th scope="col">InvoiceNumber</th>
                 <th scope="col">Date </th>
                 <th scope="col">Action</th>
               </tr>
@@ -82,7 +82,7 @@ const MaterialstockList = () => {
                 <td>{post.ReceivedQuantity}</td>
                 <td>{post.Vendor.VendorName}</td>
                 <td>{post.Damaged.DamagedQty}</td>
-                <td>{post.invoice.InwardNumber}</td>
+                <td>{post.invoice.InvoiceNumber}</td>
                 {format(new Date(post.AddedTimestamp), 'dd-MM-yyyy')}
                 <td>
                   <button

@@ -17,9 +17,11 @@ import EditInvoice from "./pages/invoiceData/Editinvoice"
 import MaterialstockList from "./pages/stock/MaterialStockList";
 import Updatewhitelabeling from "./pages/stock/Updatewhitelabeling";
 import Updatepackingstock from "./pages/stock/Updatepackingstock";
+import UpdatepackingItem from './pages/stock/UpdatepackingItem';
 import ProductionHome from "./pages/production/Productionhome";
 import UpdateRawmaterial from "./pages/stock/UpdateMaterial";
 import Packingproduct from "./pages/production/PackingProducts";
+import UpdateWhitelabelingItem from "./pages/stock/UpdateWhitelabelingItem"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -85,9 +87,11 @@ function App() {
               
               {/* whitelabeling */}
               <Route path="whitelabeling/:ProductID" element={<Updatewhitelabeling/>} />
+              <Route path="updateWhitelabel/:productID" element={<UpdateWhitelabelingItem />} />
             
                {/* packing */}
                <Route path="packinglist/:PackingMaterialID" element={<Updatepackingstock/>} />
+               <Route path="updatepackingItem/:packingItemID" element={<UpdatepackingItem />} />
             
 
             </Route>

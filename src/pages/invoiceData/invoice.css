@@ -1,3 +1,6 @@
 .datatable{
     height: 110vh !important;
 }
+.showvendor_info label{
+    color:#B1B3B5;
+}

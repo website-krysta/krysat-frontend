@@ -3,6 +3,7 @@ import '../products/addproduct.css'
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
+import { format } from 'date-fns';
 import axios from "../../api/axios";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -53,15 +54,6 @@ const Labour = () => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        {/* <div className="top d-flex justify-content-between align-items-center ">
-          <h1>Add Labour </h1>
-          <Link to="/users" className="link" >
-            <button className="btn btn-warning">
-              Back
-            </button>
-          </Link>
-        </div> */}
-
         <div className="bottom" >
           <div className="right" >
             <div className="row">
@@ -77,45 +69,24 @@ const Labour = () => {
         <table class="table">
             <thead>
               <tr>
-                {/* <th scope="col">UserID</th> */}
                 <th scope="col">TotalLabours</th>
                 <th scope="col">MorningShiftCount</th>
                 <th scope="col">NightShiftCount</th>
                 <th scope="col">MorningShiftAmount</th>
                 <th scope="col">NightShiftAmount</th>
-                {/* <th scope="col">AddedTimeStamp</th> */}
+                <th scope="col">Date</th>
               </tr>
             </thead>
             {labourdata.map((post)=>{
                  return (
             <tbody>
               <tr key={post.ID}>
-                {/* <td>{post.UserID}</td> */}
                 <td>{post.TotalLabours}</td>
                 <td>{post.MorningShiftCount}</td>
                 <td>{post.NightShiftCount}</td>
                 <td>{post.MorningShiftAmount}</td>
                 <td>{post.NightShiftAmount}</td>
-                {/* <td>{post.AddedTimeStamp}</td> */}
-                
-                {/* <td>
-                  <button
-                    onClick={() => navigate(`/users/viewuser/${post.UserID}`)}
-                    className='btn btn-primary'><PreviewIcon />
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => navigate(`/users/edituser/${post.UserID}`)}
-                    className='btn btn-warning'><CreateIcon/>
-                  </button>
-                </td>
-                <td>
-                  <button
-                   onClick={() => handleuserDelete(post.UserID)}
-                    className='btn btn-danger'><RestoreFromTrashIcon />
-                  </button>
-                </td> */}
+                <td>{format(new Date(post.EnteryDate), 'dd-MM-yyyy')}</td>
               </tr>
             </tbody>);
             })}

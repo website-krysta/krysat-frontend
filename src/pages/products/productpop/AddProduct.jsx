@@ -50,7 +50,6 @@ export default function AddProduct() {
     try{
       let res = await axios.post('/api/product/add/',productData );
       handleClose()
-      navigate('/invoice/new')
       alert("Sucessfully Created")
       
     }

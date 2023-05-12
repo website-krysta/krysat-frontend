@@ -102,6 +102,19 @@ const getproductdata = async ()=>{
     }
    }
 
+   const product_id = productinfo.ProductID
+   const [qty, setqty] = useState({});
+   useEffect(() => {
+     debugger;
+       axios.get(`api/product/${product_id}/`)
+       .then((res)=>{
+         setqty(res.data[0])
+       }).catch((error)=>{
+           console.log(error)
+       })
+     }, [product_id]);
+
+
 // axios.get(`/api/product/list/`)
 // .then((res)=>{
 //     setOptions(res.data)
@@ -150,6 +163,8 @@ const getproductdata = async ()=>{
 //     })
 
 
+
+
 useEffect (()=>{
 handlAddmaterial();
 getproductdata();
@@ -181,14 +196,17 @@ return (
                     <div className="col-12 mb-3">
                         <input type="text" name="BatchNo" value={productinfo.BatchNo} onChange={handleChange} className="form-control pt-3" placeholder="Batch no" />
                     </div>
-                    <div className="col-12 mb-3">                         
+                    <div className="col-12 mb-3 input-group">                         
                         <input type="number" name="OrderedQuantity" value={productinfo.OrderedQuantity} onChange={handleChange} className="form-control pt-3" placeholder="Ordered quantity" />
+                        <span class="input-group-text" id="basic-addon2">{qty.QtyType}</span>
                     </div>
-                    <div className="col-12 mb-3">                      
+                    <div className="col-12 mb-3 input-group">                      
                         <input type="text" name="ReceivedQuantity"  value={productinfo.ReceivedQuantity} onChange={handleChange} className="form-control pt-3"  placeholder="Received quantity" />
+                        <span class="input-group-text" id="basic-addon2">{qty.QtyType}</span>
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-3 input-group">
                         <input type="number" name="AmountPaid" value={productinfo.AmountPaid} onChange={handleChange} className="form-control pt-3" placeholder="Amount paid" />
+                        <span class="input-group-text" id="basic-addon2">₹</span>
                     </div>
                     
                     <div className="">
@@ -199,14 +217,15 @@ return (
 
             <div className="col-md-6" id="vendorform" >
             
-                    <div className="mt-2 mb-3">
+                    <div className="mt-2 mb-3 input-group">
                         <input type="number" value={DamagedQty} name="DamagedQty" onChange={handleChange} className="form-control pt-3" id="code" placeholder="Damaged Qty" required />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 input-group">
                         <textarea cols={3} rows={6} type="text" value={productinfo.DamagedResion} name="DamagedResion" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 input-group">
                         <input type="number" value={productinfo.LossofAmount} name="LossofAmount" onChange={handleChange} className="form-control pt-3" id="LooS of Amount" placeholder="Loss of Amount" required />
+                        <span class="input-group-text" id="basic-addon2">₹</span>
                     </div>
               
             </div>

@@ -12,7 +12,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "../../api/axios";
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 
 export default function Newrawmeterial() {
@@ -28,10 +28,8 @@ export default function Newrawmeterial() {
   };
 
 //  start main function
-  const now = new Date();
-  // const [selectedvOption, setSelectedvOption] = useState(null);
   const [rameterialData, setrameterialData] = useState({
-    MaterialID: '2',
+    MaterialID: 2,
     MaterialCode: '',
     MaterialName: '',
     QtyType:'',
@@ -53,14 +51,13 @@ export default function Newrawmeterial() {
     event.preventDefault();
     debugger
     try{
-      let res = await axios.post('/api/meterial/add/',rameterialData );
+      let res = await axios.post('api/meterial/add/',rameterialData );
       handleClose()
-      navigate('/invoice/new')
-      alert("Sucessfully Created")
+      alert("Material Sucessfully Created")
       
-    }
+    } 
     catch(error){
-        alert('User adding fail please try agian !')
+        alert('Material adding fail please try agian !')
     }
   }
 
@@ -101,13 +98,6 @@ export default function Newrawmeterial() {
                       <option value="grams">liters</option>
                     </select>
                 </div>
-          {/* <div className="mb-3">
-            <input type="number" name="TotalQuantity" value={rameterialData.TotalQuantity} onChange={handleChange}  className="form-control pt-3" id="TotalQuantity"  placeholder="TotalQuantity" required />
-          </div>
-          <div className="mb-3">
-            <input type="number" name="ConsumedQuantity" value={rameterialData.ConsumedQuantity} onChange={handleChange}  className="form-control pt-3" id="ConsumedQuantity"  placeholder="ConsumedQuantity" required />
-          </div> */}
-          
           <div className="center-btn">
           <button type="submit" onClick={handladdrwamaterial}  className="btn login-btn text-center px-5">Submit</button>
           </div>

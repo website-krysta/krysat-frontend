@@ -65,7 +65,7 @@ const Sidebar = () => {
           <Link to="/invoice" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Add Material</span>
+              <span>Add Invoice</span>
             </li>
           </Link>
           <Link to="/formula" style={{ textDecoration: "none" }}>

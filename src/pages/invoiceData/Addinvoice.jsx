@@ -40,12 +40,14 @@ const AddInvoice = () => {
     try{
       debugger;
       let res = await axios.post('api/invoice/add/',invoiceData );
-      const jsonString = JSON.stringify(res.data);
-      sessionStorage.setItem('invoiceinfo', jsonString);
-      
-      navigate('/invoice/new',{state:{datainvoice:res.data}})
-
-      alert("Sucessfully adding invoice Record")
+      // const jsonString = JSON.stringify(res.data);
+      // sessionStorage.setItem('invoiceinfo', jsonString);
+      if (res.status === 226) {
+        alert('Invoice number already exists');
+      } else {
+        navigate('/invoice/new', { state: { datainvoice: res.data } });
+        alert('Successfully added invoice record');
+      }
     }
     catch(error){
         alert('invoice adding fail please try agian !')
@@ -64,13 +66,7 @@ const getvendordata = async ()=>{
    console.log(error)
   }
 }
-  // axios.get('/api/vendor/list/')
-  // .then((res)=>{
-  //   setvOptions(res.data)
-  //   })
-  //   .catch((error)=>{
-  //   console.log(error)
-  // })
+ 
   
 
 const vid = invoiceData.VendorID
