@@ -218,10 +218,10 @@ return (
             <div className="col-md-6" id="vendorform" >
             
                     <div className="mt-2 mb-3 input-group">
-                        <input type="number" value={DamagedQty} name="DamagedQty" onChange={handleChange} className="form-control pt-3" id="code" placeholder="Damaged Qty" required />
+                        <input type="number" value={DamagedQty} name="DamagedQty" onChange={handleChange} className="form-control pt-3" id="code" placeholder="Damag Qty" required />
                     </div>
                     <div className="mb-3 input-group">
-                        <textarea cols={3} rows={6} type="text" value={productinfo.DamagedResion} name="DamagedResion" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
+                        <textarea cols={3} rows={6} type="text" value={productinfo.DamagedResion} name="DamagedResion" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Damag Reason" required />
                     </div>
                     <div className="mb-3 input-group">
                         <input type="number" value={productinfo.LossofAmount} name="LossofAmount" onChange={handleChange} className="form-control pt-3" id="LooS of Amount" placeholder="Loss of Amount" required />

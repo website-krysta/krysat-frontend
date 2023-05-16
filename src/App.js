@@ -22,6 +22,7 @@ import ProductionHome from "./pages/production/Productionhome";
 import UpdateRawmaterial from "./pages/stock/UpdateMaterial";
 import Packingproduct from "./pages/production/PackingProducts";
 import UpdateWhitelabelingItem from "./pages/stock/UpdateWhitelabelingItem"
+import ProductionStockdetails from "./pages/stock/ProductionStockdetails"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -92,6 +93,11 @@ function App() {
                {/* packing */}
                <Route path="packinglist/:PackingMaterialID" element={<Updatepackingstock/>} />
                <Route path="updatepackingItem/:packingItemID" element={<UpdatepackingItem />} />
+               {/* production */}
+               <Route path="production/:productionId" element={<ProductionStockdetails />} />
+   
+       
+
             
 
             </Route>

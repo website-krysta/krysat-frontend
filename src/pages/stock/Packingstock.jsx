@@ -38,8 +38,8 @@ const Packingstock = () => {
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">MaterialCode</th>
                 <th scope="col">MaterialName</th>
+                <th scope="col">MaterialCode</th>
                 <th scope="col">QtyType</th>
                 <th scope="col">Available Qty</th>
                 <th scope="col">Actions</th>
@@ -49,8 +49,8 @@ const Packingstock = () => {
                  return (
             <tbody>
               <tr key={post.PackingMaterialID}>
+              <td>{post.PackingMaterialName}</td>
                 <td>{post.PackingMaterialCode}</td>
-                <td>{post.PackingMaterialName}</td>
                 <td>{post.QtyType}</td>
                 <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
                 

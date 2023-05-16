@@ -51,6 +51,7 @@ const ProductionHome = () => {
 
     const filteredData = formulamaterialData.filter(obj => obj.forumula.FormulaID === parseInt(fid));
     const result = filteredData.find(item => (item.Quantity/100)*formulaData.ProductionQuantity >= item.material.TotalQuantity);
+    const minPercentage = Math.min(...filteredData.map((materialinfo) => (materialinfo.material.TotalQuantity / materialinfo.Quantity * 100)));
     // debugger;
    const getjointabledata = async () => {
     try{
@@ -153,21 +154,20 @@ const ProductionHome = () => {
                                                            <tr>
                                                              <th scope="col">MaterialName</th>
                                                              <th scope="col">Required Qty</th>
-                                                             <th scope="col">Avaliable Qty</th>
+                                                             <th scope="col">Avaliable Qty</th>               
                                                              <th scope="col">Status</th>
+                                                             {/* <th scope="col">maxPossibleQty</th> */}
+                                                              
                                                            </tr>
                                                          </thead>
                                                     {filteredData.map((materialinfo) => (
-                                                        
-                                                         
-                                        
                                                          <tbody>
                                                            <tr key={materialinfo.forumula.FormulaID}>
                                                              <td>{materialinfo.material.MaterialName}</td>
                                                              <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity} ({materialinfo.Quantity} %)</td>
                                                              <td>{materialinfo.material.TotalQuantity}</td>
-                                                             <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity >= materialinfo.material.TotalQuantity ? (<p className="text-danger">Stock Not Avaliable</p>) :( <p className="text-success">Stock Avaliable</p>)}</td>
-                                                             
+                                                             <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity > materialinfo.material.TotalQuantity ? (<p className="text-danger">Stock Not Avaliable</p>) :( <p className="text-success">Stock Avaliable</p>)}</td>
+                                                             {/* <td>{materialinfo.material.TotalQuantity/materialinfo.Quantity*100}</td> */}
                                                            </tr>
                                                          </tbody>
 
@@ -177,7 +177,9 @@ const ProductionHome = () => {
                                                 </div>
                                                 {result ? (
                                                         <div className="d-flex justify-content-center">
-                                                        <div></div>
+                                                        <div>
+                                                        Maximum Possible Production Quantity is : {minPercentage}
+                                                        </div>
                                                     </div>
                                                     ) : (
                                                         <div className="d-flex justify-content-center">

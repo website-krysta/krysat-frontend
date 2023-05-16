@@ -201,12 +201,12 @@ useEffect (()=>{
                                                       <input type="text" name="inwardnumber" value={invoiceInfo.InwardNumber} onChange={handleChange} className="form-control pt-2" id="code" disabled />
                                                   </div>
                                                   <div className="mt-2 mb-3">
-                                                  <label>Damaged Qty</label>
-                                                      <input type="number" name="DamagedQty" value={materialDetails.OrderedQuantity-materialDetails.ReceivedQuantity}  onChange={handleDamagedChange} className="form-control pt-3" id="code" placeholder="Damaged Qty" required />
+                                                  <label>Damage Qty</label>
+                                                      <input type="number" name="DamagedQty" value={materialDetails.OrderedQuantity-materialDetails.ReceivedQuantity}  onChange={handleDamagedChange} className="form-control pt-3" id="code" placeholder="Damage Qty" required />
                                                   </div>
                                                   <div className="mb-3">
-                                                  <label> Damaged Resion</label>
-                                                      <textarea cols={3} rows={6} type="text" value={damagedInfo.DamagedResion}  name="DamagedResion" onChange={handleDamagedChange} className="form-control pt-3" id="name" placeholder="Damaged Reasion" required />
+                                                  <label> Damage Reason</label>
+                                                      <textarea cols={3} rows={6} type="text" value={damagedInfo.DamagedResion}  name="DamagedResion" onChange={handleDamagedChange} className="form-control pt-3" id="name" placeholder="Damage Reason" required />
                                                   </div>
                                                   <div className="mb-3">
                                                   <label> Loss of Amount</label>

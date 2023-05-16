@@ -12,8 +12,8 @@ const Productionstock = () => {
   let [mstockData , setmstockData] = useState([]);
   const getProductionstock = async ()=>{
     try{
-     
-     let res = await axios.get('api/production/list/');
+     debugger;
+     let res = await axios.get('api/productionTable_ViewSet/');
      setmstockData(res.data)
     }
     catch(error){
@@ -38,26 +38,26 @@ const Productionstock = () => {
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">TransationDate</th>
-                <th scope="col">FormulaID</th>
-                <th scope="col">ProductionQuantity</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Product Name </th>
+                <th scope="col">Production Qty</th>
+                <th scope="col">Production Date</th>
+                {/* <th scope="col">Actions</th> */}
               </tr>
             </thead>
             {mstockData.map((post)=>{
                  return (
             <tbody>
-              <tr key={post.PackingMaterialID}>
-                <td>{format(new Date(post.TransactionDate), 'dd-MM-yyyy')}</td>
-                <td>{post.FormulaID}</td>
+              <tr key={post.ProductionID}>
+                <td>{post.forumula.FormulaName}</td>
                 <td>{post.ProductionQuantity}</td>
+                <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
                 
                
-                <td><button
-                    onClick={() => navigate(`/stock/packinglist/${post.PackingMaterialID}`)}
+                {/* <td><button
+                    onClick={() => navigate(`/stock/production/${post.ProductionID}`)}
                     className='btn btn-warning'>Details
                   </button>
-                </td>
+                </td> */}
               </tr>
             </tbody>);
             })}

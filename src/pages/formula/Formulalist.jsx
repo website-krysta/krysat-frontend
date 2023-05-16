@@ -3,8 +3,17 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import AddIcon from '@mui/icons-material/Add';
+import { format } from 'date-fns';
+import ReactPaginate from 'react-paginate';
+import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 
 const Formulalist = () => {
+
+  //filter data and pagenation 
+  const [filterValue, setFilterValue] = useState('');
+  const [pageNumber, setPageNumber] = useState(0);
+  const invoislistPerPage = 10;
+  const pagesVisited = pageNumber * invoislistPerPage;
 
   let [formulMaterialData , setformulMaterialData] = useState([]);
   let [formulaData , setformulaData] = useState([]);
@@ -17,21 +26,9 @@ const Formulalist = () => {
      catch(error){
       console.log(error)
      }
-    // try{
-     
-    //  let res = await axios.get('api/formula/list/');
-    //  setformulaData(res.data)
-    // }
-    // catch(error){
-    //  console.log(error)
-    // }
+  
  }
-//  const formulaMaterialData = formulMaterialData.map(entry => {
-//   return {
-//     formulaName: entry.Formula.FormulaName,
-//     materialName: entry.aMaterial.MaterialName
-//   }
-// });
+
 const [tableData, setTableData] = useState([]);
 // const getData = () => {
   useEffect(() => {
@@ -56,6 +53,33 @@ const [tableData, setTableData] = useState([]);
   setTableData(data);
 });
 
+//filter table and pagenation code 
+
+const handleFilterChange = (event) => {
+  setFilterValue(event.target.value);
+};
+
+// filter with page nation 
+const filterformuladata = tableData.filter(
+  formula => formula.formulaName.toLowerCase().includes(filterValue.toLowerCase())
+);
+const displayFormulalist = filterformuladata
+.slice(pagesVisited, pagesVisited + invoislistPerPage)
+.map(post => (
+  <tr key={post.id}>
+      <td>{post.formulaName}</td>
+      <td>{post.materialNames.join(',')}</td>
+      <td>{format(new Date(post.fdate), 'dd-MM-yyyy')}</td>
+   </tr>
+));
+
+const pageCount = Math.ceil(filterformuladata.length / invoislistPerPage);
+
+const handlePageChange = ({ selected }) => {
+  setPageNumber(selected);
+};
+
+
 
 
   useEffect(() =>{
@@ -66,10 +90,23 @@ const [tableData, setTableData] = useState([]);
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Formula List
         <Link to="/formula/new" className="link px-3"><AddIcon/>New Formula </Link>
       </div>
-     
+      <div className="d-flex justify-content-between aligen-items-center">
+      <div className="datatableTitle">
+        Invoic List
+        </div>
+      <div className="datatableTitle"> 
+        <div className="input-group  justify-content-end">
+              <div className="form-outline">
+                <input id="search-input" type="search" onChange={handleFilterChange}   className="form-control py-2"  placeholder=" Filter by Invoice Number "/>
+              </div>
+              <button id="search-button" type="button" className="btn btn-primary py-2">
+              <ContentPasteSearchIcon />
+              </button>
+        </div>
+        </div>
+      </div>
       <div>
         <div className="main">
         <table class="table">
@@ -80,32 +117,18 @@ const [tableData, setTableData] = useState([]);
                 <th scope="col">Date</th>
               </tr>
             </thead>
-            <tbody>
-            {tableData.map((item, index) => (
-          <tr key={index}>
-            <td>{item.formulaName}</td>
-            <td>{item.materialNames.join(',')}</td>
-            <td>{item.fdate}</td>
-          </tr>
-        ))}
-          {/* {formulaMaterialData.map((entry, index) => (
-            <tr key={index}>
-              <td>{entry.formulaName}</td>
-              <td>{entry.materialName}</td>
-            </tr>
-          ))} */}
-        </tbody>
-            {/* {formulaData.map((post)=>{
-                 return (
-            <tbody>
-              <tr key={post.FormulaID}>
-                <td>{post.FormulaName}</td>
-                <td>{post.TotalMaterialsUsed}</td>
-                <td>{post.AddedTimeStamp}</td>
-              </tr>
-            </tbody>);
-            })} */}
+            {displayFormulalist}
+           
+            
         </table>
+        <ReactPaginate
+        previousLabel={'Previous'}
+        nextLabel={'Next'}
+        pageCount={pageCount}
+        onPageChange={handlePageChange}
+        containerClassName={'pagination'}
+        activeClassName={'active'}
+      />
         </div>
       </div>
     
