@@ -1,0 +1,6 @@
+/* .productSales.form-control {
+    width: 250px !important;
+} */
+.productSales.input-group.form-control {
+    width: 10% !important;
+}

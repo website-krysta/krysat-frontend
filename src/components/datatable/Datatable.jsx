@@ -30,7 +30,7 @@ const Datatable = () => {
   const handleuserDelete =  async(id) => {
    
      try{
-      await axios.delete(`/api/deleteuser/${id}/`)
+      await axios.post(`/api/deleteuser/${id}/`)
       const updateuser = mydata.filter(user => user.UserID !== id);
       setmydata(updateuser);
               

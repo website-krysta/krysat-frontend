@@ -23,6 +23,8 @@ import UpdateRawmaterial from "./pages/stock/UpdateMaterial";
 import Packingproduct from "./pages/production/PackingProducts";
 import UpdateWhitelabelingItem from "./pages/stock/UpdateWhitelabelingItem"
 import ProductionStockdetails from "./pages/stock/ProductionStockdetails"
+import SalesInvoice from "./pages/sales/SalesInvoice"
+import SaleProducts from "./pages/sales/SaleProducts"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -95,15 +97,14 @@ function App() {
                <Route path="updatepackingItem/:packingItemID" element={<UpdatepackingItem />} />
                {/* production */}
                <Route path="production/:productionId" element={<ProductionStockdetails />} />
-   
-       
-
-            
-
             </Route>
             <Route path="production">
               <Route index element={<ProductionHome />} />
               <Route path="packingproduct" element={<Packingproduct />} />
+            </Route>
+            <Route path="Sales">
+              <Route index element={<SalesInvoice />} />
+              <Route  path="productsale" element={<SaleProducts />} />
             </Route>
           </Route>
         </Routes>

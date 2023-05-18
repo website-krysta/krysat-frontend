@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import AddIcon from '@mui/icons-material/Add';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
-// import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import ReactPaginate from 'react-paginate';
 
 
@@ -15,7 +14,7 @@ const Materialstock = () => {
   
   const [filterValue, setFilterValue] = useState('');
   const [pageNumber, setPageNumber] = useState(0);
-  const materialsPerPage = 10;
+  const materialsPerPage = 8;
   const pagesVisited = pageNumber * materialsPerPage;
 
 

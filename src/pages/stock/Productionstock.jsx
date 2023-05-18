@@ -5,8 +5,16 @@ import axios from "../../api/axios";
 import AddIcon from '@mui/icons-material/Add';
 import { format } from 'date-fns';
 // import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
+import ReactPaginate from 'react-paginate';
 
 const Productionstock = () => {
+
+  const [filterValue, setFilterValue] = useState('');
+  const [pageNumber, setPageNumber] = useState(0);
+  const materialsPerPage = 8;
+  const pagesVisited = pageNumber * materialsPerPage;
+
   
   const navigate = useNavigate();
   let [mstockData , setmstockData] = useState([]);
@@ -21,6 +29,29 @@ const Productionstock = () => {
     }
  }
   
+// filter with page nation 
+const filteredMaterials = mstockData.filter(
+  material => material.forumula.FormulaName.toLowerCase().includes(filterValue.toLowerCase())
+);
+  const displayProductionList = filteredMaterials
+  .slice(pagesVisited, pagesVisited + materialsPerPage)
+  .map(post => (
+    <tr key={post.ProductionID}>
+                <td>{post.forumula.FormulaName}</td>
+                <td>{post.ProductionQuantity}</td>
+                <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
+    </tr>
+  ));
+
+  const pageCount = Math.ceil(filteredMaterials.length / materialsPerPage);
+
+  const handlePageChange = ({ selected }) => {
+    setPageNumber(selected);
+  };
+ //filter table data 
+ const handleFilterChange = (event) => {
+  setFilterValue(event.target.value);
+};
 
 
   useEffect(() =>{
@@ -29,11 +60,24 @@ const Productionstock = () => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-      Production Stock
+      <div className="d-flex justify-content-between aligen-items-center">
+        <div className="datatableTitle">
+        Production Stock
+        </div>
+        <div className="datatableTitle"> 
+        <div className="input-group  justify-content-end">
+              <div className="form-outline">
+                <input id="search-input" type="search" onChange={handleFilterChange} value={filterValue}  className="form-control py-2"  placeholder=" Filter by Material Name "/>
+              </div>
+              <button id="search-button" type="button" className="btn btn-primary py-2">
+              <ContentPasteSearchIcon />
+              </button>
+        </div>
+        </div>
       </div>
+   
      
-      <div>
+      <div className="mt-5">
         <div className="main">
         <table class="table">
             <thead>
@@ -44,24 +88,17 @@ const Productionstock = () => {
                 {/* <th scope="col">Actions</th> */}
               </tr>
             </thead>
-            {mstockData.map((post)=>{
-                 return (
-            <tbody>
-              <tr key={post.ProductionID}>
-                <td>{post.forumula.FormulaName}</td>
-                <td>{post.ProductionQuantity}</td>
-                <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
-                
-               
-                {/* <td><button
-                    onClick={() => navigate(`/stock/production/${post.ProductionID}`)}
-                    className='btn btn-warning'>Details
-                  </button>
-                </td> */}
-              </tr>
-            </tbody>);
-            })}
+            {displayProductionList}
+          
         </table>
+        <ReactPaginate
+        previousLabel={'Previous'}
+        nextLabel={'Next'}
+        pageCount={pageCount}
+        onPageChange={handlePageChange}
+        containerClassName={'pagination'}
+        activeClassName={'active'}
+      />
         </div>
       </div>
     

@@ -45,7 +45,7 @@ const handleChange = (event) => {
     [event.target.name]: event.target.value,
    
   });
-  calculateDifference();
+  // calculateDifference();
 };
 
 const handlAddmaterial = async (event) => {
@@ -82,11 +82,13 @@ const handlAddmaterial = async (event) => {
 
 
 // ------------ calculate difference-----------------
+
 const calculateDifference = () => {
     const difference = parseFloat(materialinfo.OrderedQuantity) - parseFloat(materialinfo.ReceivedQuantity);
     setDifferenceQty(difference.toFixed(2));
 
   };
+
 
 // -----------------------------
 const [options, setOptions] = useState([]);
@@ -120,6 +122,7 @@ useEffect(() => {
 useEffect (()=>{
   handlAddmaterial();
   getmaterialData();
+  calculateDifference();
 },[])
 
 // getselectvendordata, handlAddmaterial
