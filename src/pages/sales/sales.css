@@ -4,3 +4,6 @@
 .productSales.input-group.form-control {
     width: 10% !important;
 }
+.invoice_sales_list.row{
+    height: 130vh !important;
+}

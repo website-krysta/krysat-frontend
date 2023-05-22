@@ -41,17 +41,15 @@ const navgate = useNavigate()
     }
   };
 
-
+  const [formData, setFormData] = useState([]);
   const [qtyData, setqtyData] = useState({})
-    // amount:'',
-    // qty:''
-
-const handleChange = (event) => {
-    debugger;
-    setqtyData({
-...qtyData,
-[event.target.name]: event.target.value
-});
+  
+  const handleChange = (event) => {
+        debugger;
+        setqtyData({
+    ...qtyData,
+    [event.target.name]: event.target.value
+    });
 };
 
   let [materialData , setmaterialData] = useState([]);
@@ -74,7 +72,7 @@ const  handleProductSales = async (event) =>{
     event.preventDefault();
     const formulaObject = {
         productIdata:aMaterial,
-        productioninfo:qtyData,
+        productioninfo:formData,
         salsedata:salseInvoiceData
       };
       // Set the object as state
@@ -83,6 +81,7 @@ const  handleProductSales = async (event) =>{
   try{
     debugger
     let res = await axios.post('api/sales/add/',formulaObject );
+    alert('Products Sales Sucessfully !')
     navgate('/sales/')
     
   }
@@ -91,6 +90,30 @@ const  handleProductSales = async (event) =>{
   }
 }
 
+
+const handlePriceChange = (e, index) => {
+    const { value } = e.target;
+    setFormData((prevData) => {
+      const updatedData = [...prevData];
+      updatedData[index] = {
+        ...updatedData[index],
+        price: value,
+      };
+      return updatedData;
+    });
+  };
+  
+  const handleQuantityChange = (e, index) => {
+    const { value } = e.target;
+    setFormData((prevData) => {
+      const updatedData = [...prevData];
+      updatedData[index] = {
+        ...updatedData[index],
+        quantity: value,
+      };
+      return updatedData;
+    });
+  };
   
   useEffect (()=>{
     getmaterialData();
@@ -138,19 +161,23 @@ const  handleProductSales = async (event) =>{
                                                 </div>);
                                                 })}
 
-                                                {aMaterial.map((post)=>{  
+                                                {aMaterial.map((post,index)=>{  
                                                     return (
-                                                        <div className="row" >
+                                                        <div className="row" key={index}>
                                                             <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                                 <div class="col-2 text-end">
                                                                     <label>{post.productname} :&nbsp;</label>
                                                                 </div>
                                                                 <div class="col-0 input-group">
-                                                                    <input type="number" name={post.productId}   onChange={handleChange}  className="form-control text-center"  min="0" id="amount" placeholder="Please Enter Amount ₹ "  />
+                                                                    <input type="number" name={post.productId} 
+                                                                    value={formData[index]?.price || ''}
+                                                                    onChange={(e) => handlePriceChange(e, index)}  className="form-control text-center"  min="0" id="amount" placeholder="Please Enter Amount ₹ "  />
                                                                     <span class="input-group-text" id="basic-addon2">₹</span>
                                                                 </div>&nbsp;&nbsp;
                                                                 <div class="col-0 input-group">
-                                                                    <input type="number"name={post.productId+1}  onChange={handleChange}  className="form-control text-center"  min="0" id="qty" placeholder="Please Enter Quantity "  />
+                                                                    <input type="number"name={post.productId+1}
+                                                                        value={formData[index]?.quantity || ''}
+                                                                        onChange={(e) => handleQuantityChange(e, index)}  className="form-control text-center"  min="0" id="qty" placeholder="Please Enter Quantity "  />
                                                                     <span class="input-group-text" id="basic-addon2">{post.avaQty}</span>
                                                                 </div>
                                                             </div>

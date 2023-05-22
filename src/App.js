@@ -25,6 +25,8 @@ import UpdateWhitelabelingItem from "./pages/stock/UpdateWhitelabelingItem"
 import ProductionStockdetails from "./pages/stock/ProductionStockdetails"
 import SalesInvoice from "./pages/sales/SalesInvoice"
 import SaleProducts from "./pages/sales/SaleProducts"
+import SailsMain from "./pages/sales/SalesMain"
+import SalesInvoiceUpdate from "./pages/sales/SalesInvoiceUpdate"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -103,8 +105,10 @@ function App() {
               <Route path="packingproduct" element={<Packingproduct />} />
             </Route>
             <Route path="Sales">
-              <Route index element={<SalesInvoice />} />
+              <Route index element={<SailsMain />} />
+              <Route  path="saleinvoice" element={<SalesInvoice />} />
               <Route  path="productsale" element={<SaleProducts />} />
+              <Route  path="updatsaleinvoice/:invoiceid" element={<SalesInvoiceUpdate />} />
             </Route>
           </Route>
         </Routes>

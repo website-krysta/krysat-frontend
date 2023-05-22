@@ -96,7 +96,7 @@ useEffect(() => {
                  Sales Invoice 
                 </div>
                 <div>
-                  <form className="labourform">
+                  <form className="labourform invoice_sales_list">
                     <div class="row">
                       <div className="col-md-6">
                         <h1 className="text-center text-primary pt-4"></h1>
