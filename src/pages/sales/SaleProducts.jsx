@@ -9,6 +9,8 @@ import { Link, useNavigate ,useLocation } from 'react-router-dom';
 
 const SaleProducts = () => {
 const salseinvoice = useLocation();
+// const salseInvoiceData = salseinvoice.state && salseinvoice.state.data;
+// const salseInvoiceData = salseinvoice.state.data
 const navgate = useNavigate()
  const [checkedItems, setCheckedItems] = useState([]);  
  const [aMaterial, setaMaterial] = useState([]); 
@@ -65,7 +67,7 @@ const handleChange = (event) => {
   }
   
 //   handleProductSales
-const salseInvoiceData = salseinvoice.state.data
+const salseInvoiceData = salseinvoice.state && salseinvoice.state.data;
 const [aFormula, setaFormula] = useState([]); 
 const  handleProductSales = async (event) =>{
     debugger; 
