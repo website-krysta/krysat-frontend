@@ -41,7 +41,7 @@ const New = () => {
             <div className="col-12 d-flex justify-content-center pt-5">
                   <div className="col-4 mb-3 d-flex ">
                        
-                        <input type="text" name="" value={invoiceifo.state.datainvoice.InwardNumber} className="form-control text-center" placeholder="Inward Number"/>
+                        <input type="text" name="" value={invoiceifo.state && invoiceifo.state.datainvoice.InwardNumber} className="form-control text-center" placeholder="Inward Number"/>
                   </div>
               </div>
               <div className="col-12 radio-btn-sec mb-5">
