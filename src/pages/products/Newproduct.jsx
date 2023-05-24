@@ -20,7 +20,7 @@ const New = () => {
   // let invoicID = invoiceData['ID']
   // get data from navigate compontent or parent component
   debugger;
-  const invoiceifo? = useLocation();
+  const invoiceifo = useLocation();
   debugger;
   // let inwordNo = invoiceData['InwardNumber']
 
