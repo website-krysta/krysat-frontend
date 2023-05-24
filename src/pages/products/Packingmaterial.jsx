@@ -47,7 +47,7 @@ const handleChange = (event) => {
   
 });
 // getselectvendordata(packinginfo.VendorID);
-calculateDifference();
+// calculateDifference();
 };
 
 const handlAddmaterial = async (event) => {
@@ -84,24 +84,34 @@ setpackinginfo({
 
 
 // ------------ calculate difference-----------------
-const calculateDifference = () => {
+useEffect(() => {
+// const calculateDifference = () => {
   const difference = parseFloat(packinginfo.OrderedQuantity) - parseFloat(packinginfo.ReceivedQuantity);
   setDifferenceQty(difference.toFixed(2));
 
-};
+});
 
 // -----------------------------
 const [options, setOptions] = useState([]);
-const getpackingdata = async ()=>{
-    try{
-     let res = await axios.get('/api/packing/list/');
-     setOptions(res.data)
+    useEffect(() => {
+      axios.get('api/packing/list/')
+        .then((res)=>{
+          setOptions(res.data)
+        }).catch((error)=>{
+            console.log(error)
+        })
+    });
+
+// const getpackingdata = async ()=>{
+//     try{
+//      let res = await axios.get('/api/packing/list/');
+//      setOptions(res.data)
      
-    }
-    catch(error){
-     console.log(error)
-    }
-   }
+//     }
+//     catch(error){
+//      console.log(error)
+//     }
+//    }
 
 
 const packing_id = packinginfo.PackingMaterialID
@@ -119,7 +129,7 @@ useEffect(() => {
 
 useEffect (()=>{
 handlAddmaterial();
-getpackingdata();
+// getpackingdata();
 },{})
 
   

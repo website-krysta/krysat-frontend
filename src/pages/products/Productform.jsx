@@ -47,7 +47,7 @@ const handleChange = (event) => {
   
 });
 // getselectvendordata(productinfo.VendorID);
-calculateDifference();
+// calculateDifference();
 };
 
 const handlAddmaterial = async (event) => {
@@ -83,24 +83,33 @@ setproductinfo({
 
 
 // ------------ calculate difference-----------------
-const calculateDifference = () => {
+useEffect(() => {
+// const calculateDifference = () => {
   const difference = parseFloat(productinfo.OrderedQuantity) - parseFloat(productinfo.ReceivedQuantity);
   setDifferenceQty(difference.toFixed(2));
 
-};
+});
 
 // -----------------------------
 const [options, setOptions] = useState([]);
-const getproductdata = async ()=>{
-    try{
-     let res = await axios.get('/api/product/list/');
-     setOptions(res.data)
+useEffect(() => {
+  axios.get('api/product/list/')
+    .then((res)=>{
+      setOptions(res.data)
+    }).catch((error)=>{
+        console.log(error)
+    })
+});
+// const getproductdata = async ()=>{
+//     try{
+//      let res = await axios.get('/api/product/list/');
+//      setOptions(res.data)
      
-    }
-    catch(error){
-     console.log(error)
-    }
-   }
+//     }
+//     catch(error){
+//      console.log(error)
+//     }
+//    }
 
    const product_id = productinfo.ProductID
    const [qty, setqty] = useState({});
@@ -167,8 +176,8 @@ const getproductdata = async ()=>{
 
 useEffect (()=>{
 handlAddmaterial();
-getproductdata();
-// getvendordata();
+// getproductdata();
+
 },{})
 
   

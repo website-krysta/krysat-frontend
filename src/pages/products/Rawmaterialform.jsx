@@ -45,7 +45,7 @@ const handleChange = (event) => {
     [event.target.name]: event.target.value,
    
   });
-  calculateDifference();
+  // calculateDifference();
 };
 
 const handlAddmaterial = async (event) => {
@@ -61,8 +61,7 @@ const handlAddmaterial = async (event) => {
       alert('Meterial adding fail please try agian!')
   }
 
-  setmaterialinfo({
-        
+  setmaterialinfo({  
     Id: "",
     TransactionDate: "",
     BatchNo: "",
@@ -82,25 +81,30 @@ const handlAddmaterial = async (event) => {
 
 
 // ------------ calculate difference-----------------
-
-const calculateDifference = () => {
+useEffect(() => {
     const difference = parseFloat(materialinfo.OrderedQuantity) - parseFloat(materialinfo.ReceivedQuantity);
     setDifferenceQty(difference.toFixed(2));
 
-  };
-
-
+});
 // -----------------------------
 const [options, setOptions] = useState([]);
-const getmaterialData = async ()=>{
-  try{
-    let res = await axios.get('api/meterial/list/');
-    setOptions(res.data)
-  }
-  catch(error){
-    console.log(error)
-  }
-}
+useEffect(() => {
+  axios.get('api/meterial/list/')
+    .then((res)=>{
+      setOptions(res.data)
+    }).catch((error)=>{
+        console.log(error)
+    })
+});
+// const getmaterialData = async ()=>{
+//   try{
+//     let res = await axios.get('api/meterial/list/');
+//     setOptions(res.data)
+//   }
+//   catch(error){
+//     console.log(error)
+//   }
+// }
 
 
 const maerial_id = materialinfo.MaterialID
@@ -121,8 +125,8 @@ useEffect(() => {
 
 useEffect (()=>{
   handlAddmaterial();
-  getmaterialData();
-  calculateDifference();
+  // getmaterialData();
+
 },[])
 
 // getselectvendordata, handlAddmaterial
