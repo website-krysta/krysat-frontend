@@ -99,8 +99,6 @@ const ProductionHome = () => {
         let res = await axios.post('api/production/add/',newProduct );
         navigate('/production/packingproduct',{state:{data:newProduct}})
   
-        // const production_info = JSON.stringify(newProduct);
-        // localStorage.setItem('production', production_info);
         }
         catch(error){
             alert('Please check production details')
@@ -136,7 +134,7 @@ const ProductionHome = () => {
                                             <h1 className="text-center text-primary pt-4"></h1>
                                             <div className="col-md-12">
                                                  
-                                            <div className="col-md-12 d-flex justify-content-center ">
+                                                <div className="col-md-12 d-flex justify-content-center ">
                                                     <select  name='FormulaID' value={formulaData.FormulaID} onChange={handleChange}  class="custom-select form-control text-center py-2 selectbox selectbox px-4" id="" >
                                                         <option>-- select Formula --  </option>
                                                         {options.map((option) => (
@@ -144,8 +142,12 @@ const ProductionHome = () => {
                                                         ))}
                                                     </select>
                                                 </div>
+                                                <div className="formInput1  d-flex justify-content-center">
+                                                {formulaData.FormulaID == "" ? <span></span> : <span className="maxqty px-5 pt-2">Maximum Possible Production Quantity is : {minPercentage}</span> }
+                                                </div>
+
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
-                                                    <input type="number"  name="ProductionQuantity" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please Required Qty" required />
+                                                    <input type="number"  name="ProductionQuantity" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please enter Required Quantity" required />
                                                 </div>
                                                 
                                                 <div className="col-md-12">

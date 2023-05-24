@@ -45,7 +45,7 @@ const handleChange = (event) => {
     [event.target.name]: event.target.value,
    
   });
-  // calculateDifference();
+  calculateDifference();
 };
 
 const handlAddmaterial = async (event) => {

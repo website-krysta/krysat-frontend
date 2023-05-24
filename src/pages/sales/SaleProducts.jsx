@@ -15,7 +15,7 @@ const navgate = useNavigate()
  const [checkedItems, setCheckedItems] = useState([]);  
  const [aMaterial, setaMaterial] = useState([]); 
   //  start main function
-  const handleItemCheck = (itemId,avlqty,itemName) => {
+  const handleItemCheck = (itemId,avlqty,saleqty,itemName) => {
     debugger;
     const listItems = [];
     for (let i = 0; i < aMaterial.length; i++) {
@@ -25,10 +25,10 @@ const navgate = useNavigate()
     const isChecked = listItems.includes(itemId);
     if (isChecked) {
         setaMaterial(aMaterial => aMaterial.filter(item => item.productId !== itemId))
-        setCheckedItems(prevCheckedItems => prevCheckedItems.filter(item => item !== itemId),itemName,avlqty)
+        setCheckedItems(prevCheckedItems => prevCheckedItems.filter(item => item !== itemId),itemName,avlqty,saleqty)
     
     } else {
-        
+        avlqty = avlqty-saleqty
         const materialObject = {
             productId:itemId,
             productname:itemName,
@@ -139,8 +139,6 @@ const handlePriceChange = (e, index) => {
                                               <div className="col-md-12">
                                                   <div className="show-material">
                                                 <div className="row">
-                                                    
-                        
 
                                                 {materialData.map((post)=>{         
                                                     return (
@@ -150,7 +148,7 @@ const handlePriceChange = (e, index) => {
                                                         <input type="checkbox" 
                                                         className="px-5" 
                                                         checked={checkedItems.includes(post.ProductionID)}
-                                                        onChange={() => handleItemCheck(post.ProductionID,post.ProductionQuantity,post.forumula.FormulaName)}                                            
+                                                        onChange={() => handleItemCheck(post.ProductionID,post.forumula.TotalProductionQty,post.forumula.TotalSaledQty,post.forumula.FormulaName)}                                            
                                                         id="{post.ProductionID}" 
                                                         name="{post.ProductionID}" 
                                                         value="{post.forumula.FormulaName}" />&nbsp;
@@ -163,22 +161,22 @@ const handlePriceChange = (e, index) => {
 
                                                 {aMaterial.map((post,index)=>{  
                                                     return (
-                                                        <div className="row" key={index}>
+                                                        <div className="row salesinputs" key={index}>
                                                             <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                                 <div class="col-2 text-end">
                                                                     <label>{post.productname} :&nbsp;</label>
                                                                 </div>
-                                                                <div class="col-0 input-group">
+                                                                <div class="col-0 input-group input-size">
                                                                     <input type="number" name={post.productId} 
                                                                     value={formData[index]?.price || ''}
-                                                                    onChange={(e) => handlePriceChange(e, index)}  className="form-control text-center"  min="0" id="amount" placeholder="Please Enter Amount ₹ "  />
+                                                                    onChange={(e) => handlePriceChange(e, index)}  className="form-control text-center"  min="0" id="amount" placeholder="Enter Amount"  />
                                                                     <span class="input-group-text" id="basic-addon2">₹</span>
                                                                 </div>&nbsp;&nbsp;
-                                                                <div class="col-0 input-group">
+                                                                <div class="col-0 input-group input-size">
                                                                     <input type="number"name={post.productId+1}
                                                                         value={formData[index]?.quantity || ''}
-                                                                        onChange={(e) => handleQuantityChange(e, index)}  className="form-control text-center"  min="0" id="qty" placeholder="Please Enter Quantity "  />
-                                                                    <span class="input-group-text" id="basic-addon2">{post.avaQty}</span>
+                                                                        onChange={(e) => handleQuantityChange(e, index)}  className="form-control text-center"  min="0" id="qty" placeholder="Enter Quantity"  />
+                                                                    <span class="input-group-text" id="basic-addon2">{post.avaQty <=0? 0:post.avaQty}</span>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -105,8 +105,13 @@ const  handleFormula = async (event) =>{
         alert("Formula Quantity is less than 100%.");
       } else if (sum === 100) {
         let res = await axios.post('api/formula/add/',formulaObject );
-        navgate('/formula/')
-        alert('Formula adding sucessfully')
+        if (res.status === 226) {
+            alert('Formula Name already exists');
+          } else {
+            navgate('/formula/')
+            alert('Formula adding sucessfully')
+          }
+       
       } else {
         alert("Formula Quantity is greater than 100%.");
       }

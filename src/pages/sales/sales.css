@@ -7,3 +7,12 @@
 .invoice_sales_list.row{
     height: 130vh !important;
 }
+.input-size{
+    width: 20% !important;
+}
+.salesinputs{
+    margin-left: -80px !important;
+}
+.damageform.form-control{
+    width: 500px !important;
+}

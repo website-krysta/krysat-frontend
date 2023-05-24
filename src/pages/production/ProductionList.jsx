@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import ReactPaginate from 'react-paginate';
 
-const Productionstock = () => {
+const ProductionList = () => {
 
   const [filterValue, setFilterValue] = useState('');
   const [pageNumber, setPageNumber] = useState(0);
@@ -39,7 +39,6 @@ const filteredMaterials = mstockData.filter(
     <tr key={post.ProductionID}>
                 <td>{post.forumula.FormulaName}</td>
                 <td>{post.ProductionQuantity}</td>
-                <td>{(post.forumula.TotalProductionQty - post.forumula.TotalSaledQty) <= 0 ? 0:post.forumula.TotalProductionQty - post.forumula.TotalSaledQty}</td>
                 <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
                
     </tr>
@@ -62,6 +61,9 @@ const filteredMaterials = mstockData.filter(
 
   return (
     <div className="datatable">
+        <div className="datatableTitle">
+        <Link to="/production/addproduction" className="link px-3"><AddIcon/>Add Production</Link>
+      </div>
       <div className="d-flex justify-content-between aligen-items-center">
         <div className="datatableTitle">
         Production Stock
@@ -86,7 +88,6 @@ const filteredMaterials = mstockData.filter(
               <tr>
                 <th scope="col">Product Name </th>
                 <th scope="col">Production Qty</th>  
-                <th scope="col">Available stock</th>
                 <th scope="col">Production Date</th>
               </tr>
             </thead>
@@ -109,4 +110,4 @@ const filteredMaterials = mstockData.filter(
   );
 };
 
-export default Productionstock;
+export default ProductionList;

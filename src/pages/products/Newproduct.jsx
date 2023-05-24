@@ -84,13 +84,13 @@ const New = () => {
             </div>
 
             {selectedOption === 'option1' && (
-              <Rawmaterialform data={invoiceifo.state.datainvoice}/>
+              <Rawmaterialform data={invoiceifo.state && invoiceifo.state.datainvoice}/>
             )}
             {selectedOption === 'option2' && (
-              <Productform data={invoiceifo.state.datainvoice}/>
+              <Productform data={invoiceifo.state && invoiceifo.state.datainvoice}/>
             )}
             {selectedOption === 'option3' && (
-              <Packingmaterial data={invoiceifo.state.datainvoice}/>
+              <Packingmaterial data={invoiceifo.state && invoiceifo.state.datainvoice}/>
             )}
 
 

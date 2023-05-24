@@ -65,10 +65,14 @@ const Addlabour = () => {
                                   Add Labour Details
                               </div>
                               <div>
-                                      <form className="labourform">
+                                      <form className="labourform addlabourform">
                                           <div class="row">
                                               <h1 className="text-center text-primary pt-4"></h1>
                                               <div className="col-md-12">
+                                                  <div className="mb-3">
+                                                  <label>Entry Date</label>
+                                                  <input type="date" name="EnteryDate" onChange={handleChange} className="form-control pt-3" id="enteryDate" placeholder="Please entry Date" required />
+                                                  </div>
                                                   <div className="formInput1 mb-3 mt-2">
                                                   <label>Total Labours</label>
                                                       <input type="number"  name="TotalLabours" onChange={handleChange} className="form-control pt-3" id="TotalLabours" placeholder="TotalLabours" required />
@@ -89,12 +93,9 @@ const Addlabour = () => {
                                                   <label>Night Shift Amount</label>
                                                       <input type="number"  name="NightShiftAmount" onChange={handleChange} className="form-control pt-3" id="NightShiftAmount" placeholder="NightShiftAmount" required />
                                                   </div>
-                                                  <div className="mb-3">
-                                                  <label>Entery Date</label>
-                                                  <input type="date" name="EnteryDate" onChange={handleChange} className="form-control pt-3" id="enteryDate" placeholder="Please enter Date" required />
-                                                  </div>
+                                                
                                                   
-                                                <div className="">
+                                                <div className="mb-5">
                                                     <button onClick={handlAddlabour} >Add labour</button>
                                                 </div>
             

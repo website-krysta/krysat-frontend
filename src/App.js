@@ -27,6 +27,9 @@ import SalesInvoice from "./pages/sales/SalesInvoice"
 import SaleProducts from "./pages/sales/SaleProducts"
 import SailsMain from "./pages/sales/SalesMain"
 import SalesInvoiceUpdate from "./pages/sales/SalesInvoiceUpdate"
+import ProductionMain from "./pages/production/ProductionMain"
+import SalesInvoiceDetails from "./pages/sales/SalesInvoiceDetails"
+import SalesDamage from "./pages/sales/SalesDamage"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -101,7 +104,8 @@ function App() {
                <Route path="production/:productionId" element={<ProductionStockdetails />} />
             </Route>
             <Route path="production">
-              <Route index element={<ProductionHome />} />
+              <Route index element={<ProductionMain />} />
+              <Route path="addproduction" element={<ProductionHome />} />
               <Route path="packingproduct" element={<Packingproduct />} />
             </Route>
             <Route path="Sales">
@@ -109,6 +113,8 @@ function App() {
               <Route  path="saleinvoice" element={<SalesInvoice />} />
               <Route  path="productsale" element={<SaleProducts />} />
               <Route  path="updatsaleinvoice/:invoiceid" element={<SalesInvoiceUpdate />} />
+              <Route  path="saleProducts/:invoiceid" element={<SalesInvoiceDetails />} />
+              <Route  path="saleDamage/:salesid" element={<SalesDamage />} />
             </Route>
           </Route>
         </Routes>

@@ -1,3 +1,6 @@
 .production .form-control{
     width: 450px !important;
 }
+.maxqty{
+    color: rgb(245, 118, 34);
+}

@@ -51,7 +51,14 @@ const SalesInvoiceList = () => {
     <td>
       <button
         onClick={() => navigate(`/sales/updatsaleinvoice/${post.InvoiceID}`)}
-        className='btn btn-warning'>Edit
+        className='btn btn-warning'>Edit 
+      </button>
+    </td>
+    <td>
+      <button
+      
+        onClick={() => navigate(`/sales/saleProducts/${post.InvoiceID}`)}
+        className='btn btn-warning'>Details 
       </button>
     </td>
   </tr>
