@@ -20,7 +20,7 @@ const New = () => {
   // let invoicID = invoiceData['ID']
   // get data from navigate compontent or parent component
   debugger;
-  const invoiceifo = useLocation();
+  const invoiceifo? = useLocation();
   debugger;
   // let inwordNo = invoiceData['InwardNumber']
 
@@ -41,7 +41,7 @@ const New = () => {
             <div className="col-12 d-flex justify-content-center pt-5">
                   <div className="col-4 mb-3 d-flex ">
                        
-                        <input type="text" name="" value={invoiceifo.state && invoiceifo.state.datainvoice.InwardNumber} className="form-control text-center" placeholder="Inward Number"/>
+                        <input type="text" name="" value={invoiceifo?.state && invoiceifo?.state.datainvoice.InwardNumber} className="form-control text-center" placeholder="Inward Number"/>
                   </div>
               </div>
               <div className="col-12 radio-btn-sec mb-5">
@@ -84,13 +84,13 @@ const New = () => {
             </div>
 
             {selectedOption === 'option1' && (
-              <Rawmaterialform data={invoiceifo.state && invoiceifo.state.datainvoice}/>
+              <Rawmaterialform data={invoiceifo?.state && invoiceifo?.state.datainvoice}/>
             )}
             {selectedOption === 'option2' && (
-              <Productform data={invoiceifo.state && invoiceifo.state.datainvoice}/>
+              <Productform data={invoiceifo?.state && invoiceifo?.state.datainvoice}/>
             )}
             {selectedOption === 'option3' && (
-              <Packingmaterial data={invoiceifo.state && invoiceifo.state.datainvoice}/>
+              <Packingmaterial data={invoiceifo?.state && invoiceifo?.state.datainvoice}/>
             )}
 
 
