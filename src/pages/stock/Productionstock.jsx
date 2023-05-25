@@ -21,7 +21,8 @@ const Productionstock = () => {
   const getProductionstock = async ()=>{
     try{
      debugger;
-     let res = await axios.get('api/productionTable_ViewSet/');
+     let res = await axios.get('api/formula/list/');
+    //  let res = await axios.get('api/productionTable_ViewSet/');
      setmstockData(res.data)
     }
     catch(error){
@@ -31,16 +32,16 @@ const Productionstock = () => {
   
 // filter with page nation 
 const filteredMaterials = mstockData.filter(
-  material => material.forumula.FormulaName.toLowerCase().includes(filterValue.toLowerCase())
+  material => material.FormulaName.toLowerCase().includes(filterValue.toLowerCase())
 );
   const displayProductionList = filteredMaterials
   .slice(pagesVisited, pagesVisited + materialsPerPage)
   .map(post => (
     <tr key={post.ProductionID}>
-                <td>{post.forumula.FormulaName}</td>
-                <td>{post.ProductionQuantity}</td>
-                <td>{(post.forumula.TotalProductionQty - post.forumula.TotalSaledQty) <= 0 ? 0:post.forumula.TotalProductionQty - post.forumula.TotalSaledQty}</td>
-                <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
+                <td>{post.FormulaName}</td>
+                {/* <td>{post.ProductionQuantity}</td> */}
+                <td>{(post.TotalProductionQty - post.TotalSaledQty) <= 0 ? 0:post.TotalProductionQty - post.TotalSaledQty}</td>
+                {/* <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td> */}
                
     </tr>
   ));
@@ -85,13 +86,14 @@ const filteredMaterials = mstockData.filter(
             <thead>
               <tr>
                 <th scope="col">Product Name </th>
-                <th scope="col">Production Qty</th>  
-                <th scope="col">Available stock</th>
-                <th scope="col">Production Date</th>
+                {/* <th scope="col">Production Qty</th>   */}
+                <th scope="col">Available Qty</th>
+                {/* <th scope="col">Production Date</th> */}
               </tr>
             </thead>
+            <tbody>
             {displayProductionList}
-          
+            </tbody>
         </table>
         <ReactPaginate
         previousLabel={'Previous'}

@@ -97,24 +97,9 @@ const filteredPackinging = mstockData.filter(
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            {displayPackingList}
-            {/* {mstockData.map((post)=>{
-                 return (
             <tbody>
-              <tr key={post.PackingMaterialID}>
-              <td>{post.PackingMaterialName}</td>
-                <td>{post.PackingMaterialCode}</td>
-                <td>{post.QtyType}</td>
-                <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
-                
-                <td><button
-                    onClick={() => navigate(`/stock/packinglist/${post.PackingMaterialID}`)}
-                    className='btn btn-warning'>Details
-                  </button>
-                </td>
-              </tr>
-            </tbody>);
-            })} */}
+            {displayPackingList}
+            </tbody>
             
         </table>
         <ReactPaginate

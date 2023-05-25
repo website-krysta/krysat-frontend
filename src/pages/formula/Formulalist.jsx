@@ -36,7 +36,7 @@ const [tableData, setTableData] = useState([]);
   const data = formulMaterialData.reduce((acc, curr) => {
     const {Quantity, Formula: { FormulaName ,AddedTimeStamp }, aMaterial: { MaterialName } } = curr;
     const index = acc.findIndex(item => item.formulaName === FormulaName);
-    const material = MaterialName+'-'+Quantity
+    const material = MaterialName+'-'+Quantity+"(%)"
     if (index >= 0) {
       acc[index].materialNames.push(material);
     } else {
@@ -68,7 +68,14 @@ const displayFormulalist = filterformuladata
 .map(post => (
   <tr key={post.id}>
       <td>{post.formulaName}</td>
-      <td>{post.materialNames.join(',')}</td>
+      <td>
+        {post.materialNames.map((material, index) => (
+          <span key={index} className="materialname">
+            {material}{","}
+          </span>
+        ))}
+      </td>
+      {/* <td>{post.materialNames.join(',  ')}</td> */}
       <td>{format(new Date(post.fdate), 'dd-MM-yyyy')}</td>
    </tr>
 ));
@@ -113,12 +120,13 @@ const handlePageChange = ({ selected }) => {
             <thead>
               <tr>
                 <th scope="col">Formula Name</th>
-                <th scope="col">Total MaterialsUsed</th>
+                <th scope="col"> Materials (In Percentage)</th>
                 <th scope="col">Date</th>
               </tr>
             </thead>
+            <tbody>
             {displayFormulalist}
-           
+            </tbody>
             
         </table>
         <ReactPaginate

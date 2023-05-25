@@ -104,8 +104,9 @@ const Invoice = () => {
                 <th scope="col">Actions</th>
               </tr>
             </thead>
+            <tbody>
             {displayinvoicelist}
-            
+            </tbody>
         </table>
         <ReactPaginate
         previousLabel={'Previous'}

@@ -63,12 +63,13 @@ const ProductionStockdetails = () => {
             </thead>
             {filteredData.map((post)=>{
                  return (
-            <tbody>
-              <tr key={post.producton.ProductionID}>
-                <td>{post.forumula.FormulaName}</td>
+                   <tbody>
+                     <tr key={post.producton.ProductionID}>
+                       <td>{post.forumula.FormulaName}</td>
 
-              </tr>
-            </tbody>);
+                     </tr>
+                   </tbody>
+            );
             })}
         </table>
         </div>

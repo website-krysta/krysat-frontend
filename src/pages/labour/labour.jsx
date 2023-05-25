@@ -124,7 +124,9 @@ const Labour = () => {
                 <th scope="col">Date</th>
               </tr>
             </thead>
+            <tbody>
             {displaylabourlist}
+            </tbody>
             {/* {labourdata.map((post)=>{
                  return (
             <tbody>

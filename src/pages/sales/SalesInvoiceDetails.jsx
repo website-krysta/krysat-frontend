@@ -56,11 +56,11 @@ const SalesInvoiceDetails = () => {
             <thead>
               <tr>
                 <th scope="col">Product Name</th>
-                <th scope="col">Invoice Number</th>
-                <th scope="col">Inward Number</th>
-                <th scope="col">Invoice Date</th>
-                <th scope="col">Total Amount</th>
-                <th scope="col">TotalProducts</th>
+                <th scope="col">Product price</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Damaged Quantity</th>
+                <th scope="col">Damage Reason</th>
+                <th scope="col">LossPrice</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -69,11 +69,12 @@ const SalesInvoiceDetails = () => {
             <tbody>
               <tr key={post.ID}>
                 <td>{post.formulainfo.FormulaName}</td>
-                <td>{post.SaleInfo.sales_invoice.InvoiceNumber}</td>
-                <td>{post.SaleInfo.sales_invoice.InwardNumber}</td>
-                <td>{post.SaleInfo.sales_invoice.InvoiceDate}</td>
-                <td>{post.SaleInfo.TotalAmount}</td>
-                <td>{post.SaleInfo.TotalProducts}</td>
+                <td>{post.Price}</td>
+                <td>{post.Quantity}</td>
+                <td>{post.sales_damage.length > 0 ? post.sales_damage[0].DamagedQuantity : 0}</td>
+                <td>{post.sales_damage.length > 0 ? post.sales_damage[0].DamageReason : 'no damage'}</td>
+                <td>{post.sales_damage.length > 0 ? post.sales_damage[0].LossPrice : 0}</td>
+              
                 <td>
                   <button
                     onClick={() => navigate(`/Sales/saleDamage/${post.ID}`)}

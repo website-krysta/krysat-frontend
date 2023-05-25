@@ -1,4 +1,4 @@
-// import "./product.scss";
+
 import { Link ,useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
@@ -69,27 +69,27 @@ const filteredwhitelabeling = mstockData.filter(
 
   return (
     <div className="datatable">
-    
+
       <div className="d-flex justify-content-between aligen-items-center">
         <div className="datatableTitle">
-        White Labeling Stock
+          White Labeling Stock
         </div>
-        <div className="datatableTitle"> 
-        <div className="input-group  justify-content-end">
-              <div className="form-outline">
-                <input id="search-input" type="search" onChange={handleFilterChange} value={filterValue}  className="form-control py-2"  placeholder=" Filter by Material Name "/>
-              </div>
-              <button id="search-button" type="button" className="btn btn-primary py-2">
+        <div className="datatableTitle">
+          <div className="input-group  justify-content-end">
+            <div className="form-outline">
+              <input id="search-input" type="search" onChange={handleFilterChange} value={filterValue} className="form-control py-2" placeholder=" Filter by Material Name " />
+            </div>
+            <button id="search-button" type="button" className="btn btn-primary py-2">
               <ContentPasteSearchIcon />
-              </button>
-        </div>
+            </button>
+          </div>
         </div>
       </div>
-   
-     
+
+
       <div className="mt-5">
         <div className="main">
-        <table class="table">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col">WhiteLabelName</th>
@@ -99,36 +99,21 @@ const filteredwhitelabeling = mstockData.filter(
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            {displaywhitelabelingList}
-            {/* {mstockData.map((post)=>{
-                 return (
             <tbody>
-              <tr key={post.ProductID}>
-                <td>{post.ProductName}</td>
-                <td>{post.ProductCode}</td>
-                <td>{post.QtyType}</td>
-                <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
-                <td>
-                  <button
-                    onClick={() => navigate(`/stock/whitelabeling/${post.ProductID}`)}
-                    className='btn btn-warning'>Details
-                  </button>
-                </td>
-              </tr>
-            </tbody>);
-            })} */}
-        </table>
-        <ReactPaginate
-        previousLabel={'Previous'}
-        nextLabel={'Next'}
-        pageCount={pageCount}
-        onPageChange={handlePageChange}
-        containerClassName={'pagination'}
-        activeClassName={'active'}
-      />
+            {displaywhitelabelingList}
+            </tbody>
+          </table>
+          <ReactPaginate
+            previousLabel={'Previous'}
+            nextLabel={'Next'}
+            pageCount={pageCount}
+            onPageChange={handlePageChange}
+            containerClassName={'pagination'}
+            activeClassName={'active'}
+          />
         </div>
       </div>
-    
+
 
     </div>
   );

@@ -66,7 +66,7 @@ const filteredMaterials = mstockData.filter(
       </div>
       <div className="d-flex justify-content-between aligen-items-center">
         <div className="datatableTitle">
-        Production Stock
+          Production Details
         </div>
         <div className="datatableTitle"> 
         <div className="input-group  justify-content-end">
@@ -91,16 +91,20 @@ const filteredMaterials = mstockData.filter(
                 <th scope="col">Production Date</th>
               </tr>
             </thead>
+            <tbody>
             {displayProductionList}
-          
+            </tbody>
         </table>
         <ReactPaginate
         previousLabel={'Previous'}
         nextLabel={'Next'}
         pageCount={pageCount}
         onPageChange={handlePageChange}
+        marginPagesDisplayed={2}
         containerClassName={'pagination'}
         activeClassName={'active'}
+        pageClassName={'page-item'} 
+        
       />
         </div>
       </div>

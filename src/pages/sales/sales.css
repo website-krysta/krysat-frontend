@@ -16,3 +16,41 @@
 .damageform.form-control{
     width: 500px !important;
 }
+
+
+.pagination .active {
+    background-color: #F7AD1A; 
+    color: #ffffff; 
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 3px;
+
+  }
+.page-item {
+    margin: 10 5px !important; 
+  }
+  li.next a{
+    text-decoration: none !important;
+    padding: 6px;
+    margin:4px;
+    background-color: #f6a516;
+    color: black;
+    border-radius: 3px;
+  }
+  li.previous a{
+    text-decoration: none !important;
+    padding: 6px;
+    margin:4px;
+    background-color: #f6a516;
+    color: black;
+    border-radius: 3px;
+}
+
+.table {
+   border-top: none !important;
+   border: 1px solid #eef0f2;
+}
+.table thead{
+    background-color: rgb(32, 32, 32);
+    color:white;
+}

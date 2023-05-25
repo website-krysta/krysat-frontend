@@ -71,20 +71,20 @@ const filteredMaterials = mstockData.filter(
         <div className="datatableTitle">
           Raw Material Stock
         </div>
-        <div className="datatableTitle"> 
-        <div className="input-group  justify-content-end">
-              <div className="form-outline">
-                <input id="search-input" type="search" onChange={handleFilterChange} value={filterValue}  className="form-control py-2"  placeholder=" Filter by Material Name "/>
-              </div>
-              <button id="search-button" type="button" className="btn btn-primary py-2">
+        <div className="datatableTitle">
+          <div className="input-group  justify-content-end">
+            <div className="form-outline">
+              <input id="search-input" type="search" onChange={handleFilterChange} value={filterValue} className="form-control py-2" placeholder=" Filter by Material Name " />
+            </div>
+            <button id="search-button" type="button" className="btn btn-primary py-2">
               <ContentPasteSearchIcon />
-              </button>
-        </div>
+            </button>
+          </div>
         </div>
       </div>
       <div className="mt-5">
         <div className="main">
-        <table class="table">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col">MaterialName</th>
@@ -95,23 +95,23 @@ const filteredMaterials = mstockData.filter(
               </tr>
             </thead>
             <tbody>
-                {displayMaterials}
-           
+              {displayMaterials}
+
             </tbody>
-       
-        </table>
-        <ReactPaginate
-        previousLabel={'Previous'}
-        nextLabel={'Next'}
-        pageCount={pageCount}
-        onPageChange={handlePageChange}
-        containerClassName={'pagination'}
-        activeClassName={'active'}
-      />
-        
+
+          </table>
+          <ReactPaginate
+            previousLabel={'Previous'}
+            nextLabel={'Next'}
+            pageCount={pageCount}
+            onPageChange={handlePageChange}
+            containerClassName={'pagination'}
+            activeClassName={'active'}
+          />
+
         </div>
       </div>
-    
+
 
     </div>
   );

@@ -56,7 +56,7 @@ const navgate = useNavigate()
   const getmaterialData = async ()=>{
      try{
       
-      let res = await axios.get('api/productionTable_ViewSet/');
+      let res = await axios.get('api/salesProducts/list/');
       setmaterialData(res.data)
      }
      catch(error){
@@ -147,12 +147,12 @@ const handlePriceChange = (e, index) => {
                                                         <div className="d-flex px-2 ">
                                                         <input type="checkbox" 
                                                         className="px-5" 
-                                                        checked={checkedItems.includes(post.ProductionID)}
-                                                        onChange={() => handleItemCheck(post.ProductionID,post.forumula.TotalProductionQty,post.forumula.TotalSaledQty,post.forumula.FormulaName)}                                            
-                                                        id="{post.ProductionID}" 
-                                                        name="{post.ProductionID}" 
-                                                        value="{post.forumula.FormulaName}" />&nbsp;
-                                                        <label >{post.forumula.FormulaName}</label><br></br>
+                                                        checked={checkedItems.includes(post.FormulaID)}
+                                                        onChange={() => handleItemCheck(post.FormulaID,post.TotalProductionQty,post.TotalSaledQty,post.FormulaName)}                                            
+                                                        id="{post.FormulaID}" 
+                                                        name="{post.FormulaID}" 
+                                                        value="{post.FormulaName}" />&nbsp;
+                                                        <label >{post.FormulaName}</label><br></br>
                                                         </div>
                                                     </div>
                                                     
