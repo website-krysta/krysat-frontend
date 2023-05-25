@@ -73,7 +73,9 @@ let Role = 'user'
                 <th scope="col">EmailID</th>
                 <th scope="col">Password</th>
                 <th scope="col">Role</th>
+                <th scope="col"></th>
                 <th scope="col">Actions</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             {mydata.map((post)=>{

@@ -108,6 +108,7 @@ const SalesInvoiceList = () => {
                 <th scope="col">Inward Number</th>
                 <th scope="col">Invoice Date</th>
                 <th scope="col">Recieved Date</th>
+                <th scope="col"></th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>

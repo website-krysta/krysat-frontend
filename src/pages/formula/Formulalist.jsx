@@ -71,7 +71,7 @@ const displayFormulalist = filterformuladata
       <td>
         {post.materialNames.map((material, index) => (
           <span key={index} className="materialname">
-            {material}{","}
+            {material}{""}
           </span>
         ))}
       </td>
@@ -101,7 +101,7 @@ const handlePageChange = ({ selected }) => {
       </div>
       <div className="d-flex justify-content-between aligen-items-center">
       <div className="datatableTitle">
-        Invoic List
+      Formula List
         </div>
       <div className="datatableTitle"> 
         <div className="input-group  justify-content-end">
