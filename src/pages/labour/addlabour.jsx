@@ -40,7 +40,7 @@ const Addlabour = () => {
         debugger;
       let res = await axios.post('api/labour/add/',labourData );
       navigate('/labour')
-      alert("Sucessfully adding labour Reacord")
+      alert("Sucessfully adding labour Record")
     }
     catch(error){
         alert('Labour adding fail please try agian !')

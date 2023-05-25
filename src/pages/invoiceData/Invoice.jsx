@@ -78,7 +78,7 @@ const Invoice = () => {
       </div>
       <div className="d-flex justify-content-between aligen-items-center">
         <div className="datatableTitle">
-        Invoic List
+        Invoice List
         </div>
         <div className="datatableTitle"> 
         <div className="input-group  justify-content-end">
