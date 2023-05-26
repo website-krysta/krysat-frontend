@@ -64,7 +64,6 @@ const handleChange = (event) => {
 //  };
 
 
-  const now = new Date();
   let [materialData , setmaterialData] = useState([]);
   const getmaterialData = async ()=>{
      try{
@@ -77,6 +76,18 @@ const handleChange = (event) => {
       console.log(error)
      }
   }
+
+  let [Category , setCategory] = useState([]);
+  const getCategoryData = async ()=>{
+     try{
+      let res = await axios.get('api/formulaCatagiory/list/');
+      setCategory(res.data)
+     }
+     catch(error){
+      console.log(error)
+     }
+  }
+  
   
 //   handleFormula
 const [aFormula, setaFormula] = useState([]); 
@@ -94,7 +105,7 @@ const  handleFormula = async (event) =>{
     debugger
     let sum = 0;
     for (var key in formulaObject['formulaname']) {
-        if (key !== "FormulaName"){
+        if (key !== "FormulaName" && key !== "category"){
             if (formulaObject['formulaname'].hasOwnProperty(key)) {
               sum += parseInt(formulaObject['formulaname'][key]);
             }
@@ -126,6 +137,7 @@ const  handleFormula = async (event) =>{
   useEffect (()=>{
     getmaterialData();
     handleFormula();
+    getCategoryData();
     // getselectmaterialdata();
   },{})
 
@@ -149,6 +161,17 @@ const  handleFormula = async (event) =>{
                                                   <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                       <input type="text"  name="FormulaName" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please Enter FormulaName" required />
                                                   </div>
+                                                  <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
+                                                  {Category.map((post) => {
+                                                            return (
+                                                                <div key={post.id}>
+                                                                    <input type="radio" id="Life" name="category" onChange={handleChange} value={post.ID} required />&nbsp;
+                                                                    <label htmlFor="html">{post.Name}</label> &nbsp;&nbsp;
+                                                                </div>
+                                                            );
+                                                        })}
+                                                  </div>
+                                              
 
                                                   <div className="show-material">
                                                     <div className="row">

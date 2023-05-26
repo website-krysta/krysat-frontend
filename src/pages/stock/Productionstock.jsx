@@ -37,11 +37,15 @@ const filteredMaterials = mstockData.filter(
   const displayProductionList = filteredMaterials
   .slice(pagesVisited, pagesVisited + materialsPerPage)
   .map(post => (
-    <tr key={post.ProductionID}>
+    <tr key={post.FormulaID}>
                 <td>{post.FormulaName}</td>
-                {/* <td>{post.ProductionQuantity}</td> */}
                 <td>{(post.TotalProductionQty - post.TotalSaledQty) <= 0 ? 0:post.TotalProductionQty - post.TotalSaledQty}</td>
-                {/* <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td> */}
+                <td>
+                  <button
+                    onClick={() => navigate(`/stock/production/${post.FormulaID}`)}
+                    className='btn btn-warning'>Details
+                  </button>
+                </td>
                
     </tr>
   ));
@@ -86,9 +90,8 @@ const filteredMaterials = mstockData.filter(
             <thead>
               <tr>
                 <th scope="col">Product Name </th>
-                {/* <th scope="col">Production Qty</th>   */}
                 <th scope="col">Available Qty</th>
-                {/* <th scope="col">Production Date</th> */}
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>

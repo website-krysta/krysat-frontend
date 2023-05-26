@@ -4,3 +4,11 @@
 .showvendor_info label{
     color:#B1B3B5;
 }
+.invoicedatatable{
+    height: 155vh !important;
+}
+
+.addnewvendor label{
+    color:#b7c0cc ;
+    font-size: 12px;
+}

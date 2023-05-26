@@ -57,15 +57,23 @@ const AddInvoice = () => {
 
   // get vendor form data
 const [voptions, setvOptions] = useState([]);
-const getvendordata = async ()=>{
-  try{
-   let res = await  axios.get('/api/vendor/list/');
-   setvOptions(res.data)
-  }
-  catch(error){
-   console.log(error)
-  }
-}
+useEffect(() => {
+  axios.get('/api/vendor/list/')
+  .then((res)=>{
+    setvOptions(res.data)
+  }).catch((error)=>{
+      console.log(error)
+  })
+});
+// const getvendordata = async ()=>{
+//   try{
+//    let res = await  axios.get('/api/vendor/list/');
+//    setvOptions(res.data)
+//   }
+//   catch(error){
+//    console.log(error)
+//   }
+// }
  
   
 
@@ -82,7 +90,7 @@ useEffect(() => {
   
   useEffect (()=>{
     handlAddInvoice();
-    getvendordata();
+    // getvendordata();
   },{})
 
   return (
@@ -134,34 +142,43 @@ useEffect(() => {
 
                         </div>
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-6 addnewvendor">
                      
-                        <div className="formInput1 mb-3 mt-5">
-                          <input type="text" value={vendorData.VendorCode} name="VendorCode" onChange={handleChange} className="form-control pt-3" id="code" placeholder="vendor code" required />
+                        <div className="formInput1 mb-1 mt-3 ">
+                        <label>Vendor Code</label>
+                          <input type="text" value={vendorData.VendorCode} name="VendorCode" onChange={handleChange} className="form-control " id="code" placeholder="vendor code" required />
                         </div>
-                        <div className="formInput1 mb-3">
-                          <input type="text" value={vendorData.VendorName} name="VendorName" onChange={handleChange} className="form-control pt-3" id="name" placeholder="Name" required />
+                        <div className="formInput1 mb-1">
+                        <label>Vendor Name</label>
+                          <input type="text" value={vendorData.VendorName} name="VendorName" onChange={handleChange} className="form-control " id="name" placeholder="Name" required />
                         </div>
-                        <div className="mb-3">
-                          <input type="email" value={vendorData.EmailID} name="EmailID" onChange={handleChange} className="form-control pt-3" id="email1" placeholder="Email" required />
+                        <div className="mb-1">
+                        <label> Email ID</label>
+                          <input type="email" value={vendorData.EmailID} name="EmailID" onChange={handleChange} className="form-control" id="email1" placeholder="Email" required />
                         </div>
-                        <div className="mb-3">
-                          <input type="phone" value={vendorData.Phone} name="Phone" onChange={handleChange} className="form-control pt-3" id="exampleInputphone" placeholder="Phone" required />
+                        <div className="mb-1">
+                        <label>Phone Number</label>
+                          <input type="phone" value={vendorData.Phone} name="Phone" onChange={handleChange} className="form-control" id="exampleInputphone" placeholder="Phone" required />
                         </div>
-                        <div className="mb-3">
-                          <input type="text" value={vendorData.RegisteredName} name="RegisteredName" onChange={handleChange} className="form-control pt-3" id="RegisteredName" placeholder="RegisteredName" required />
+                        <div className="mb-1">
+                        <label>Registered Name</label>
+                          <input type="text" value={vendorData.RegisteredName} name="RegisteredName" onChange={handleChange} className="form-control" id="RegisteredName" placeholder="RegisteredName" required />
                         </div>
-                        <div className="mb-3">
-                          <input type="text" value={vendorData.Address} name="Address" onChange={handleChange} className="form-control pt-3" id="exampleInputaddress" placeholder="Address" required />
+                        <div className="mb-1">
+                        <label>Address</label>
+                          <input type="text" value={vendorData.Address} name="Address" onChange={handleChange} className="form-control" id="exampleInputaddress" placeholder="Address" required />
                         </div>
-                        <div className="mb-3">
-                          <input type="text" value={vendorData.City} name="City" onChange={handleChange} className="form-control pt-3" id="city" placeholder="City" required />
+                        <div className="mb-1">
+                        <label>City</label>
+                          <input type="text" value={vendorData.City} name="City" onChange={handleChange} className="form-control" id="city" placeholder="City" required />
                         </div>
-                        <div className="mb-3">
-                          <input type="text" value={vendorData.State} name="State" onChange={handleChange} className="form-control pt-3" id="examplestate" placeholder="State" required />
+                        <div className="mb-1">
+                        <label>State</label>
+                          <input type="text" value={vendorData.State} name="State" onChange={handleChange} className="form-control" id="examplestate" placeholder="State" required />
                         </div>
-                        <div className="mb-3">
-                          <input type="text" value={vendorData.Zip} name="Zip" onChange={handleChange} className="form-control pt-3" id="Zip" placeholder="Zip Code" required />
+                        <div className="mb-1">
+                        <label>Zip Code</label>
+                          <input type="text" value={vendorData.Zip} name="Zip" onChange={handleChange} className="form-control" id="Zip" placeholder="Zip Code" required />
                         </div>
 
                         

@@ -101,7 +101,7 @@ function App() {
                <Route path="packinglist/:PackingMaterialID" element={<Updatepackingstock/>} />
                <Route path="updatepackingItem/:packingItemID" element={<UpdatepackingItem />} />
                {/* production */}
-               <Route path="production/:productionId" element={<ProductionStockdetails />} />
+               <Route path="production/:formulaid" element={<ProductionStockdetails />} />
             </Route>
             <Route path="production">
               <Route index element={<ProductionMain />} />

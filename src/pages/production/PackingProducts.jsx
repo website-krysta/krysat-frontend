@@ -83,8 +83,8 @@ const  handleProduction = async (event) =>{
       try{
         debugger
         let res = await axios.post('api/production/packingadd/', packing_Object );
-        alert("Packing Product sucessfully")
-        navigate('/stock/')
+        alert("Packing Product Completed sucessfully")
+        navigate('/production/')
       }
       catch(error){
           alert('Packing Productfail please try agian!')
