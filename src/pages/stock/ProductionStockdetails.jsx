@@ -71,7 +71,9 @@ const ProductionStockdetails = () => {
                           <th scope="col">Production Date </th>
                         </tr>
                       </thead>
+                      <tbody>
                       {displayFormulalist}
+                      </tbody>
                       {/* {filteredData.map((post) => {
                         return (
                           <tbody>
