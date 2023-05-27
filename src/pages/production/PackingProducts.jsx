@@ -13,7 +13,7 @@ const navigate = useNavigate();
  const [checkedItems, setCheckedItems] = useState([]);  
  const [aMaterial, setaMaterial] = useState([]); 
   //  start main function
-  const handleItemCheck = (itemId,itemName,totqty) => {
+  const handleItemCheck = (itemId,itemName,totqty,ConsumeQty) => {
     debugger;
     const listItems = [];
     for (let i = 0; i < aMaterial.length; i++) {
@@ -24,10 +24,10 @@ const navigate = useNavigate();
     if (isChecked) {
         setaMaterial(aMaterial => aMaterial.filter(item => item.PackingMaterialID !== itemId))
         setCheckedItems(prevCheckedItems => prevCheckedItems.filter(item => item !== itemId),itemName)
-        setCheckedItems(prevCheckedItems => prevCheckedItems.filter(item => item !== itemId),totqty)
+        setCheckedItems(prevCheckedItems => prevCheckedItems.filter(item => item !== itemId),totqty,ConsumeQty)
     
     } else {
-        
+        totqty = totqty-ConsumeQty
         const materialObject = {
             PackingMaterialID:itemId,
             PackingMaterialName:itemName,
@@ -130,7 +130,7 @@ const  handleProduction = async (event) =>{
                                                         <input type="checkbox" 
                                                         className="px-5" 
                                                         checked={checkedItems.includes(post.PackingMaterialID)}
-                                                        onChange={() => handleItemCheck(post.PackingMaterialID,post.PackingMaterialName,post.TotalQuantity
+                                                        onChange={() => handleItemCheck(post.PackingMaterialID,post.PackingMaterialName,post.TotalQuantity,post.ConsumedQuantity
                                                             )} 
                                                         
                                                         id="{post.PackingMaterialID}" 
