@@ -64,6 +64,18 @@ const navgate = useNavigate()
      }
   }
   
+  
+  let [whitelabelingData , setwhitelabelingData] = useState([]);
+  const getwhitelabelingData = async ()=>{
+     try{
+      
+      let res = await axios.get('api/product/list/');
+      setwhitelabelingData(res.data)
+     }
+     catch(error){
+      console.log(error)
+     }
+  }
 //   handleProductSales
 const salseInvoiceData = salseinvoice.state && salseinvoice.state.data;
 const [aFormula, setaFormula] = useState([]); 
@@ -118,6 +130,7 @@ const handlePriceChange = (e, index) => {
   useEffect (()=>{
     getmaterialData();
     handleProductSales();
+    getwhitelabelingData();
   },{})
 
   return (
@@ -158,6 +171,26 @@ const handlePriceChange = (e, index) => {
                                                     
                                                 </div>);
                                                 })}
+                                                <br/>
+                                                {whitelabelingData.map((post)=>{         
+                                                    return (
+                                                <div className="col-2 p-3 px-5 material-tail">
+                                                    <div className="material-item">
+                                                        <div className="d-flex px-2 ">
+                                                        <input type="checkbox" 
+                                                        className="px-5" 
+                                                        checked={checkedItems.includes(post.ProductID)}
+                                                        onChange={() => handleItemCheck(post.ProductID,post.TotalQuantity,post.ConsumedQuantity,post.ProductName)}                                            
+                                                        id="{post.ProductID}" 
+                                                        name="{post.ProductID}" 
+                                                        value="{post.whitelabelingData}" />&nbsp;
+                                                        <label >{post.ProductName}</label><br></br>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>);
+                                                })}
+
 
                                                 {aMaterial.map((post,index)=>{  
                                                     return (

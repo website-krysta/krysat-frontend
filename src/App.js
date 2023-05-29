@@ -32,6 +32,7 @@ import SalesInvoiceDetails from "./pages/sales/SalesInvoiceDetails"
 import SalesDamage from "./pages/sales/SalesDamage"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
+import AuthRouter from "./AuthRouter";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -53,14 +54,16 @@ function App() {
           <Route path="/">
             <Route index element={<Login />} />
             <Route path="dashboard" element={<Home />} />
-            <Route path="users">
-              <Route index element={<List />} />
-              <Route path="viewuser/:userId" element={<Single />} />
-              <Route path="edituser/:userId" element={<Edituser inputs={userInputs} />} />
-              <Route
-                path="new"
-                element={<New inputs={userInputs} title="Add New User" />}
-              />
+            <Route element={<AuthRouter />}>
+              <Route path="users">
+                <Route index element={<List />} />
+                <Route path="viewuser/:userId" element={<Single />} />
+                <Route path="edituser/:userId" element={<Edituser inputs={userInputs} />} />
+                <Route
+                  path="new"
+                  element={<New inputs={userInputs} title="Add New User" />}
+                />
+              </Route>
             </Route>
             <Route path="invoice">
               <Route index element={<InvoiceDatalist />} />

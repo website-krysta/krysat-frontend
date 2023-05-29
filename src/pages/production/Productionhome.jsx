@@ -15,6 +15,7 @@ const ProductionHome = () => {
         FormulaID: '', 
         TransactionDate:'',  
         ProductionQuantity:'',
+        BatchNo:'',
         AddedTimeStamp:'',
         UpdatedTimeStamp:''
     });
@@ -88,6 +89,7 @@ const ProductionHome = () => {
         FormulaID: formulaData.FormulaID, 
         TransactionDate:formulaData.TransactionDate,
         ProductionQuantity:formulaData.ProductionQuantity,
+        BatchNo:formulaData.BatchNo,
         AddedTimeStamp:formulaData.AddedTimeStamp,
         UpdatedTimeStamp:formulaData.UpdatedTimeStamp,
     }
@@ -149,6 +151,9 @@ const ProductionHome = () => {
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                     <input type="number"  name="ProductionQuantity" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please enter Required Quantity" required />
                                                 </div>
+                                                <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
+                                                    <input type="text" name="BatchNo"  onChange={handleChange} className="form-control text-center" placeholder="Please enter Batch no" />
+                                                </div>
                                                 
                                                 <div className="col-md-12">
                                                 <table class="table mt-4">
@@ -167,7 +172,7 @@ const ProductionHome = () => {
                                                            <tr key={materialinfo.forumula.FormulaID}>
                                                              <td>{materialinfo.material.MaterialName}</td>
                                                              <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity} ({materialinfo.Quantity} %)</td>
-                                                             <td>{materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity}</td>
+                                                             <td>{materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity} ({materialinfo.material.QtyType})</td>
                                                              <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity > materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity ? (<p className="text-danger">Stock Not Avaliable</p>) :( <p className="text-success">Stock Avaliable</p>)}</td>
                                                         
                                                            </tr>

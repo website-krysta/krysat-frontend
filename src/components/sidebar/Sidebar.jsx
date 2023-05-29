@@ -26,12 +26,8 @@ const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   const navigate = useNavigate();
   const handleLogout = () => {
-    debugger
-    // Remove token from local storage or cookies, set user as logged out, redirect to login page or home page
-    localStorage.removeItem('token'); // example using local storage
-    debugger
-    navigate('/'); // example using React Router
-    debugger
+    sessionStorage.removeItem('userData');
+    navigate('/');
   };
   
   

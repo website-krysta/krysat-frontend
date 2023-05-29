@@ -33,7 +33,7 @@ const Login = () => {
       let res = await axios.post('api/user/',userData );
       // Store user data in session storage
         sessionStorage.setItem('userData', JSON.stringify(res.data));
-      navigate('/users')
+      navigate('/users', { replace: true })
     }
     catch(error){
         alert('Please Enter Valid Credentials')

@@ -29,6 +29,18 @@ const SalesInvoiceList = () => {
  }
   
 
+  // get vendor form data
+  const [vendorData, setvendorData] = useState([]);
+  const getvendordata = async ()=>{
+    try{
+     let res = await  axios.get('/api/vendor/list/');
+     setvendorData(res.data)
+    }
+    catch(error){
+     console.log(error)
+    }
+  }
+   
 
  //filter and pagenation code 
 //filter table data 
@@ -42,10 +54,18 @@ const SalesInvoiceList = () => {
   );
  const displayinvoicelist = filteredinvoicedata
   .slice(pagesVisited, pagesVisited + invoislistPerPage)
-  .map(post => (
+  .map(post => {
+    debugger;
+  const vendor = vendorData.find(vendor => vendor.VendorID === post.VendorID);
+  return (
     <tr key={post.InvoiceID}>
     <td>{post.InvoiceNumber}</td>
     <td>{post.InwardNumber}</td>
+    <td>{post.BatchNo}</td>
+    <td>{vendor ? vendor.VendorName : post.VendorID}</td>
+
+    {/* <td>{post.VendorID}</td> */}
+
     <td>{post.InvoiceDate}</td>
     <td>{post.RecievedDate}</td>
     <td>
@@ -62,7 +82,8 @@ const SalesInvoiceList = () => {
       </button>
     </td>
   </tr>
-  ));
+  )
+  });
 
   const pageCount = Math.ceil(filteredinvoicedata.length / invoislistPerPage);
 
@@ -76,6 +97,7 @@ const SalesInvoiceList = () => {
 
   useEffect(() =>{
     getinvoiceata();
+    getvendordata();
   },{});
 
   return (
@@ -106,9 +128,10 @@ const SalesInvoiceList = () => {
               <tr>
                 <th scope="col">Invoice Number</th>
                 <th scope="col">Inward Number</th>
+                <th scope="col">BatchNo</th>
+                <th scope="col">Vendor Name</th>
                 <th scope="col">Invoice Date</th>
                 <th scope="col">Recieved Date</th>
-                <th scope="col"></th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>

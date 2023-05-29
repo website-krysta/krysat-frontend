@@ -34,6 +34,7 @@ const ProductionStockdetails = () => {
     .map(post => (
       <tr key={post.id}>
         <td>{post.ProductionQuantity}</td>
+        <td>{post.BatchNo}</td>
         <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
         {/* <td>
           {post.production_material.map((material, index) => (
@@ -68,6 +69,7 @@ const ProductionStockdetails = () => {
                       <thead>
                         <tr>
                           <th scope="col">ProductionQuantity </th>
+                          <th scope="col">BatchNo </th>
                           <th scope="col">Production Date </th>
                         </tr>
                       </thead>

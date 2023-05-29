@@ -18,6 +18,7 @@ const SalesInvoice = () => {
   const [invoiceData, setinvoiceData] = useState({
     InvoiceID :0,
     InvoiceNumber :'',
+    BatchNo:'',
     InwardNumber  :'',
     InvoiceDate :'',
     RecievedDate :'',
@@ -116,8 +117,10 @@ useEffect(() => {
                             <label> Invoice Number</label>
                             <input type="text" name="InvoiceNumber" onChange={handleChange} className="form-control pt-3" id="InvoiceNumber" placeholder="Invoice Number" required />
                           </div>
-                         
-
+                          <div className="col-12 mb-3">
+                          <label>Batch Number</label>
+                            <input type="text" name="BatchNo"  onChange={handleChange} className="form-control pt-3" placeholder="Batch no" />
+                          </div>
                           <div className="formInput1 mb-3">
                           <label>Invoice Date</label>
                             <input type="date" name="InvoiceDate" onChange={handleChange} className="form-control pt-3" id="InvoiceDate" placeholder="Invoice Date" required />

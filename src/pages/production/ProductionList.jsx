@@ -38,8 +38,15 @@ const filteredMaterials = mstockData.filter(
   .map(post => (
     <tr key={post.ProductionID}>
                 <td>{post.forumula.FormulaName}</td>
+                <td>{post.BatchNo}</td>
                 <td>{post.ProductionQuantity}</td>
                 <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
+                <td>
+                  <button
+                    onClick={() => navigate(`/Sales/saleDamage/${post.ID}`)}
+                    className='btn btn-warning'>Edit
+                  </button>
+                </td>
                
     </tr>
   ));
@@ -87,8 +94,10 @@ const filteredMaterials = mstockData.filter(
             <thead>
               <tr>
                 <th scope="col">Product Name </th>
+                <th scope="col">Batch No</th>  
                 <th scope="col">Production Qty</th>  
                 <th scope="col">Production Date</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
