@@ -40,10 +40,11 @@ const filteredMaterials = mstockData.filter(
                 <td>{post.forumula.FormulaName}</td>
                 <td>{post.BatchNo}</td>
                 <td>{post.ProductionQuantity}</td>
+                <td>{post.production_damage[0]?.DamagedQuantity || 0}</td>
                 <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
                 <td>
                   <button
-                    onClick={() => navigate(`/Sales/saleDamage/${post.ID}`)}
+                    onClick={() => navigate(`/production/prouctionDamage/${post.ProductionID}`)}
                     className='btn btn-warning'>Edit
                   </button>
                 </td>
@@ -96,7 +97,8 @@ const filteredMaterials = mstockData.filter(
                 <th scope="col">Product Name </th>
                 <th scope="col">Batch No</th>  
                 <th scope="col">Production Qty</th>  
-                <th scope="col">Production Date</th>
+                <th scope="col">Damage qty</th> 
+                <th scope="col">Production Date</th> 
                 <th scope="col">Action</th>
               </tr>
             </thead>

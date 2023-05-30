@@ -5,7 +5,6 @@ const AuthRouter = () => {
   const isLoginDataEmpty = Object.keys(loginData).length === 0;
   debugger
   const auth = !isLoginDataEmpty;
-
   return ( 
         auth ? <Outlet /> : <Navigate to="/" />
     )

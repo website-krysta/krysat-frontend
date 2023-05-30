@@ -12,7 +12,7 @@ const Productionstock = () => {
 
   const [filterValue, setFilterValue] = useState('');
   const [pageNumber, setPageNumber] = useState(0);
-  const materialsPerPage = 10;
+  const materialsPerPage = 8;
   const pagesVisited = pageNumber * materialsPerPage;
 
   

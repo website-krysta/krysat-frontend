@@ -41,6 +41,18 @@ const SalesInvoiceList = () => {
     }
   }
    
+   const [salseData, setSalseData] = useState([]);
+   const getsalseData = async ()=>{
+     try{
+      debugger;
+      let res = await  axios.get('api/sales/list/');
+      debugger;
+      setSalseData(res.data)
+     }
+     catch(error){
+      console.log(error)
+     }
+   }
 
  //filter and pagenation code 
 //filter table data 
@@ -57,6 +69,7 @@ const SalesInvoiceList = () => {
   .map(post => {
     debugger;
   const vendor = vendorData.find(vendor => vendor.VendorID === post.VendorID);
+  const sales = salseData.find(sales => sales.InvoiceID === post.InvoiceID);
   return (
     <tr key={post.InvoiceID}>
     <td>{post.InvoiceNumber}</td>
@@ -64,8 +77,8 @@ const SalesInvoiceList = () => {
     <td>{post.BatchNo}</td>
     <td>{vendor ? vendor.VendorName : post.VendorID}</td>
 
-    {/* <td>{post.VendorID}</td> */}
-
+    <td>{sales ? sales.TotalProducts:0}</td>
+    <td>{sales ? sales.TotalAmount:0}</td>
     <td>{post.InvoiceDate}</td>
     <td>{post.RecievedDate}</td>
     <td>
@@ -98,6 +111,7 @@ const SalesInvoiceList = () => {
   useEffect(() =>{
     getinvoiceata();
     getvendordata();
+    getsalseData();
   },{});
 
   return (
@@ -130,9 +144,13 @@ const SalesInvoiceList = () => {
                 <th scope="col">Inward Number</th>
                 <th scope="col">BatchNo</th>
                 <th scope="col">Vendor Name</th>
+                <th scope="col">No of Products</th>
+                <th scope="col">Invoice Value</th>
                 <th scope="col">Invoice Date</th>
                 <th scope="col">Recieved Date</th>
+                <th scope="col"></th>
                 <th scope="col">Actions</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>

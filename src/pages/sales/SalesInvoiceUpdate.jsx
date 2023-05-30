@@ -103,14 +103,14 @@ const [vendorData, setvendorData] = useState({})
         <Navbar />
         <div className="bottom" >
           <div className="right" >
-            <div className="row">
+            <div className="row invoice_sales_list">
               <div className="datatable">
                 <div className="datatableTitle">
                 Update Invoice
                 </div>
                 <div>
-                  <form className="labourform">
-                    <div class="row row-block">
+                  <form className="labourform ">
+                    <div class="row ">
                       <div className="col-md-6">
                         <h1 className="text-center text-primary pt-4"></h1>
                         <label>Vendor Name</label>

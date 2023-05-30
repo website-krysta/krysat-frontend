@@ -6,10 +6,10 @@ import New from "./pages/new/New";
 import Edituser from "./pages/new/Update";
 import InvoiceDatalist from "./pages/products/Productlist";
 import Newproduct from "./pages/products/Newproduct";
-import Newrawmeterial from "./pages/products/Newrawmeterial"
-import Addinvoice from "./pages/invoiceData/Addinvoice"
-import Labour from "./pages/labour/labour"
-import Addlabour from "./pages/labour/addlabour"
+import Newrawmeterial from "./pages/products/Newrawmeterial";
+import Addinvoice from "./pages/invoiceData/Addinvoice";
+import Labour from "./pages/labour/labour";
+import Addlabour from "./pages/labour/addlabour";
 import Formula from "./pages/formula/formula";
 import Stockhome from "./pages/stock/Stockhome";
 import Formulamain from "./pages/formula/Formulamain";
@@ -21,23 +21,24 @@ import UpdatepackingItem from './pages/stock/UpdatepackingItem';
 import ProductionHome from "./pages/production/Productionhome";
 import UpdateRawmaterial from "./pages/stock/UpdateMaterial";
 import Packingproduct from "./pages/production/PackingProducts";
-import UpdateWhitelabelingItem from "./pages/stock/UpdateWhitelabelingItem"
-import ProductionStockdetails from "./pages/stock/ProductionStockdetails"
-import SalesInvoice from "./pages/sales/SalesInvoice"
-import SaleProducts from "./pages/sales/SaleProducts"
-import SailsMain from "./pages/sales/SalesMain"
-import SalesInvoiceUpdate from "./pages/sales/SalesInvoiceUpdate"
-import ProductionMain from "./pages/production/ProductionMain"
-import SalesInvoiceDetails from "./pages/sales/SalesInvoiceDetails"
-import SalesDamage from "./pages/sales/SalesDamage"
+import UpdateWhitelabelingItem from "./pages/stock/UpdateWhitelabelingItem";
+import ProductionStockdetails from "./pages/stock/ProductionStockdetails";
+import SalesInvoice from "./pages/sales/SalesInvoice";
+import SaleProducts from "./pages/sales/SaleProducts";
+import SailsMain from "./pages/sales/SalesMain";
+import SalesInvoiceUpdate from "./pages/sales/SalesInvoiceUpdate";
+import ProductionMain from "./pages/production/ProductionMain";
+import SalesInvoiceDetails from "./pages/sales/SalesInvoiceDetails";
+import SalesDamage from "./pages/sales/SalesDamage";
+import Productiondamage from "./pages/production/Productiondamage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import AuthRouter from "./AuthRouter";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap.bundle'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 
 
@@ -110,6 +111,7 @@ function App() {
               <Route index element={<ProductionMain />} />
               <Route path="addproduction" element={<ProductionHome />} />
               <Route path="packingproduct" element={<Packingproduct />} />
+              <Route  path="prouctionDamage/:productionid" element={<Productiondamage />} />
             </Route>
             <Route path="Sales">
               <Route index element={<SailsMain />} />

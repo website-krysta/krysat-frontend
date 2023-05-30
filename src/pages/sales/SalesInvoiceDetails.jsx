@@ -68,7 +68,7 @@ const SalesInvoiceDetails = () => {
                  return (
             <tbody>
               <tr key={post.ID}>
-                <td>{post.formulainfo.FormulaName}</td>
+                <td>{post.formulainfo == null ? post.whitelabeling.ProductName : post.formulainfo.FormulaName }</td>
                 <td>{post.Price}</td>
                 <td>{post.Quantity}</td>
                 <td>{post.sales_damage.length > 0 ? post.sales_damage[0].DamagedQuantity : 0}</td>

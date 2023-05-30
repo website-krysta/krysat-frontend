@@ -145,7 +145,7 @@ const ProductionHome = () => {
                                                     </select>
                                                 </div>
                                                 <div className="formInput1  d-flex justify-content-center">
-                                                {formulaData.FormulaID == "" ? <span></span> : <span className="maxqty px-5 pt-2">Maximum Possible Production Quantity is : {minPercentage <=0 ? 0:minPercentage}</span> }
+                                                {formulaData.FormulaID == "" ? <span></span> : <span className="maxqty px-5 pt-2">Maximum Possible Production Quantity is : {minPercentage <=0 ? 0:minPercentage.toFixed(2)+"(kg)"}</span> }
                                                 </div>
 
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
