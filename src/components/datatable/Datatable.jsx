@@ -30,10 +30,12 @@ const Datatable = () => {
   const handleuserDelete =  async(id) => {
    
      try{
-      await axios.post(`/api/deleteuser/${id}/`)
-      const updateuser = mydata.filter(user => user.UserID !== id);
-      setmydata(updateuser);
-              
+      const confirmed = window.confirm('Are you sure you want to delete this user?');
+        if (confirmed) { 
+          await axios.post(`/api/deleteuser/${id}/`)
+        const updateuser = mydata.filter(user => user.UserID !== id);
+        setmydata(updateuser);
+        } 
      }
      catch(error){
       console.log(error);

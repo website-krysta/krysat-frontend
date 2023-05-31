@@ -46,11 +46,11 @@ const AddInvoice = () => {
         alert('Invoice number already exists');
       } else {
         navigate('/invoice/new', { state: { datainvoice: res.data } });
-        alert('Successfully added invoice record');
+        alert('Invoice created successfully!');
       }
     }
     catch(error){
-        alert('invoice adding fail please try agian !')
+        alert('Oops! Unable to create the invoice. Please check the provided information and try again later.')
     }
   }
   

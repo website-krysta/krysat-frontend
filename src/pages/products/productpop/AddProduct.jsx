@@ -49,12 +49,15 @@ export default function AddProduct() {
     debugger
     try{
       let res = await axios.post('/api/product/add/',productData );
-      handleClose()
-      alert("Sucessfully Created")
-      
+      if (res.status === 226) {
+        alert('Product already exists');
+      } else {
+        handleClose()
+        alert("Product details created successfully! ")
+      }
     }
     catch(error){
-        alert('User adding fail please try agian !')
+        alert("Oops! Unable to create product details. Please check the provided information and try again later.")
     }
   }
 

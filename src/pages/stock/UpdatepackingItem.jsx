@@ -124,7 +124,7 @@ const handlAddmaterial = async (event) => {
     navigate('/stock/')
   }
   catch(error){
-      alert('Packing Update fail please try agian!')
+      alert("Oops! Unable to update Packing. Please check the provided details and try again later.")
   }
 
 }

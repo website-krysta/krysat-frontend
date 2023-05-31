@@ -124,7 +124,7 @@ const handlAddmaterial = async (event) => {
     navigate('/stock/')
   }
   catch(error){
-      alert('Meterial Update fail please try agian!')
+      alert("Oops! Unable to update Raw material. Please check the provided details and try again later.")
   }
 
 }

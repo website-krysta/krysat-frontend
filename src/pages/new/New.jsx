@@ -31,10 +31,10 @@ const handlAdduser = async (event) => {
   try{
     let res = await axios.post('api/useradd/',userData );
     navigate('/users')
-    alert('User adding Sucessfully')
+    alert('New user account has been created and successfully')
   }
   catch(error){
-      alert('User adding fail please try agian !')
+      alert('Oops! Unable to add the new user. Please check the provided information and try again later.')
   }
 }
 

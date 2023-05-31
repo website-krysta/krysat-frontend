@@ -44,10 +44,10 @@ const handlUpdateuser = async (event) => {
             debugger
             let res = await axios.post(`api/userupdate/${userId}/`,userData );
             navigate('/users')
-            alert('User update sucessfully')
+            alert('User information updated successfully.')
         }
         catch(error){
-            alert('User update fail')
+            alert('Oops! Unable to update user information. Please check the provided details and try again later.')
         }
     };
 

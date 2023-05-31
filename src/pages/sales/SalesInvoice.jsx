@@ -42,14 +42,14 @@ const SalesInvoice = () => {
       debugger;
       let res = await axios.post('api/salesinvoice/add/',invoiceData );
       if (res.status === 226) {
-        alert('Invoice number already exists');
+        alert('Sales Invoice number already exists');
       } else {
         navigate('/sales/Productsale', { state: { data: res.data } });
-        alert('Successfully added invoice record');
+        alert('Successfully added new sales invoice record');
       }
     }
     catch(error){
-        alert('invoice adding fail please try agian !')
+        alert("Oops! Unable to create Sales Invoice. Please check the provided details and try again later.")
     }
   }
   
@@ -100,8 +100,8 @@ useEffect(() => {
                   <form className="labourform invoice_sales_list">
                     <div class="row">
                       <div className="col-md-6">
-                        <h1 className="text-center text-primary pt-4"></h1>
-                        <div class="input-group mb-3">
+                        <h1 className="text-center text-primary pt-3"></h1>
+                        <div class="input-group">
                             <select class="form-select" name="VendorID" value={invoiceData.VendorID} onChange={handleChange} id="inputGroupSelect04" aria-label="Example select with button addon">
                             <option >--- select vendor ---</option>
                             {voptions.map((voption) => (
@@ -113,9 +113,9 @@ useEffect(() => {
                             </div>
                           </div>
                         <div className="col-md-12">
-                          <div className="formInput1 mb-3 mt-4">
+                          <div className="formInput1 mb-3 mt-2">
                             <label> Invoice Number</label>
-                            <input type="text" name="InvoiceNumber" onChange={handleChange} className="form-control pt-3" id="InvoiceNumber" placeholder="Invoice Number" required />
+                            <input type="text" name="InvoiceNumber" onChange={handleChange} maxLength={10}  className="form-control pt-3" id="InvoiceNumber" placeholder="Invoice Number" required />
                           </div>
                           <div className="col-12 mb-3">
                           <label>Batch Number</label>
@@ -137,7 +137,7 @@ useEffect(() => {
                       </div>
                       <div className="col-md-6">
                      
-                        <div className="formInput1 mb-3 mt-5">
+                        <div className="formInput1 mb-3 mt-4">
                           <input type="text" value={vendorData.VendorCode} name="VendorCode" onChange={handleChange} className="form-control pt-3" id="code" placeholder="vendor code" required />
                         </div>
                         <div className="formInput1 mb-3">
@@ -167,7 +167,6 @@ useEffect(() => {
 
                         
                       </div>
-
                     </div>
                   </form>
 

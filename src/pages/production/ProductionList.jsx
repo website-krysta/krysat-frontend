@@ -44,7 +44,7 @@ const filteredMaterials = mstockData.filter(
                 <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
                 <td>
                   <button
-                    onClick={() => navigate(`/production/prouctionDamage/${post.ProductionID}`)}
+                    onClick={() => navigate(`/production/prouctionDamage/${post.ProductionID}`, { state: { datainvoice: post } })}
                     className='btn btn-warning'>Edit
                   </button>
                 </td>
@@ -89,7 +89,7 @@ const filteredMaterials = mstockData.filter(
       </div>
    
      
-      <div className="mt-5">
+      <div className="mt-3">
         <div className="main">
         <table class="table">
             <thead>

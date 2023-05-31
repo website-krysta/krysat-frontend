@@ -3,10 +3,11 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { useParams ,useNavigate} from 'react-router-dom';
+import { useParams ,useNavigate,useLocation} from 'react-router-dom';
 
 const Productiondamage = () => {
 
+const productionData = useLocation();
 const { productionid } = useParams();
 const navigate = useNavigate();
 
@@ -38,11 +39,11 @@ const handlSalesDamage = async (event) => {
   try{
     debugger
     let res = await axios.post('api/production/damage/',salsedamage_Data);
-    alert("add Production damage sucessfully")
+    alert("Production damage recorded successfully!")
     navigate('/production/')
   }
   catch(error){
-      alert('Production damage fail please try agian!')
+      alert("Oops! Unable to record production damage. Please check the provided details and try again later.")
   }
 
 }
@@ -63,7 +64,7 @@ useEffect (()=>{
                       <div className="row">
                           <div className="datatable">
                               <div className="datatableTitle">
-                                  Add Sales Damage
+                                  Production Damage
                               </div>
                               <div>
                                   <div className="main">
@@ -72,13 +73,13 @@ useEffect (()=>{
                                               <h1 className="text-center text-primary pt-4"></h1>
                                               <div className="col-12 addproduct_form  pb-5">
 
-                                              {/* <div className="mt-2 mb-3">
-                                                  <label>Sales Id</label>
-                                                      <input type="text" name="ID"  value={productionid} onChange={handleDamagedChange} className="form-control pt-2" id="code" disabled />
-                                                  </div> */}
+                                              <div className="mt-2 mb-3">
+                                                  <label>Batch Number</label>
+                                                      <input type="text" name="ID"  value={productionData?.state && productionData?.state.datainvoice.BatchNo} onChange={handleDamagedChange} className="form-control pt-2" id="code" disabled />
+                                                  </div>
                                                   <div className="mt-2 mb-3">
                                                   <label>Damage Qty</label>
-                                                      <input type="number" name="DamagedQuantity" v  onChange={handleDamagedChange} className="form-control pt-3" id="code" placeholder="Damage Qty" required />
+                                                      <input type="number" name="DamagedQuantity" v  onChange={handleDamagedChange} className="form-control pt-3" id="code" placeholder="Damage Qty" min="0" required />
                                                   </div>
                                                   <div className="mb-3">
                                                   <label> Damage Reason</label>
@@ -86,7 +87,7 @@ useEffect (()=>{
                                                   </div>
                                                   <div className="mb-3">
                                                   <label> Loss of Amount</label>
-                                                      <input type="number"   name="LossPrice" onChange={handleDamagedChange} className="form-control pt-3" id="LooS of Amount" placeholder="Loss of Amount" required />
+                                                      <input type="number"   name="LossPrice" onChange={handleDamagedChange} className="form-control pt-3" id="LooS of Amount" placeholder="Loss of Amount" min="0" required />
                                                   </div>
 
 

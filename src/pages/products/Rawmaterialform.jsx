@@ -55,10 +55,10 @@ const handlAddmaterial = async (event) => {
     materialinfo.InvoiceID = invoicID 
     materialinfo.VendorID = vendorID
     let res = await axios.post('/api/addRawmaterial/add/', materialinfo );
-    alert("Raw material add sucessfully")
+    alert("Material add sucessfully")
   }
   catch(error){
-      alert('Meterial adding fail please try agian!')
+      alert("Oops! Unable to create Material. Please check the provided details and try again later.")
   }
 
   setmaterialinfo({  

@@ -52,11 +52,11 @@ export default function Addpacking() {
     try{
       let res = await axios.post('/api/packing/add/',packingData );
       handleClose()
-      alert("Sucessfully Created")
+      alert("Packing details created successfully!")
       
     }
     catch(error){
-        alert('Packing adding fail please try agian !')
+        alert('Oops! Unable to create packing details. Please check the provided information and try again later.')
     }
   }
 

@@ -120,7 +120,7 @@ const  handleFormula = async (event) =>{
             alert('Formula Name already exists');
           } else {
             navgate('/formula/')
-            alert('Formula adding sucessfully')
+            alert("Formula created successfully! The new formula has been saved.")
           }
        
       } else {
@@ -129,7 +129,7 @@ const  handleFormula = async (event) =>{
     
   }
   catch(error){
-      alert('Formula adding fail please try agian !')
+      alert("Oops! Unable to create formula. Please check the provided details and try again later.")
   }
 }
 

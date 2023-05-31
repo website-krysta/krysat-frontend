@@ -42,11 +42,11 @@ const SalesInvoiceUpdate = () => {
         let res = await axios.post('api/salesInvoiceupdate/',invoiceData );
         debugger;
         const jsonString = JSON.stringify(res.data);
-        navigate('/sales/Productsale', { state: { data: res.data } });
-        alert("Sucessfully update invoice Record")
+        navigate('/sales/');
+        alert("Sucessfully update Sales invoice Record")
     }
     catch(error){
-        alert('invoice update fail please try agian !')
+        alert("Oops! Unable to Update Sales invoice. Please check the provided details and try again later.")
     }
   }
   

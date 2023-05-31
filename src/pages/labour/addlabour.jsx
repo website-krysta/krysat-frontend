@@ -40,10 +40,10 @@ const Addlabour = () => {
         debugger;
       let res = await axios.post('api/labour/add/',labourData );
       navigate('/labour')
-      alert("Sucessfully adding labour Record")
+      alert("Labor information created successfully!")
     }
     catch(error){
-        alert('Labour adding fail please try agian !')
+        alert("Oops! Unable to create labor information. Please check the provided details and try again later.")
     }
   }
   
@@ -75,23 +75,23 @@ const Addlabour = () => {
                                                   </div>
                                                   <div className="formInput1 mb-3 mt-2">
                                                   <label>Total Labours</label>
-                                                      <input type="number"  name="TotalLabours" onChange={handleChange} className="form-control pt-3" id="TotalLabours" placeholder="TotalLabours" required />
+                                                      <input type="number"  name="TotalLabours" onChange={handleChange} className="form-control pt-3" id="TotalLabours" placeholder="TotalLabours" min="0" required />
                                                   </div>
                                                   <div className="formInput1 mb-3">
                                                   <label>Morning Shift</label>
-                                                      <input type="number"  name="MorningShiftCount" onChange={handleChange} className="form-control pt-3" id="MorningShiftCount" placeholder="MorningShiftCount" required />
+                                                      <input type="number"  name="MorningShiftCount" onChange={handleChange} className="form-control pt-3" id="MorningShiftCount" placeholder="MorningShiftCount" min="0" required />
                                                   </div>
                                                   <div className="mb-3">
                                                   <label>Night Shift</label>
-                                                      <input type="number"  name="NightShiftCount" onChange={handleChange} className="form-control pt-3" id="NightShiftCount" placeholder="NightShiftCount" required />
+                                                      <input type="number"  name="NightShiftCount" onChange={handleChange} className="form-control pt-3" id="NightShiftCount" placeholder="NightShiftCount" min="0" required />
                                                   </div>
                                                   <div className="mb-3">
                                                   <label>Morning Shift Amount</label>
-                                                      <input type="number"  name="MorningShiftAmount" onChange={handleChange} className="form-control pt-3" id="MorningShiftAmount" placeholder="MorningShiftAmount" required />
+                                                      <input type="number"  name="MorningShiftAmount" onChange={handleChange} className="form-control pt-3" id="MorningShiftAmount" placeholder="MorningShiftAmount" min="0" required />
                                                   </div>
                                                   <div className="mb-3">
                                                   <label>Night Shift Amount</label>
-                                                      <input type="number"  name="NightShiftAmount" onChange={handleChange} className="form-control pt-3" id="NightShiftAmount" placeholder="NightShiftAmount" required />
+                                                      <input type="number"  name="NightShiftAmount" onChange={handleChange} className="form-control pt-3" id="NightShiftAmount" placeholder="NightShiftAmount" min="0" required />
                                                   </div>
                                                 
                                                   

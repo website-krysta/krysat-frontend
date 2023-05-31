@@ -57,10 +57,10 @@ try{
   packinginfo.InvoiceID = invoicID 
   packinginfo.VendorID = vendorID
   let res = await axios.post('/api/packing/packingdetails/add/', packinginfo );
-  alert("Packing add sucessfully")
+  alert("Packing Material created successfully!")
 }
 catch(error){
-    alert('Packing adding fail please try agian!')
+    alert('"Oops! Unable to create Packing. Please check the provided details and try again later."')
 }
 
 setpackinginfo({

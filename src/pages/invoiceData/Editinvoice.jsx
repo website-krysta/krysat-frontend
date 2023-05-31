@@ -44,10 +44,10 @@ const EditInvoice = () => {
       debugger;
       const jsonString = JSON.stringify(res.data);
       navigate('/invoice/new',{state:{datainvoice:res.data}})
-      alert("Sucessfully update invoice Record")
+      alert("Invoice updated successfully!")
     }
     catch(error){
-        alert('invoice update fail please try agian !')
+        alert("Oops! Unable to update the invoice. Please check the provided details and try again later.")
     }
   }
   

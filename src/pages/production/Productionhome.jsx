@@ -103,7 +103,7 @@ const ProductionHome = () => {
   
         }
         catch(error){
-            alert('Please check production details')
+            alert('Oops! Unable to Create production . Please check the provided details and try again later.')
         }
     }
   
@@ -149,10 +149,10 @@ const ProductionHome = () => {
                                                 </div>
 
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
-                                                    <input type="number"  name="ProductionQuantity" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please enter Required Quantity" required />
+                                                    <input type="number"  name="ProductionQuantity" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please enter Required Quantity" min="0" required />
                                                 </div>
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
-                                                    <input type="text" name="BatchNo"  onChange={handleChange} className="form-control text-center" placeholder="Please enter Batch no" />
+                                                    <input type="text" name="BatchNo"  onChange={handleChange} className="form-control text-center"  placeholder="Please enter Batch no" />
                                                 </div>
                                                 
                                                 <div className="col-md-12">

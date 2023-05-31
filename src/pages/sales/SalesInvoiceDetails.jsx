@@ -77,7 +77,7 @@ const SalesInvoiceDetails = () => {
               
                 <td>
                   <button
-                    onClick={() => navigate(`/Sales/saleDamage/${post.ID}`)}
+                    onClick={() => navigate(`/Sales/saleDamage/${post.ID}`,{ state: { datainvoice: post } })}
                     className='btn btn-warning'>Edit
                   </button>
                 </td>

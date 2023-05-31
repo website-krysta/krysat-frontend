@@ -53,11 +53,11 @@ export default function Newrawmeterial() {
     try{
       let res = await axios.post('api/meterial/add/',rameterialData );
       handleClose()
-      alert("Material Sucessfully Created")
+      alert("New RawMaterial created successfully!")
       
     } 
     catch(error){
-        alert('Material adding fail please try agian !')
+        alert("Oops! Unable to create material. Please check the provided details and try again later.")
     }
   }
 

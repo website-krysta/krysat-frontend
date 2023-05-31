@@ -31,12 +31,11 @@ const Login = () => {
     try{
       debugger;
       let res = await axios.post('api/user/',userData );
-      // Store user data in session storage
         sessionStorage.setItem('userData', JSON.stringify(res.data));
       navigate('/users', { replace: true })
     }
     catch(error){
-        alert('Please Enter Valid Credentials')
+        alert('Invalid credentials. Please check your username and password and try again')
     }
     
   }
