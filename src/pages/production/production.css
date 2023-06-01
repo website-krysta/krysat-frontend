@@ -4,3 +4,12 @@
 .maxqty{
     color: rgb(245, 118, 34);
 }
+
+#reqqty{
+    width: 270px !important;
+    margin-left: -10px;
+   
+}
+#qtytype{
+    margin-right: 25px;
+}

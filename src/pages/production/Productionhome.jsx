@@ -10,6 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const ProductionHome = () => {
 
     const navigate = useNavigate();
+    const [selectedQtyType, setSelectedQtyType] = useState('');
     const [formulaData, setformulaData] = useState({
         ProductionID:'',
         FormulaID: '', 
@@ -52,8 +53,23 @@ const ProductionHome = () => {
 
     const filteredData = formulamaterialData.filter(obj => obj.forumula.FormulaID === parseInt(fid));
     const result = filteredData.find(item => (item.Quantity/100)*formulaData.ProductionQuantity >= item.material.TotalQuantity);
-    const minPercentage = Math.min(...filteredData.map((materialinfo) => ((materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity) / materialinfo.Quantity * 100)));
-    // debugger;
+    // maximum production Possible
+    debugger;
+    const minPercentage = Math.min(...filteredData.map((materialinfo) => (
+        
+        (materialinfo.material.QtyType !== selectedQtyType ? 
+            (
+                ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
+                (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)) / materialinfo.Quantity) * 100)
+            ) : 
+            (
+                (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
+             ))
+            
+        // (materialinfo.material.QtyType !== "liters" ? ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) * 0.9708) / materialinfo.Quantity * 100 : ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity)) / materialinfo.Quantity * 100)
+       //(materialinfo.material.QtyType ==="liters" ? (materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity/0.9708) / materialinfo.Quantity * 100):(materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity) / materialinfo.Quantity * 100))
+        )));
+    // debugger; 
    const getjointabledata = async () => {
     try{
         let res = await axios.get('api/formulaviewSet/')
@@ -106,6 +122,12 @@ const ProductionHome = () => {
             alert('Oops! Unable to Create production . Please check the provided details and try again later.')
         }
     }
+
+
+    const handleQtyTypeChange = (event) => {
+        const { value } = event.target;
+        setSelectedQtyType(value);
+      };
   
   
  
@@ -116,6 +138,7 @@ const ProductionHome = () => {
         getjointabledata();
         getproductionData();
         handleproduction();
+       
 
     }, {});
 
@@ -144,12 +167,23 @@ const ProductionHome = () => {
                                                         ))}
                                                     </select>
                                                 </div>
-                                                <div className="formInput1  d-flex justify-content-center">
-                                                {formulaData.FormulaID == "" ? <span></span> : <span className="maxqty px-5 pt-2">Maximum Possible Production Quantity is : {minPercentage <=0 ? 0:minPercentage.toFixed(2)+"(kg)"}</span> }
-                                                </div>
+                                               
+                                                <div className="productionqty  d-flex justify-content-center">
+ 
+                                                    <div className="col-4  mb-2 mt-2 d-flex justify-content-center ">
+                                                        <input type="number" name="ProductionQuantity" onChange={handleChange} className="form-control text-center" id="reqqty" placeholder="Please enter Required Quantity" min="0" required />
+                                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <div class="col-2  mb-2 mt-2  d-flex justify-content-center">
+                                                        <select class="form-select" value={selectedQtyType} onChange={handleQtyTypeChange} className="form-control text-center" id="qtytype" aria-label="Example select with button addon">
+                                                            <option value="">Select Quantity Type</option>
+                                                            <option value="kg">kg</option>
+                                                            <option value="liters">liters</option>
+                                                        </select>
 
-                                                <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
-                                                    <input type="number"  name="ProductionQuantity" onChange={handleChange}  className="form-control text-center" id="FormulaName" placeholder="Please enter Required Quantity" min="0" required />
+                                                    </div>
+                                                </div>
+                                                <div className="row formInput1  d-flex justify-content-center">
+                                                {formulaData.FormulaID == "" ? <span></span> : <span className="maxqty text-center  pt-2">Maximum Possible Production Quantity is : {minPercentage <=0 ? 0:minPercentage.toFixed(2)} ({selectedQtyType})</span> }
                                                 </div>
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                     <input type="text" name="BatchNo"  onChange={handleChange} className="form-control text-center"  placeholder="Please enter Batch no" />
@@ -160,8 +194,8 @@ const ProductionHome = () => {
                                                 <thead>
                                                            <tr>
                                                              <th scope="col">MaterialName</th>
-                                                             <th scope="col">Required Qty</th>
-                                                             <th scope="col">Avaliable Qty</th>               
+                                                             <th scope="col">Required Qty({selectedQtyType})</th>
+                                                             <th scope="col">Avaliable Qty({selectedQtyType})</th>               
                                                              <th scope="col">Status</th>
                                                              {/* <th scope="col">maxPossibleQty</th> */}
                                                               
@@ -171,9 +205,29 @@ const ProductionHome = () => {
                                                          <tbody>
                                                            <tr key={materialinfo.forumula.FormulaID}>
                                                              <td>{materialinfo.material.MaterialName}</td>
-                                                             <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity} ({materialinfo.Quantity} %)</td>
-                                                             <td>{materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity} ({materialinfo.material.QtyType})</td>
-                                                             <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity > materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity ? (<p className="text-danger">Stock Not Avaliable</p>) :( <p className="text-success">Stock Avaliable</p>)}</td>
+                                                             <td>{((materialinfo.Quantity/100)*(selectedQtyType === 'liters' ? formulaData.ProductionQuantity*0.9708:formulaData.ProductionQuantity )).toFixed(2)} ({materialinfo.Quantity} %)</td>
+                                                             <td>  
+                                                                    {materialinfo.material.QtyType !== selectedQtyType ? 
+                                                                    (
+                                                                        (materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
+                                                                        (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)
+                                                                    ) : 
+                                                                    (
+                                                                        materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity 
+                                                        
+                                                                     )
+                                                                    }
+                                                                    </td>
+                                                             <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity >  (materialinfo.material.QtyType !== selectedQtyType ? 
+                                                                    (
+                                                                        (materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
+                                                                        (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)
+                                                                    ) : 
+                                                                    (
+                                                                        materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity 
+                                                        
+                                                                     )
+                                                                    ) ? (<p className="text-danger">Stock Not Avaliable</p>) :( <p className="text-success">Stock Avaliable</p>)}</td>
                                                         
                                                            </tr>
                                                          </tbody>
