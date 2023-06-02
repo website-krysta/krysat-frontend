@@ -16,8 +16,8 @@ import { Link, useNavigate,useLocation } from 'react-router-dom';
 
 
 const New = () => {
-  const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
-  let invoicID = invoiceData['ID']
+  // const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
+  // let invoicID = invoiceData['ID']
   // get data from navigate compontent or parent component
   debugger;
   const invoiceifo = useLocation();
