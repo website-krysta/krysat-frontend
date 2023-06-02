@@ -9,7 +9,7 @@ import {useNavigate } from 'react-router-dom';
 
 const Rawmaterialform = (props) => {
 //   const navigate = useNavigate();
-const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
+// const invoiceData = JSON.parse(sessionStorage.getItem('invoiceinfo'));
 // let invoicID = invoiceData['InvoiceID'],invoiceData['VendorID']
 debugger;
 let invoicID  =  props.data.InvoiceID

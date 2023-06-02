@@ -31,7 +31,7 @@ const Login = () => {
     try{
       debugger;
       let res = await axios.post('api/user/',userData );
-        sessionStorage.setItem('userData', JSON.stringify(res.data));
+      localStorage.setItem('userData', JSON.stringify(res.data));
       navigate('/users', { replace: true })
     }
     catch(error){

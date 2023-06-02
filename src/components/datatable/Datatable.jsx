@@ -54,7 +54,7 @@ useEffect(() =>{
  
 },{});
 
-const userData = JSON.parse(sessionStorage.getItem('userData'));
+const userData = JSON.parse(localStorage.getItem('userData'));
 let Role = 'user'
   return (
     <div className="datatable">

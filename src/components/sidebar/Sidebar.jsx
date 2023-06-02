@@ -26,7 +26,7 @@ const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   const navigate = useNavigate();
   const handleLogout = () => {
-    sessionStorage.removeItem('userData');
+    localStorage.removeItem('userData');
     navigate('/');
   };
   

@@ -12,7 +12,7 @@ import { useContext } from "react";
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
-  const userInfo = sessionStorage.getItem('userData');
+  const userInfo = localStorage.getItem('userData');
   let userObject = JSON.parse(userInfo);
   let email = userObject.EmailID;
   let username = email.split("@gmail.com")[0];
