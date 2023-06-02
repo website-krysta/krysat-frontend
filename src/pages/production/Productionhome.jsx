@@ -175,7 +175,7 @@ const ProductionHome = () => {
                                                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <div class="col-2  mb-2 mt-2  d-flex justify-content-center">
                                                         <select class="form-select" value={selectedQtyType} onChange={handleQtyTypeChange} className="form-control text-center" id="qtytype" aria-label="Example select with button addon">
-                                                            <option value="">Select Quantity Type</option>
+                                                            <option value="">-- Quantity Type --</option>
                                                             <option value="kg">kg</option>
                                                             <option value="liters">liters</option>
                                                         </select>
@@ -183,7 +183,7 @@ const ProductionHome = () => {
                                                     </div>
                                                 </div>
                                                 <div className="row formInput1  d-flex justify-content-center">
-                                                {formulaData.FormulaID == "" ? <span></span> : <span className="maxqty text-center  pt-2">Maximum Possible Production Quantity is : {minPercentage <=0 ? 0:minPercentage.toFixed(2)} ({selectedQtyType})</span> }
+                                                {formulaData.FormulaID == "" ? <span></span> : <span className="maxqty text-center  pt-2">Maximum Possible Production Quantity is : {minPercentage <=0 ? 0:minPercentage.toFixed(2)} ({selectedQtyType ==="" ? "kg" :selectedQtyType})</span> }
                                                 </div>
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                     <input type="text" name="BatchNo"  onChange={handleChange} className="form-control text-center"  placeholder="Please enter Batch no" />
@@ -194,8 +194,8 @@ const ProductionHome = () => {
                                                 <thead>
                                                            <tr>
                                                              <th scope="col">MaterialName</th>
-                                                             <th scope="col">Required Qty({selectedQtyType})</th>
-                                                             <th scope="col">Avaliable Qty({selectedQtyType})</th>               
+                                                             <th scope="col">Required Qty({selectedQtyType ==="" ? "kg" :selectedQtyType})</th>
+                                                             <th scope="col">Avaliable Qty({selectedQtyType ==="" ? "kg" :selectedQtyType})</th>               
                                                              <th scope="col">Status</th>
                                                              {/* <th scope="col">maxPossibleQty</th> */}
                                                               
