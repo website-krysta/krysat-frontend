@@ -40,8 +40,8 @@ const AddInvoice = () => {
     try{
       debugger;
       let res = await axios.post('api/invoice/add/',invoiceData );
-      // const jsonString = JSON.stringify(res.data);
-      // sessionStorage.setItem('invoiceinfo', jsonString);
+      const jsonString = JSON.stringify(res.data);
+      localStorage .setItem('invoiceinfo', jsonString);
       if (res.status === 226) {
         alert('Invoice number already exists');
       } else {
