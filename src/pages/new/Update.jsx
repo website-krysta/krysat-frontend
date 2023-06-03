@@ -18,7 +18,8 @@ const Edituser = ({   inputs, title }) => {
         EmailID: '',
         Password: '',
         Role: '',
-        UserStatus: true
+        UserStatus: true,
+        ConfirmPassword:''
 })
 const handleChange = (event) => {
   setUserdata({
@@ -41,11 +42,15 @@ const getUserdata = async ()=>{
 const handlUpdateuser = async (event) => {
     event.preventDefault();
         try{
-            debugger
+          debugger;
+          if (userData.Password !== userData.ConfirmPassword) {
+            alert('Passwords do not match!');
+          } else {
             let res = await axios.post(`api/userupdate/${userId}/`,userData );
             navigate('/users')
             alert('User information updated successfully.')
         }
+      }
         catch(error){
             alert('Oops! Unable to update user information. Please check the provided details and try again later.')
         }
@@ -94,7 +99,7 @@ useEffect (()=>{
               </div>
               <div className="formInput pt-5">
               <label for="role">Confirm Password </label>
-              <input type="password"  placeholder="Confirm Password"/>
+              <input type="password" name="ConfirmPassword"  onChange={handleChange} placeholder="Confirm Password"/>
               </div><br/>
               <div className="pt-5">
               <button onClick={handlUpdateuser} >Update</button>

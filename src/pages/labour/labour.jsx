@@ -34,21 +34,21 @@ const Labour = () => {
        }
     }
     
-    const handleuserDelete =  async(id) => {
+    // const handleuserDelete =  async(id) => {
      
-       try{
-        await axios.delete(`api/deleteuser/${id}/`)
-        const updateuser = labourdata.filter(user => user.UserID !== id);
-        setlabourdata(updateuser);
+    //    try{
+    //     await axios.delete(`api/deleteuser/${id}/`)
+    //     const updateuser = labourdata.filter(user => user.UserID !== id);
+    //     setlabourdata(updateuser);
                 
-       }
-       catch(error){
-        console.log(error);
+    //    }
+    //    catch(error){
+    //     console.log(error);
         
-       }
+    //    }
      
     
-    };
+    // };
   
   // filter with page nation 
   const filterelabourdata = labourdata.filter(

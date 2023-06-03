@@ -102,7 +102,7 @@ useEffect(() => {
           <div className="right" >
             <div className="row">
               <div className="datatable">
-                <div className="datatableTitle">
+                <div className="datatableTitle formtitle">
                   Add Invoice Details
                 </div>
                 <div>

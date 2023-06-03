@@ -58,13 +58,22 @@ const ProductionHome = () => {
     const minPercentage = Math.min(...filteredData.map((materialinfo) => (
         
         (materialinfo.material.QtyType !== selectedQtyType ? 
-            (
-                ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
-                (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)) / materialinfo.Quantity) * 100)
-            ) : 
-            (
-                (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
-             ))
+        (
+            ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
+            (selectedQtyType === 'liters' ? 1.03:  0.9708)) / materialinfo.Quantity) * 100)
+        ): 
+        (
+            (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
+         ))
+        
+        // (materialinfo.material.QtyType !== selectedQtyType ? 
+        //     (
+        //         ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
+        //         (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)) / materialinfo.Quantity) * 100)
+        //     ) : 
+        //     (
+        //         (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
+        //      ))
             
         // (materialinfo.material.QtyType !== "liters" ? ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) * 0.9708) / materialinfo.Quantity * 100 : ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity)) / materialinfo.Quantity * 100)
        //(materialinfo.material.QtyType ==="liters" ? (materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity/0.9708) / materialinfo.Quantity * 100):(materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity) / materialinfo.Quantity * 100))
@@ -151,7 +160,7 @@ const ProductionHome = () => {
                     <div className="right" >
                         <div className="row">
                             <div className="datatable">
-                                <div className="datatableTitle">
+                                <div className="datatableTitle formtitle">
                                 Production 
                                 </div>
                                 <form className="labourform">

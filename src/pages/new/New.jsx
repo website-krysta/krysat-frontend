@@ -10,14 +10,15 @@ import { Link, useNavigate } from 'react-router-dom';
 const New = ({   inputs, title }) => {
   const navigate = useNavigate();
   // const [file, setFile] = useState("");
-  
+
   const [userData, setUserdata] = useState({
         
         UserID: '',
         EmailID: '',
         Password: '',
         Role: '',
-        UserStatus: true
+        UserStatus: true,
+        ConfirmPassword:''
 })
 const handleChange = (event) => {
   setUserdata({
@@ -26,12 +27,19 @@ const handleChange = (event) => {
   });
 };
 
+
 const handlAdduser = async (event) => {
   event.preventDefault();
   try{
-    let res = await axios.post('api/useradd/',userData );
-    navigate('/users')
-    alert('New user account has been created and successfully')
+    debugger;
+    if (userData.Password !== userData.ConfirmPassword) {
+      alert('Passwords do not match!');
+    } else {
+      let res = await axios.post('api/useradd/',userData );
+      navigate('/users')
+      alert('New user account has been created and successfully')
+    }
+   
   }
   catch(error){
       alert('Oops! Unable to add the new user. Please check the provided information and try again later.')
@@ -79,7 +87,7 @@ useEffect (()=>{
                 </div>
                 <div className="formInput col-6 pt-5">
                 <label for="password">Confirm Password </label>
-                <input type="password"  placeholder="Confirm Password"/>
+                <input type="password" name="ConfirmPassword" onChange={handleChange}  placeholder="Confirm Password"/>
                 </div>
                 <div className="col-6 pt-5">
                 <button onClick={handlAdduser} >Add user</button>

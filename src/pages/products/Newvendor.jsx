@@ -52,7 +52,6 @@ const handladdvendor = async (event) => {
   debugger
   try{
     let res = await axios.post('api/vendor/add/',vendorData );
-    navigate('/invoice/addinvoice')
     handleClose()
     alert("Sucessfully Created new Vendor")
   }

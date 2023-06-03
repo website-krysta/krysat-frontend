@@ -40,10 +40,10 @@ const Addlabour = () => {
         debugger;
       let res = await axios.post('api/labour/add/',labourData );
       navigate('/labour')
-      alert("Labor information created successfully!")
+      alert("Labour information created successfully!")
     }
     catch(error){
-        alert("Oops! Unable to create labor information. Please check the provided details and try again later.")
+        alert("Oops! Unable to create Labour information. Please check the provided details and try again later.")
     }
   }
   
@@ -61,7 +61,7 @@ const Addlabour = () => {
                   <div className="right" >
                       <div className="row">
                           <div className="datatable">
-                              <div className="datatableTitle">
+                              <div className="datatableTitle formtitle">
                                   Add Labour Details
                               </div>
                               <div>

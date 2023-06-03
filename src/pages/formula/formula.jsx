@@ -150,7 +150,7 @@ const  handleFormula = async (event) =>{
                   <div className="right" >
                       <div className="row">
                           <div className="datatable">
-                              <div className="datatableTitle">
+                              <div className="datatableTitle formtitle">
                                   Add Formula
                               </div>
                               <div>
