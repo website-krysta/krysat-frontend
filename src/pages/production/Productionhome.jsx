@@ -60,7 +60,7 @@ const ProductionHome = () => {
         // (materialinfo.material.QtyType !== selectedQtyType ? 
         // (
         //     ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
-        //     (selectedQtyType === 'liters' ? 1.03:  0.9708)) / materialinfo.Quantity) * 100)
+        //     (selectedQtyType === 'liters' ? 1.03:  1)) / materialinfo.Quantity) * 100)
         // ): 
         // (
         //     (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
@@ -69,14 +69,14 @@ const ProductionHome = () => {
         (materialinfo.material.QtyType !== selectedQtyType ? 
             (
                 ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
-                (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)) / materialinfo.Quantity) * 100)
+                (selectedQtyType === 'liters' ? 1: selectedQtyType !== 'liters' ? 1:1)) / materialinfo.Quantity) * 100)
             ) : 
             (
                 (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
              ))
             
-        // (materialinfo.material.QtyType !== "liters" ? ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) * 0.9708) / materialinfo.Quantity * 100 : ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity)) / materialinfo.Quantity * 100)
-       //(materialinfo.material.QtyType ==="liters" ? (materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity/0.9708) / materialinfo.Quantity * 100):(materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity) / materialinfo.Quantity * 100))
+        // (materialinfo.material.QtyType !== "liters" ? ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) * 1) / materialinfo.Quantity * 100 : ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity)) / materialinfo.Quantity * 100)
+       //(materialinfo.material.QtyType ==="liters" ? (materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity/1) / materialinfo.Quantity * 100):(materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity) / materialinfo.Quantity * 100))
         )));
     // debugger; 
    const getjointabledata = async () => {
@@ -222,12 +222,12 @@ const ProductionHome = () => {
                                                          <tbody>
                                                            <tr key={materialinfo.forumula.FormulaID}>
                                                              <td>{materialinfo.material.MaterialName}</td>
-                                                             <td>{((materialinfo.Quantity/100)*(selectedQtyType === 'liters' ? formulaData.ProductionQuantity*0.9708:formulaData.ProductionQuantity )).toFixed(2)} ({materialinfo.Quantity} %)</td>
+                                                             <td>{((materialinfo.Quantity/100)*(selectedQtyType === 'liters' ? formulaData.ProductionQuantity*1:formulaData.ProductionQuantity )).toFixed(2)} ({materialinfo.Quantity} %)</td>
                                                              <td>  
                                                                     {materialinfo.material.QtyType !== selectedQtyType ? 
                                                                     (
                                                                         (materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
-                                                                        (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)
+                                                                        (selectedQtyType === 'liters' ? 1: selectedQtyType !== 'liters' ? 1:1)
                                                                     ) : 
                                                                     (
                                                                         materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity 
@@ -238,7 +238,7 @@ const ProductionHome = () => {
                                                              <td>{(materialinfo.Quantity/100)*formulaData.ProductionQuantity >  (materialinfo.material.QtyType !== selectedQtyType ? 
                                                                     (
                                                                         (materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
-                                                                        (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)
+                                                                        (selectedQtyType === 'liters' ? 1: selectedQtyType !== 'liters' ? 1:1)
                                                                     ) : 
                                                                     (
                                                                         materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity 
