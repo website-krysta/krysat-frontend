@@ -57,23 +57,23 @@ const ProductionHome = () => {
     debugger;
     const minPercentage = Math.min(...filteredData.map((materialinfo) => (
         
-        (materialinfo.material.QtyType !== selectedQtyType ? 
-        (
-            ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
-            (selectedQtyType === 'liters' ? 1.03:  0.9708)) / materialinfo.Quantity) * 100)
-        ): 
-        (
-            (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
-         ))
-        
         // (materialinfo.material.QtyType !== selectedQtyType ? 
-        //     (
-        //         ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
-        //         (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)) / materialinfo.Quantity) * 100)
-        //     ) : 
-        //     (
-        //         (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
-        //      ))
+        // (
+        //     ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
+        //     (selectedQtyType === 'liters' ? 1.03:  0.9708)) / materialinfo.Quantity) * 100)
+        // ): 
+        // (
+        //     (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
+        //  ))
+        
+        (materialinfo.material.QtyType !== selectedQtyType ? 
+            (
+                ((((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) *
+                (selectedQtyType === 'liters' ? 0.9708: selectedQtyType !== 'liters' ? 0.9708:1)) / materialinfo.Quantity) * 100)
+            ) : 
+            (
+                (((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) / materialinfo.Quantity )* 100)
+             ))
             
         // (materialinfo.material.QtyType !== "liters" ? ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity) * 0.9708) / materialinfo.Quantity * 100 : ((materialinfo.material.TotalQuantity - materialinfo.material.ConsumedQuantity)) / materialinfo.Quantity * 100)
        //(materialinfo.material.QtyType ==="liters" ? (materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity/0.9708) / materialinfo.Quantity * 100):(materialinfo.material.TotalQuantity-materialinfo.material.ConsumedQuantity) / materialinfo.Quantity * 100))
@@ -168,32 +168,40 @@ const ProductionHome = () => {
                                             <h1 className="text-center text-primary pt-4"></h1>
                                             <div className="col-md-12">
                                                  
-                                                <div className="col-md-12 d-flex justify-content-center ">
-                                                    <select  name='FormulaID' value={formulaData.FormulaID} onChange={handleChange}  class="custom-select form-control text-center py-2 selectbox selectbox px-4" id="" >
-                                                        <option>-- select Formula --  </option>
-                                                        {options.map((option) => (
-                                                            <option key={option.FormulaID} value={option.FormulaID}>{option.FormulaName}</option>
-                                                        ))}
-                                                    </select>
-                                                </div>
-                                               
-                                                <div className="productionqty  d-flex justify-content-center">
- 
+                                                <div className="d-flex justify-content-center ">
                                                     <div className="col-4  mb-2 mt-2 d-flex justify-content-center ">
-                                                        <input type="number" name="ProductionQuantity" onChange={handleChange} className="form-control text-center" id="reqqty" placeholder="Please enter Required Quantity" min="0" required />
-                                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <select  name='FormulaID' value={formulaData.FormulaID} onChange={handleChange} id="reqqty"  class="custom-select form-control text-center selectbox selectbox px-4" >
+                                                            <option>-- select Formula --  </option>
+                                                            {options.map((option) => (
+                                                                <option key={option.FormulaID} value={option.FormulaID}>{option.FormulaName}</option>
+                                                            ))}
+                                                        </select>
+                                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <div class="col-2  mb-2 mt-2  d-flex justify-content-center">
                                                         <select class="form-select" value={selectedQtyType} onChange={handleQtyTypeChange} className="form-control text-center" id="qtytype" aria-label="Example select with button addon">
                                                             <option value="">-- Quantity Type --</option>
                                                             <option value="kg">kg</option>
                                                             <option value="liters">liters</option>
                                                         </select>
-
                                                     </div>
                                                 </div>
                                                 <div className="row formInput1  d-flex justify-content-center">
-                                                {formulaData.FormulaID == "" ? <span></span> : <span className="maxqty text-center  pt-2">Maximum Possible Production Quantity is : {minPercentage <=0 ? 0:minPercentage.toFixed(2)} ({selectedQtyType ==="" ? "kg" :selectedQtyType})</span> }
+                                                {selectedQtyType ==="" ? "" : (formulaData.FormulaID == "" ? <span></span> : <span className="maxqty text-center  pt-2">Maximum Possible Production Quantity is : {selectedQtyType ==="" ? 0 :minPercentage <=0 ? 0:minPercentage.toFixed(2)}({selectedQtyType ==="" ? "kg" :selectedQtyType})</span> )}
                                                 </div>
+                                               
+                                                <div className="productionqty1  d-flex justify-content-center">
+                                                    <div className="mb-2 mt-2 d-flex justify-content-center ">
+                                                        <input type="number" name="ProductionQuantity" onChange={handleChange} className="form-control text-center" id="reqqty1000" placeholder="Please enter Required Quantity" min="0" required />
+                                                    </div>
+                                                    {/* <div class="col-2  mb-2 mt-2  d-flex justify-content-center">
+                                                        <select class="form-select" value={selectedQtyType} onChange={handleQtyTypeChange} className="form-control text-center" id="qtytype" aria-label="Example select with button addon">
+                                                            <option value="">-- Quantity Type --</option>
+                                                            <option value="kg">kg</option>
+                                                            <option value="liters">liters</option>
+                                                        </select>
+                                                    </div> */}
+                                                </div>
+                                              
                                                 <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                     <input type="text" name="BatchNo"  onChange={handleChange} className="form-control text-center"  placeholder="Please enter Batch no" />
                                                 </div>
