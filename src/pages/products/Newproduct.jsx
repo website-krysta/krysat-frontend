@@ -54,7 +54,7 @@ const New = () => {
                       onChange={handleChange}
                     />
                     <label className="form-check-label1" for="flexRadioDefault1">
-                      Raw Material
+                    &nbsp;Raw Material
                     </label>
                   </div>
                   <div className="form-check pt-5  px-4">
@@ -65,7 +65,7 @@ const New = () => {
                       onChange={handleChange}
                     />
                     <label className="form-check-label1" for="flexRadioDefault2">
-                      White Labeling
+                    &nbsp;White Labeling
                     </label>
                   </div>
                   <div className="form-check pt-5  px-4">
@@ -76,7 +76,7 @@ const New = () => {
                       onChange={handleChange}
                     />
                     <label className="form-check-label1" for="flexRadioDefault2">
-                      Packing Material
+                    &nbsp;Packing Material
                     </label>
                   </div>
                 </div>
