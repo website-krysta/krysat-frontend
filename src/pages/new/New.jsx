@@ -71,7 +71,7 @@ useEffect (()=>{
             <div class="row">
                 <div className="formInput col-6">
                 <label for="role">User Name</label>
-                <input type="text" name="EmailID" value={userData.EmailID} onChange={handleChange} placeholder="user name"/>
+                <input type="text" name="EmailID" value={userData.EmailID} onChange={handleChange} placeholder="username@gmail.com"/>
                 </div>
                 <div className="formInput col-6">
                 <label for="role">User Role</label>

@@ -122,10 +122,12 @@ const ProductionHome = () => {
         event.preventDefault();
        
         try{
-        debugger;
+        if (newProduct.BatchNo == "") {
+             alert('Please enter BatchNo');
+        } else {
         let res = await axios.post('api/production/add/',newProduct );
         navigate('/production/packingproduct',{state:{data:newProduct}})
-  
+        }
         }
         catch(error){
             alert('Oops! Unable to Create production . Please check the provided details and try again later.')
