@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/krystafrontend/static/css/main.46d56b25.css",
-    "main.js": "/krystafrontend/static/js/main.6d17dd9c.js",
+    "main.js": "/krystafrontend/static/js/main.531cc9bf.js",
     "static/media/1.jpg": "/krystafrontend/static/media/1.d2bc746f4f8b777df46c.jpg",
     "index.html": "/krystafrontend/index.html",
     "main.46d56b25.css.map": "/krystafrontend/static/css/main.46d56b25.css.map",
-    "main.6d17dd9c.js.map": "/krystafrontend/static/js/main.6d17dd9c.js.map"
+    "main.531cc9bf.js.map": "/krystafrontend/static/js/main.531cc9bf.js.map"
   },
   "entrypoints": [
     "static/css/main.46d56b25.css",
-    "static/js/main.6d17dd9c.js"
+    "static/js/main.531cc9bf.js"
   ]
 }
