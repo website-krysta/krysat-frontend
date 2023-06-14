@@ -57,11 +57,11 @@ useEffect (()=>{
         <Navbar />
         <div className="top d-flex justify-content-between align-items-center ">
           <h1>Add new user </h1>
-          <Link to="/users" className="link">
+          {/* <Link to="/users" className="link">
               <button className="btn btn-warning">
               Back
               </button>
-          </Link>
+          </Link> */}
         </div>
       
         <div className="bottom">
