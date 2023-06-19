@@ -76,7 +76,7 @@ useEffect (()=>{
       </a>
       <Dialog open={open} onClose={handleClose}>
         <div className='d-flex justify-content-between'>
-        <DialogTitle>Add Vendor</DialogTitle>
+        <DialogTitle>Vendor/Distributor</DialogTitle>
         <DialogActions>
           <Button onClick={handleClose}> <CloseIcon className="icon" /></Button>
         </DialogActions>
@@ -85,7 +85,7 @@ useEffect (()=>{
         <DialogContent>
         <form id="login-form" >
         <div className="mb-3 mt-3">
-            <input type="text" name="VendorCode" value={vendorData.VendorCode} onChange={handleChange}  className="form-control pt-3" id="code"  placeholder="Vendor code" required />
+            <input type="text" name="VendorCode" value={vendorData.VendorCode} onChange={handleChange}  className="form-control pt-3" id="code"  placeholder="code" required />
           </div>
           <div className="mb-3 mt-3">
             <input type="text" name="VendorName" value={vendorData.VendorName} onChange={handleChange}  className="form-control pt-3" id="name"  placeholder="Name" required />
