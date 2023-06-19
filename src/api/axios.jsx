@@ -1,6 +1,6 @@
 import axios from "axios";
 const API = axios.create({
-    baseURL:"http://api.krystacrop.com/"
+    baseURL:"https://api.krystacrop.com/"
 })
 export default API;
 
