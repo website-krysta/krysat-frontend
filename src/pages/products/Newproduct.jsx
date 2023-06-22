@@ -7,12 +7,9 @@ import Productform from "./Productform"
 import Packingmaterial from "./Packingmaterial"
 // import AddIcon from "@mui/icons-material/Add";
 // import StoreIcon from "@mui/icons-material/Store";
-import Newrawmeterial from "../products/Newrawmeterial"
-import Newvendor from "../products/Newvendor"
 // import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Link, useNavigate,useLocation } from 'react-router-dom';
+import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 
 
 const New = () => {

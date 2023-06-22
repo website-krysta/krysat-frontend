@@ -1,22 +1,13 @@
 import "./sidebar.scss";
 import logo from './images/logo.png'
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreIcon from "@mui/icons-material/Store";
 import Groups3Icon from '@mui/icons-material/Groups3';
 import ScienceIcon from '@mui/icons-material/Science';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import SummarizeIcon from '@mui/icons-material/Summarize';
-import InsertChartIcon from "@mui/icons-material/InsertChart";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link , useNavigate  } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";

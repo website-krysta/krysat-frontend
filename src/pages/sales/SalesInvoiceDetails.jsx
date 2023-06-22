@@ -2,9 +2,8 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
-import { format } from 'date-fns';
 import axios from "../../api/axios";
-import { Link,useParams,useNavigate } from 'react-router-dom';
+import {useParams,useNavigate } from 'react-router-dom';
 
 
 const SalesInvoiceDetails = () => {

@@ -4,12 +4,11 @@ import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import { format } from 'date-fns';
 import axios from "../../api/axios";
-import { Link,useParams,useNavigate } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
 
 
 const ProductionStockdetails = () => {
 
-  const navigate = useNavigate();
   const { formulaid } = useParams();
   // let [selectedData ,setselectedData] = useState([]);
   const [mstockData , setmstockData] = useState([]);

@@ -1,9 +1,7 @@
 // import "./product.scss";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import AddIcon from '@mui/icons-material/Add';
-// import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import ReactPaginate from 'react-paginate';
 

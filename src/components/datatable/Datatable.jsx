@@ -1,9 +1,7 @@
 import "./datatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
 import CreateIcon from '@mui/icons-material/Create';
 import PreviewIcon from '@mui/icons-material/Preview';
 import RestoreFromTrashIcon from '@mui/icons-material/RestoreFromTrash';
-import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";

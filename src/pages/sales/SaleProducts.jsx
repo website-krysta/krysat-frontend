@@ -4,7 +4,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { Link, useNavigate ,useLocation } from 'react-router-dom';
+import { useNavigate ,useLocation } from 'react-router-dom';
 
 
 const SaleProducts = () => {

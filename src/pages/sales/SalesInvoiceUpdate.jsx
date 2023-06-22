@@ -1,12 +1,11 @@
-// import "../products/productlist.scss";
+
 import '../products/addproduct.css' 
 import "../labour/labour.css"
-import Newvendor from "../products/Newvendor"
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { Link,useParams, useNavigate } from 'react-router-dom';
+import {useParams, useNavigate } from 'react-router-dom';
 
 
 const SalesInvoiceUpdate = () => {

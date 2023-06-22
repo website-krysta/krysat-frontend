@@ -9,9 +9,8 @@ import Productionstock from './Productionstock';
 // import Newrawmeterial from "../products/Newrawmeterial"
 // import Newvendor from "../products/Newvendor"
 // import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom';
+import {useState } from "react";
+
 
 
 const Stockhome = () => {
