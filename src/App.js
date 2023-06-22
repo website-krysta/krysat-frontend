@@ -32,7 +32,7 @@ import SalesInvoiceDetails from "./pages/sales/SalesInvoiceDetails";
 import SalesDamage from "./pages/sales/SalesDamage";
 import Productiondamage from "./pages/production/Productiondamage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+// import { productInputs, userInputs } from "./formSource";
 import AuthRouter from "./AuthRouter";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -59,10 +59,10 @@ function App() {
               <Route path="users">
                 <Route index element={<List />} />
                 <Route path="viewuser/:userId" element={<Single />} />
-                <Route path="edituser/:userId" element={<Edituser inputs={userInputs} />} />
+                <Route path="edituser/:userId" element={<Edituser  />} />
                 <Route
                   path="new"
-                  element={<New inputs={userInputs} title="Add New User" />}
+                  element={<New  title="Add New User" />}
                 />
               </Route>
             </Route>
@@ -71,7 +71,7 @@ function App() {
               <Route path="editinvoice/:InvoiceID" element={<EditInvoice />} />
               <Route
                 path="new"
-                element={<Newproduct inputs={productInputs} title="Add Product" />}
+                element={<Newproduct  title="Add Product" />}
               />
               <Route
                 path="newrawmeterial"
@@ -86,7 +86,7 @@ function App() {
             <Route path="labour">
               <Route index element={<Labour />} />
               <Route  path="new"
-                  element={<Addlabour inputs={productInputs} title="Add labour" />} />
+                  element={<Addlabour  title="Add labour" />} />
             </Route>
             <Route path="formula">
               <Route index element={<Formulamain />} />
