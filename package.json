@@ -3,7 +3,6 @@
   "name": "krystafrontend",
   
   "homepage": ".",
-
   
   "version": "0.1.0",
   
@@ -77,8 +76,10 @@
   
     
   "start": "react-scripts start",
+  
+    
   "build": "react-scripts build",
-
+  
     
   "test": "react-scripts test",
   
@@ -152,6 +153,9 @@
   },
   
   "devDependencies": {
+  
+    
+  "eslint-plugin-disable": "^2.0.3",
   
     
   "gh-pages": "^5.0.0"
