@@ -1,10 +1,11 @@
 
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import CreateIcon from '@mui/icons-material/Create';
 import { useEffect, useState } from "react";
 import { format } from 'date-fns';
 import axios from "../../api/axios";
-import { Link,useParams,useNavigate } from 'react-router-dom';
+import {useParams,useNavigate } from 'react-router-dom';
 
 
 const Updatewhitelabeling = () => {
@@ -84,10 +85,16 @@ const Updatewhitelabeling = () => {
                 <td>{post.invoice.InvoiceNumber}</td>
                 {format(new Date(post.AddedTimestamp), 'dd-MM-yyyy')}
                 <td>
-                  <button
+                <div className="actions-btns useraction-btns">
+                      <div onClick={() => navigate(`/stock/updateWhitelabel/${post.Id}`)}
+                    className='view'><CreateIcon/>
+
+                      </div>
+                  </div>
+                  {/* <button
                     onClick={() => navigate(`/stock/updateWhitelabel/${post.Id}`)}
                     className='btn btn-warning'>Edit
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             </tbody>);

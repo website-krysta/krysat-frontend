@@ -1,5 +1,6 @@
 
 import Sidebar from "../../components/sidebar/Sidebar";
+import CreateIcon from '@mui/icons-material/Create';
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
@@ -75,10 +76,15 @@ const SalesInvoiceDetails = () => {
                 <td>{post.sales_damage.length > 0 ? post.sales_damage[0].LossPrice : 0}</td>
               
                 <td>
-                  <button
+                <div className="actions-btns ">
+                  <div onClick={() => navigate(`/Sales/saleDamage/${post.ID}`,{ state: { datainvoice: post } })}
+                    className='view'><CreateIcon/>
+                  </div>
+                </div>
+                  {/* <button
                     onClick={() => navigate(`/Sales/saleDamage/${post.ID}`,{ state: { datainvoice: post } })}
                     className='btn btn-warning'>Edit
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             </tbody>);

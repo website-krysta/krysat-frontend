@@ -1,6 +1,7 @@
 // import "./product.scss";
 import {useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import CreateIcon from '@mui/icons-material/Create';
 import axios from "../../api/axios";
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import ReactPaginate from 'react-paginate';
@@ -39,10 +40,17 @@ const filteredPackinging = mstockData.filter(
       <td>{post.QtyType}</td>
       <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
       
-      <td><button
+      <td>
+        <div className="actions-btns useraction-btns">
+          <div onClick={() => navigate(`/stock/packinglist/${post.PackingMaterialID}`)}
+            className='view'><CreateIcon />
+          </div>
+        </div>
+        
+        {/* <button
           onClick={() => navigate(`/stock/packinglist/${post.PackingMaterialID}`)}
           className='btn btn-warning'>Details
-        </button>
+        </button> */}
       </td>
     </tr>
   ));

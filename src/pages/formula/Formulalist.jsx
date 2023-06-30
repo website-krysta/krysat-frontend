@@ -16,7 +16,7 @@ const Formulalist = () => {
   const pagesVisited = pageNumber * invoislistPerPage;
 
   let [formulMaterialData , setformulMaterialData] = useState([]);
-  let [formulaData , setformulaData] = useState([]);
+  // let [formulaData , setformulaData] = useState([]);
   const getformulaData = async ()=>{
     try{
      debugger
@@ -96,13 +96,14 @@ const handlePageChange = ({ selected }) => {
 
   return (
     <div className="datatable">
+        <div className="datatableTitle">
+      Formula List
+        </div>
+      
+      <div className="d-flex justify-content-between aligen-items-center">
       <div className="datatableTitle">
         <Link to="/formula/new" className="link px-3"><AddIcon/>New Formula </Link>
       </div>
-      <div className="d-flex justify-content-between aligen-items-center">
-      <div className="datatableTitle">
-      Formula List
-        </div>
       <div className="datatableTitle"> 
         <div className="input-group  justify-content-end">
               <div className="form-outline">

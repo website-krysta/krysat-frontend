@@ -11,8 +11,6 @@ import { useNavigate } from 'react-router-dom';
 const Datatable = () => {
 
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
-
   let [mydata , setmydata] = useState([]);
   const getApidata = async ()=>{
      try{
@@ -73,9 +71,7 @@ let Role = 'user'
                 <th scope="col">EmailID</th>
                 <th scope="col">Password</th>
                 <th scope="col">Role</th>
-                <th scope="col"></th>
                 <th scope="col">Actions</th>
-                <th scope="col"></th>
               </tr>
             </thead>
             {mydata.map((post)=>{
@@ -86,22 +82,20 @@ let Role = 'user'
                 <td>{post.Password}</td>
                 <td>{post.Role}</td>
                 <td>
-                  <button
+                  <div className="actions-btns useraction-btns">
+                    <div
                     onClick={() => navigate(`/users/viewuser/${post.UserID}`)}
-                    className='btn btn-primary'><PreviewIcon />
-                  </button>
-                </td>
-                <td>
-                  <button
+                    className='view'><PreviewIcon />
+                    </div>
+                    <div
                     onClick={() => navigate(`/users/edituser/${post.UserID}`)}
-                    className='btn btn-warning'><CreateIcon/>
-                  </button>
-                </td>
-                <td>
-                  <button
-                   onClick={() => handleuserDelete(post.UserID)}
-                    className='btn btn-danger'><RestoreFromTrashIcon />
-                  </button>
+                    className='edit'><CreateIcon/>
+                    </div>
+                    <div
+                     onClick={() => handleuserDelete(post.UserID)}
+                     className='delete'><RestoreFromTrashIcon />
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>);
@@ -109,8 +103,6 @@ let Role = 'user'
         </table>
         </div>
       </div>
-    
-
     </div>
   );
 };

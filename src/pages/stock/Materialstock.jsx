@@ -1,5 +1,6 @@
 // import "./product.scss";
 import { useNavigate  } from "react-router-dom";
+import CreateIcon from '@mui/icons-material/Create';
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
@@ -45,10 +46,15 @@ const filteredMaterials = mstockData.filter(
     <td>{post.QtyType}</td>
     <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
     <td>
-      <button
+    <div className="actions-btns text-center">
+          <div  onClick={() => navigate(`/stock/materiallist/${post.MaterialID}`)}
+        className='view action-view'><CreateIcon />
+          </div>
+        </div>
+      {/* <button
         onClick={() => navigate(`/stock/materiallist/${post.MaterialID}`)}
         className='btn btn-warning'>Details
-      </button>
+      </button> */}
     </td>
   </tr>
   ));

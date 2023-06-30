@@ -1,6 +1,7 @@
 
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import CreateIcon from '@mui/icons-material/Create';
 import axios from "../../api/axios";
 import AddIcon from '@mui/icons-material/Add';
 import { format } from 'date-fns';
@@ -43,10 +44,16 @@ const filteredMaterials = mstockData.filter(
                 <td>{post.production_damage[0]?.DamagedQuantity || 0}</td>
                 <td>{format(new Date(post.AddedTimeStamp), 'dd-MM-yyyy')}</td>
                 <td>
-                  <button
+                    <div className="actions-btns useraction-btns">
+                      <div
+                       onClick={() => navigate(`/production/prouctionDamage/${post.ProductionID}`, { state: { datainvoice: post } })}
+                       className='view'><CreateIcon />
+                      </div>
+                    </div>
+                  {/* <button
                     onClick={() => navigate(`/production/prouctionDamage/${post.ProductionID}`, { state: { datainvoice: post } })}
                     className='btn btn-warning'>Edit
-                  </button>
+                  </button> */}
                 </td>
                
     </tr>
@@ -69,13 +76,14 @@ const filteredMaterials = mstockData.filter(
 
   return (
     <div className="datatable">
-        <div className="datatableTitle">
-        <Link to="/production/addproduction" className="link px-3"><AddIcon/>Add Production</Link>
-      </div>
-      <div className="d-flex justify-content-between aligen-items-center">
-        <div className="datatableTitle">
+       <div className="datatableTitle">
           Production Details
         </div>
+       
+      <div className="d-flex justify-content-between aligen-items-center">
+         <div className="datatableTitle">
+        <Link to="/production/addproduction" className="link px-3"><AddIcon/>Add Production</Link>
+      </div>
         <div className="datatableTitle"> 
         <div className="input-group  justify-content-end">
               <div className="form-outline">

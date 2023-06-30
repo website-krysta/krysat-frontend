@@ -2,9 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import AddIcon from '@mui/icons-material/Add';
-import { format } from 'date-fns';
-// import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import CreateIcon from '@mui/icons-material/Create';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import ReactPaginate from 'react-paginate';
 
@@ -41,10 +39,16 @@ const filteredMaterials = mstockData.filter(
                 <td>{post.FormulaName}</td>
                 <td>{(post.TotalProductionQty - post.TotalSaledQty) <= 0 ? 0:post.TotalProductionQty - post.TotalSaledQty}</td>
                 <td>
-                  <button
+                <div className="actions-btns useraction-btns">
+                  <div onClick={() => navigate(`/stock/production/${post.FormulaID}`)}
+                    className='view'><CreateIcon/>
+
+                </div>
+                </div>
+                  {/* <button
                     onClick={() => navigate(`/stock/production/${post.FormulaID}`)}
                     className='btn btn-warning'>Details
-                  </button>
+                  </button> */}
                 </td>
                
     </tr>

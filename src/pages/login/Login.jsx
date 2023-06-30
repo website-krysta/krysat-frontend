@@ -6,9 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 import axios from "../../api/axios";
-// import { getuserlist } from "../../components/apiist/Api";
-
-
+       
 const Login = () => {
   
   const navigate = useNavigate();

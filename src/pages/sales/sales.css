@@ -51,6 +51,50 @@
    border: 1px solid #eef0f2;
 }
 .table thead{
-    background-color: rgb(32, 32, 32);
+    background-color: #3ba83d;
     color:white;
+}
+.table td {
+  color: gray;
+}
+.btn-primary{
+    background-color: #1a0c6b !important;
+    outline: none !important;
+    height: 41.5px;
+    
+}
+.btn-primary:focus{
+    outline: none !important;
+}
+.form-outline #search-input{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.form-outline #search-input:focus{
+    outline: none !important;
+}
+.useraction-btns{
+    margin-left: -80px;
+}
+
+.actions-btns{
+    display: flex;
+    justify-content: space-around;
+}
+.actions-btns .view{
+    color: #1a0c6b;
+}
+.actions-btns .edit{
+    color: #f5a208;
+}
+.actions-btns .delete{
+    color: #f32119;
+}
+
+.actions-btns .action-view{
+margin-left: -100px;
+}
+.formula-tails{
+    display: flex !important;
+    
 }

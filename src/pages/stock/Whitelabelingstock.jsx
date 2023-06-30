@@ -2,8 +2,7 @@
 import { Link ,useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import AddIcon from '@mui/icons-material/Add';
-// import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import CreateIcon from '@mui/icons-material/Create';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import ReactPaginate from 'react-paginate';
 
@@ -43,10 +42,15 @@ const filteredwhitelabeling = mstockData.filter(
                 <td>{post.QtyType}</td>
                 <td>{post.TotalQuantity-post.ConsumedQuantity}</td>
                 <td>
-                  <button
+                <div className="actions-btns useraction-btns">
+                      <div onClick={() => navigate(`/stock/whitelabeling/${post.ProductID}`)}
+                    className='view'><CreateIcon/>
+                    </div>
+                    </div>
+                  {/* <button
                     onClick={() => navigate(`/stock/whitelabeling/${post.ProductID}`)}
                     className='btn btn-warning'>Details
-                  </button>
+                  </button> */}
                 </td>
     </tr>
   ));

@@ -1,6 +1,7 @@
 
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import CreateIcon from '@mui/icons-material/Create';
 import { useEffect, useState } from "react";
 import { format } from 'date-fns';
 import axios from "../../api/axios";
@@ -83,12 +84,15 @@ const MaterialstockList = () => {
                 <td>{post.Vendor.VendorName}</td>
                 <td>{post.Damaged.DamagedQty}</td>
                 <td>{post.invoice.InvoiceNumber}</td>
-                {format(new Date(post.AddedTimestamp), 'dd-MM-yyyy')}
+                <td>{format(new Date(post.AddedTimestamp), 'dd-MM-yyyy')}</td>
                 <td>
-                  <button
-                    onClick={() => navigate(`/stock/updatematerial/${post.Id}`)}
-                    className='btn btn-warning'>Edit
-                  </button>
+                  
+                 <div className="actions-btns">
+                           <div
+                              onClick={() => navigate(`/stock/updatematerial/${post.Id}`)}
+                              className='view'><CreateIcon />
+                           </div>
+                  </div>
                 </td>
               </tr>
             </tbody>);

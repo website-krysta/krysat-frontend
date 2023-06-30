@@ -1,6 +1,8 @@
 // import "./product.scss";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import CreateIcon from '@mui/icons-material/Create';
+import DetailsIcon from '@mui/icons-material/Details';
 import axios from "../../api/axios";
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
@@ -82,7 +84,17 @@ const SalesInvoiceList = () => {
     <td>{post.InvoiceDate}</td>
     <td>{post.RecievedDate}</td>
     <td>
-      <button
+    <div className="actions-btns">
+          <div
+              onClick={() => navigate(`/sales/updatsaleinvoice/${post.InvoiceID}`)}
+              className='edit'><CreateIcon/>
+          </div>
+          <div
+            onClick={() => navigate(`/sales/saleProducts/${post.InvoiceID}`)}
+            className='view'><DetailsIcon/> 
+          </div>
+    </div>
+      {/* <button
         onClick={() => navigate(`/sales/updatsaleinvoice/${post.InvoiceID}`)}
         className='btn btn-warning'>Edit 
       </button>
@@ -92,7 +104,7 @@ const SalesInvoiceList = () => {
       
         onClick={() => navigate(`/sales/saleProducts/${post.InvoiceID}`)}
         className='btn btn-warning'>Details 
-      </button>
+      </button> */}
     </td>
   </tr>
   )
@@ -116,13 +128,16 @@ const SalesInvoiceList = () => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        <Link to="/sales/saleinvoice" className="link px-3"><AddIcon/>Add Sales Invoice</Link>
-      </div>
-      <div className="d-flex justify-content-between aligen-items-center">
-        <div className="datatableTitle">
+     <div className="datatableTitle">
         Sales Invoic List
         </div>
+      <div className="d-flex justify-content-between aligen-items-center">
+        {/* <div className="datatableTitle">
+        Sales Invoic List
+        </div> */}
+        <div className="datatableTitle">
+        <Link to="/sales/saleinvoice" className="link px-3"><AddIcon/>Add Sales Invoice</Link>
+      </div>
         <div className="datatableTitle"> 
         <div className="input-group  justify-content-end">
               <div className="form-outline">
@@ -148,9 +163,8 @@ const SalesInvoiceList = () => {
                 <th scope="col">Invoice Value</th>
                 <th scope="col">Invoice Date</th>
                 <th scope="col">Recieved Date</th>
-                <th scope="col"></th>
                 <th scope="col">Actions</th>
-                <th scope="col"></th>
+                
               </tr>
             </thead>
             <tbody>

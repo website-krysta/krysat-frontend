@@ -170,9 +170,7 @@ const  handleFormula = async (event) =>{
                                                                 </div>
                                                             );
                                                         })}
-                                                  </div>
-                                              
-
+                                                  </div>                    
                                                   <div className="show-material">
                                                     <div className="row">
                                                     
@@ -180,14 +178,13 @@ const  handleFormula = async (event) =>{
 
                                                 {materialData.map((post)=>{         
                                                     return (
-                                                <div className="col-2 p-3 px-5 material-tail">
+                                                <div className="col-2 p-2 px-5 formula-tails">
                                                     <div className="material-item">
                                                         <div className="d-flex px-2 ">
                                                         <input type="checkbox" 
                                                         className="px-5" 
                                                         checked={checkedItems.includes(post.MaterialID)}
-                                                        onChange={() => handleItemCheck(post.MaterialID,post.MaterialName)} 
-                                                        // onChange={(event) => handleCheckboxChange(event, post.MaterialID)} 
+                                                        onChange={() => handleItemCheck(post.MaterialID,post.MaterialName)}    
                                                         id="{post.MaterialID}" 
                                                         name="{post.MaterialID}" 
                                                         value="{post.MaterialName}" />&nbsp;
@@ -199,7 +196,6 @@ const  handleFormula = async (event) =>{
                                                 })}
 
                                                 {aMaterial.map((post)=>{  
-                                                    let value = "dinesh"+12345       
                                                     return (
                                                         <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                             <div class="col-3 text-end">

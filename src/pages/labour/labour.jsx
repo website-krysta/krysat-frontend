@@ -2,6 +2,7 @@ import "../products/productlist.scss";
 import '../products/addproduct.css' 
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from "react";
 import { format } from 'date-fns';
 import axios from "../../api/axios";
@@ -90,28 +91,26 @@ const Labour = () => {
         <div className="bottom" >
           <div className="right" >
             <div className="row">
-            <div className="datatable">
-      <div className="datatableTitle">
-        <Link to="/labour/new" className="link">Add Labour</Link>
-      </div>
-      <div className="d-flex justify-content-between aligen-items-center">
-        <div className="datatableTitle">
-      Labour Details
-        </div>
-        <div className="datatableTitle"> 
-        <div className="input-group  justify-content-end">
-              <div className="form-outline">
-                <input id="search-input" type="date" onChange={handleFilterChange} value={filterValue}  className="form-control py-2"  placeholder=" Filter by Invoice Number "/>
-              </div>
-              <button id="search-button" type="button" className="btn btn-primary py-2">
-              <ContentPasteSearchIcon />
-              </button>
-        </div>
-        </div>
-      </div>
-     
- 
-      <div>
+              <div className="datatable">
+                 <div className="datatableTitle">
+                    Labour Details
+                  </div>
+                <div className="d-flex justify-content-between aligen-items-center">
+                <div className="datatableTitle">
+                  <Link to="/labour/new" className="link"><AddIcon/>Add Labour</Link>
+                </div>
+                  <div className="datatableTitle">
+                    <div className="input-group  justify-content-end">
+                      <div className="form-outline">
+                        <input id="search-input" type="date" onChange={handleFilterChange} value={filterValue} className="form-control py-2" placeholder=" Filter by Invoice Number " />
+                      </div>
+                      <button id="search-button" type="button" className="btn btn-primary py-2">
+                        <ContentPasteSearchIcon />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div>
         <div className="main mt-4">
         <table class="table">
             <thead>

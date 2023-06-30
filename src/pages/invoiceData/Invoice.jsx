@@ -1,4 +1,5 @@
 import "./product.scss";
+import CreateIcon from '@mui/icons-material/Create';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
@@ -49,10 +50,11 @@ const Invoice = () => {
     <td>{post.InvoiceDate}</td>
     <td>{post.RecievedDate}</td>
     <td>
-      <button
-        onClick={() => navigate(`/invoice/editinvoice/${post.InvoiceID}`)}
-        className='btn btn-warning'>Edit
-      </button>
+        <div className="actions-btns">
+          <div onClick={() => navigate(`/invoice/editinvoice/${post.InvoiceID}`)}
+            className='view action-view'><CreateIcon />
+          </div>
+        </div>
     </td>
   </tr>
   ));
