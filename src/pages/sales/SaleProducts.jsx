@@ -16,7 +16,7 @@ const navgate = useNavigate()
  const [aMaterial, setaMaterial] = useState([]); 
   //  start main function
   const handleItemCheck = (itemId,avlqty,saleqty,itemName) => {
-    debugger;
+    // debugger;
     const listItems = [];
     for (let i = 0; i < aMaterial.length; i++) {
         const item_id = aMaterial[i].productId;
@@ -45,7 +45,7 @@ const navgate = useNavigate()
   const [qtyData, setqtyData] = useState({})
   
   const handleChange = (event) => {
-        debugger;
+        // debugger;
         setqtyData({
     ...qtyData,
     [event.target.name]: event.target.value
@@ -80,7 +80,7 @@ const navgate = useNavigate()
 const salseInvoiceData = salseinvoice.state && salseinvoice.state.data;
 const [aFormula, setaFormula] = useState([]); 
 const  handleProductSales = async (event) =>{
-    debugger; 
+    // debugger; 
     event.preventDefault();
     const formulaObject = {
         productIdata:aMaterial,
@@ -91,7 +91,7 @@ const  handleProductSales = async (event) =>{
       setaFormula(formulaObject);
     
   try{
-    debugger
+    // debugger
     let res = await axios.post('api/sales/add/',formulaObject );
     alert('Products Sales Sucessfully !')
     navgate('/sales/')
@@ -102,6 +102,14 @@ const  handleProductSales = async (event) =>{
   }
 }
 
+let [productionData , setproductionData] = useState([]);
+const handleproductChange = (event) => {
+    debugger;
+    setproductionData({
+      ...productionData,
+      [event.target.name]: event.target.value
+    });
+  };
 
 const handlePriceChange = (e, index) => {
     const { value } = e.target;
@@ -126,11 +134,26 @@ const handlePriceChange = (e, index) => {
       return updatedData;
     });
   };
-  
+
+
+const [poptions, setpOptions] = useState([]);
+const getproductdata = async ()=>{
+  try{
+    debugger
+   let res = await  axios.get('api/productionTable_ViewSet/');
+   setpOptions(res.data)
+  }
+  catch(error){
+   console.log(error)
+  }
+}
+
+
   useEffect (()=>{
     getmaterialData();
     handleProductSales();
     getwhitelabelingData();
+    getproductdata();
   },{})
 
   return (
@@ -210,6 +233,28 @@ const handlePriceChange = (e, index) => {
                                                                         value={formData[index]?.quantity || ''}
                                                                         onChange={(e) => handleQuantityChange(e, index)}  className="form-control text-center"  min="0" id="qty" placeholder="Enter Quantity"  />
                                                                     <span class="input-group-text" id="basic-addon2">{post.avaQty <=0? 0:post.avaQty}</span>
+                                                                </div>&nbsp;&nbsp;
+                                                                <div class="col-0 input-group input-size">
+                                                                <select class="form-select" name="productId" value={productionData.BatchNo} onChange={handleproductChange}   id="inputGroupSelect04" aria-label="Example select with button addon">
+                                                                    <option >-- Batch No --</option>
+
+                                                                    {poptions.map((boption) => {
+                                                                        if (boption.forumula.FormulaName === post.productname && parseFloat(boption.ProductionQuantity) != 0) {
+                                                                        return (
+                                                                            <option key={boption.BatchNo} value={boption.BatchNo}>
+                                                                            {boption.BatchNo}
+                                                                            </option>
+                                                                        );
+                                                                        } else {
+                                                                        return null;
+                                                                        }
+                                                                        
+                                                                    })}
+                                                                </select>
+                                                                <span class="input-group-text" id="basic-addon2">{poptions.map((boption) => {
+                                                                        if (boption.forumula.FormulaName === post.productname && boption.BatchNo === productionData.productId ) {
+                                                                            return (boption.ProductionQuantity)
+                                                                        }})}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
