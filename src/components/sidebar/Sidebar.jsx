@@ -22,8 +22,8 @@ const Sidebar = () => {
   };
   
   
-
-  
+  const loginData = JSON.parse(localStorage.getItem('userData'));
+  const userRole = loginData.Role
 
   return (
     <div className="sidebar">
@@ -35,20 +35,16 @@ const Sidebar = () => {
       <hr />
       <div className="center">
         <ul>
-          {/* <p className="title">MAIN</p> */}
-          {/* <Link to="/dashboard" style={{ textDecoration: "none" }}>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
-          </Link> */}
           <p className="title">Dashboard</p>
+
+    {userRole !== "user" && (
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Users</span>
             </li>
           </Link>
+    )}
           <Link to="/invoice" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />

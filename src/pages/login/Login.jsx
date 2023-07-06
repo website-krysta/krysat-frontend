@@ -30,7 +30,12 @@ const Login = () => {
       debugger;
       let res = await axios.post('api/user/',userData );
       localStorage.setItem('userData', JSON.stringify(res.data));
-      navigate('/users', { replace: true })
+      if (res.data.Role == 'admin'){
+        navigate('/users', { replace: true })
+     }else{
+      navigate('/invoice', { replace: true })
+     }
+         
     }
     catch(error){
         alert('Invalid credentials. Please check your username and password and try again')

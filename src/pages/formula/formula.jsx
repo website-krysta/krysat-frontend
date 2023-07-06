@@ -4,7 +4,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Formula = () => {
@@ -178,17 +178,17 @@ const  handleFormula = async (event) =>{
 
                                                 {materialData.map((post)=>{         
                                                     return (
-                                                <div className="col-2 p-2 px-5 formula-tails">
+                                                <div className="col-3 p-2 px-5  formula-tails">
                                                     <div className="material-item">
                                                         <div className="d-flex px-2 ">
-                                                        <input type="checkbox" 
-                                                        className="px-5" 
-                                                        checked={checkedItems.includes(post.MaterialID)}
-                                                        onChange={() => handleItemCheck(post.MaterialID,post.MaterialName)}    
-                                                        id="{post.MaterialID}" 
-                                                        name="{post.MaterialID}" 
-                                                        value="{post.MaterialName}" />&nbsp;
-                                                        <label for="vehicle1">{post.MaterialName}</label><br></br>
+                                                            <input type="checkbox" 
+                                                            className="px-5" 
+                                                            checked={checkedItems.includes(post.MaterialID)}
+                                                            onChange={() => handleItemCheck(post.MaterialID,post.MaterialName)}    
+                                                            id="{post.MaterialID}" 
+                                                            name="{post.MaterialID}" 
+                                                            value="{post.MaterialName}" />&nbsp;
+                                                            <label for="vehicle1">{post.MaterialName}</label><br></br>
                                                         </div>
                                                     </div>
                                                     

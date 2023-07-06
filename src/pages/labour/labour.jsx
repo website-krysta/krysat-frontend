@@ -64,6 +64,7 @@ const Labour = () => {
                 <td>{post.NightShiftCount}</td>
                 <td>{post.MorningShiftAmount}</td>
                 <td>{post.NightShiftAmount}</td>
+                <td>{post.Formulas}</td>
                 <td>{format(new Date(post.EnteryDate), 'dd-MM-yyyy')}</td>
               </tr>
   ));
@@ -120,6 +121,7 @@ const Labour = () => {
                 <th scope="col">NightShiftCount</th>
                 <th scope="col">MorningShiftAmount</th>
                 <th scope="col">NightShiftAmount</th>
+                <th scope="col">Making Products</th>
                 <th scope="col">Date</th>
               </tr>
             </thead>

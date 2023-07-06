@@ -47,7 +47,7 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-
+ 
   return (
     <div className={darkMode ? "app dark" : "app"}> 
       <BrowserRouter basename='/'>
@@ -55,6 +55,7 @@ function App() {
           <Route path="/">
             <Route index element={<Login />} />
             <Route path="dashboard" element={<Home />} />
+            
             <Route element={<AuthRouter />}>
               <Route path="users">
                 <Route index element={<List />} />
@@ -66,6 +67,7 @@ function App() {
                 />
               </Route>
             </Route>
+         
             <Route path="invoice">
               <Route index element={<InvoiceDatalist />} />
               <Route path="editinvoice/:InvoiceID" element={<EditInvoice />} />

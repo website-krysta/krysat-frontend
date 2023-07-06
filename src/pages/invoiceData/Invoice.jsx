@@ -9,7 +9,8 @@ import ReactPaginate from 'react-paginate';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 // import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 const Invoice = () => {
-
+  const loginData = JSON.parse(localStorage.getItem('userData'));
+  const userRole = loginData.Role
   //filter data and pagenation 
   const [filterValue, setFilterValue] = useState('');
   const [pageNumber, setPageNumber] = useState(0);
@@ -49,6 +50,7 @@ const Invoice = () => {
     <td>{post.InwardNumber}</td>
     <td>{post.InvoiceDate}</td>
     <td>{post.RecievedDate}</td>
+    {userRole !== "user" && (
     <td>
         <div className="actions-btns">
           <div onClick={() => navigate(`/invoice/editinvoice/${post.InvoiceID}`)}
@@ -56,6 +58,7 @@ const Invoice = () => {
           </div>
         </div>
     </td>
+    )}
   </tr>
   ));
 
@@ -76,7 +79,9 @@ const Invoice = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
+      {userRole !== "user" && (
         <Link to="/invoice/addinvoice" className="link px-3"><AddIcon/>Add Invoice</Link>
+      )}
       </div>
       <div className="d-flex justify-content-between aligen-items-center">
         <div className="datatableTitle">
@@ -103,7 +108,9 @@ const Invoice = () => {
                 <th scope="col">Inward Number</th>
                 <th scope="col">Invoice Date</th>
                 <th scope="col">Recieved Date</th>
+                {userRole !== "user" && (
                 <th scope="col">Actions</th>
+                )}
               </tr>
             </thead>
             <tbody>
