@@ -5,7 +5,8 @@ import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import { useNavigate ,useLocation } from 'react-router-dom';
-
+// import Multiselect from 'multiselect-react-dropdown';
+// import Select from 'react-select';
 
 const SaleProducts = () => {
 const salseinvoice = useLocation();
@@ -40,6 +41,33 @@ const navgate = useNavigate()
         setCheckedItems(prevCheckedItems => [...prevCheckedItems, itemId,itemName]);
     }
   };
+
+
+const [checkedBatchno, setcheckedBatchno] = useState([]);  
+  const [aBatch, setaBatch] = useState([]); 
+const handlebatchCheck = (BatchNo,productname) =>{
+   debugger;
+   const listItems = [];
+   for (let i = 0; i < aBatch.length; i++) {
+       const item_id = aBatch[i].batchno;
+       listItems.push(item_id)
+   }
+   const isChecked = listItems.includes(BatchNo);
+   if (isChecked) {
+    setaBatch(aBatch => aBatch.filter(item => item.batchno !== BatchNo))
+       setcheckedBatchno(prevCheckedItems => prevCheckedItems.filter(item => item !== BatchNo),productname)
+   
+   } else {
+       const batchObject = {
+           batchno:BatchNo,
+           productname:productname,
+         };
+         // Set the object as state
+         setaBatch([...aBatch, batchObject]);
+       //   setoMaterial(materialObject);
+       setcheckedBatchno(prevCheckedItems => [...prevCheckedItems, BatchNo,productname]);
+   }
+}
 
   const [formData, setFormData] = useState([]);
   const [qtyData, setqtyData] = useState({})
@@ -76,6 +104,37 @@ const navgate = useNavigate()
       console.log(error)
      }
   }
+
+  // const [selectedBatchNumbers, setSelectedBatchNumbers] = useState([]);
+  // const handleSelectChange = selectedOptions => {
+  //   const newSelectedBatchNumbers = selectedOptions.map(option => option.value);
+  //   setSelectedBatchNumbers(newSelectedBatchNumbers);
+  //   // Handle the selected batch numbers as desired
+  // };
+
+  // let label_data = []
+  // const handleSelectChange = selectedOptions => {
+  //   debugger;
+  //   if(selectedOptions.length > 1){
+  //     selectedOptions = selectedOptions.filter(option => {
+  //       return !label_data.some(existingOption => existingOption.value === option.value);
+  //     });
+  //   }
+  //   selectedOptions.forEach(option => {
+  //     const existingOptionIndex = label_data.findIndex(existingOption => existingOption.value === option.value);
+  //     if (existingOptionIndex === -1) {
+  //       // Option is newly selected
+  //       label_data.push({
+  //         value: option.value,
+  //         product: option.product
+  //       });
+  //     } else {
+  //       // Option is deselected, remove it from the list
+  //       label_data.splice(existingOptionIndex, 1);
+  //     }
+  //   }); 
+  // };
+
 //   handleProductSales
 const salseInvoiceData = salseinvoice.state && salseinvoice.state.data;
 const [aFormula, setaFormula] = useState([]); 
@@ -85,7 +144,8 @@ const  handleProductSales = async (event) =>{
     const formulaObject = {
         productIdata:aMaterial,
         productioninfo:formData,
-        salsedata:salseInvoiceData
+        salsedata:salseInvoiceData,
+        batch_info:aBatch,
       };
       // Set the object as state
       setaFormula(formulaObject);
@@ -135,6 +195,15 @@ const handlePriceChange = (e, index) => {
     });
   };
 
+  const [prname, setprName] = useState({})
+  const handleProductChange = (event) => {
+        // debugger;
+        setprName({
+    ...prname,
+    [event.target.name]: event.target.value
+    });
+};
+
 
 const [poptions, setpOptions] = useState([]);
 const getproductdata = async ()=>{
@@ -147,6 +216,8 @@ const getproductdata = async ()=>{
    console.log(error)
   }
 }
+
+
 
 
   useEffect (()=>{
@@ -220,7 +291,7 @@ const getproductdata = async ()=>{
                                                         <div className="row salesinputs" key={index}>
                                                             <div className="formInput1 mb-3 mt-2 d-flex justify-content-center">
                                                                 <div class="col-2 text-end">
-                                                                    <label>{post.productname} :&nbsp;</label>
+                                                                    <label value={post.productname} onchange={handleProductChange}>{post.productname} :&nbsp;</label>
                                                                 </div>
                                                                 <div class="col-0 input-group input-size">
                                                                     <input type="number" name={post.productId} 
@@ -234,27 +305,43 @@ const getproductdata = async ()=>{
                                                                         onChange={(e) => handleQuantityChange(e, index)}  className="form-control text-center"  min="0" id="qty" placeholder="Enter Quantity"  />
                                                                     <span class="input-group-text" id="basic-addon2">{post.avaQty <=0? 0:post.avaQty}</span>
                                                                 </div>&nbsp;&nbsp;
-                                                                <div class="col-0 input-group input-size">
-                                                                <select class="form-select" name="productId" value={productionData.BatchNo} onChange={handleproductChange}   id="inputGroupSelect04" aria-label="Example select with button addon">
-                                                                    <option >-- Batch No --</option>
+                                                                <div class="input-group input-size batchnum-sec">
+                                                                {poptions
+                                                                    .filter(
+                                                                      (boption) =>
+                                                                        boption.forumula.FormulaName === post.productname &&
+                                                                        parseFloat(boption.ProductionQuantity) !== 0
+                                                                    )
+                                                                    .map((option) => (
+                                                                      <div key={option.BatchNo} className="col-3 pt-1 px-5 material-tail">
+                                                                        <div className="material-item">
+                                                                          <div className="d-flex px-2">
+                                                                            <input
+                                                                              type="checkbox"
+                                                                              className="px-5"
+                                                                              // checked={checkedBatchno.includes(option.BatchNo)}
+                                                                              onChange={() => handlebatchCheck(option.BatchNo, post.forumula.FormulaID)}
+                                                                              id={option.BatchNo}
+                                                                              name={option.BatchNo}
+                                                                              value={option.BatchNo}
+                                                                            />
+                                                                            <label >{option.BatchNo}</label>
+                                                                            <br />
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                                    ))}
+                                                                                                                                  {/* <Select
+                                                                  options={poptions.filter(boption => boption.forumula.FormulaName === post.productname && parseFloat(boption.ProductionQuantity) !== 0)
+                                                                  .map(boption => ({ value: boption.BatchNo, label: boption.BatchNo,product:post.productname,productid:post.productId}))
+                                                                  }
+                                                                  isMulti                                                            
+                                                                  // value={label_data.map(batchNo => ({ value: batchNo, label: batchNo }))}
+                                                                  onChange={handleSelectChange}
+                                                                /> */}
 
-                                                                    {poptions.map((boption) => {
-                                                                        if (boption.forumula.FormulaName === post.productname && parseFloat(boption.ProductionQuantity) != 0) {
-                                                                        return (
-                                                                            <option key={boption.BatchNo} value={boption.BatchNo}>
-                                                                            {boption.BatchNo}
-                                                                            </option>
-                                                                        );
-                                                                        } else {
-                                                                        return null;
-                                                                        }
-                                                                        
-                                                                    })}
-                                                                </select>
-                                                                <span class="input-group-text" id="basic-addon2">{poptions.map((boption) => {
-                                                                        if (boption.forumula.FormulaName === post.productname && boption.BatchNo === productionData.productId ) {
-                                                                            return (boption.ProductionQuantity)
-                                                                        }})}</span>
+
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>

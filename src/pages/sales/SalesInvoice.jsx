@@ -115,7 +115,7 @@ useEffect(() => {
                         <div className="col-md-12">
                           <div className="formInput1 mb-3 mt-2">
                             <label> Invoice Number</label>
-                            <input type="text" name="InvoiceNumber" onChange={handleChange} maxLength={10}  className="form-control pt-3" id="InvoiceNumber" placeholder="Invoice Number" required />
+                            <input type="text" name="InvoiceNumber" onChange={handleChange}  className="form-control pt-3" id="InvoiceNumber" placeholder="Invoice Number" required />
                           </div>
                           <div className="col-12 mb-3">
                           <label>Batch Number</label>
