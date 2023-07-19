@@ -45,7 +45,7 @@ const navgate = useNavigate()
 
 const [checkedBatchno, setcheckedBatchno] = useState([]);  
   const [aBatch, setaBatch] = useState([]); 
-const handlebatchCheck = (BatchNo,productname) =>{
+const handlebatchCheck = (BatchNo,productname,productionqty,batchqty) =>{
    debugger;
    const listItems = [];
    for (let i = 0; i < aBatch.length; i++) {
@@ -55,17 +55,19 @@ const handlebatchCheck = (BatchNo,productname) =>{
    const isChecked = listItems.includes(BatchNo);
    if (isChecked) {
     setaBatch(aBatch => aBatch.filter(item => item.batchno !== BatchNo))
-       setcheckedBatchno(prevCheckedItems => prevCheckedItems.filter(item => item !== BatchNo),productname)
+       setcheckedBatchno(prevCheckedItems => prevCheckedItems.filter(item => item !== BatchNo),productname,productionqty,batchqty)
    
    } else {
        const batchObject = {
            batchno:BatchNo,
            productname:productname,
+           productionQty:productionqty,
+           batchQty:batchqty
          };
          // Set the object as state
          setaBatch([...aBatch, batchObject]);
        //   setoMaterial(materialObject);
-       setcheckedBatchno(prevCheckedItems => [...prevCheckedItems, BatchNo,productname]);
+       setcheckedBatchno(prevCheckedItems => [...prevCheckedItems, BatchNo,productname,productionqty,batchqty]);
    }
 }
 
@@ -310,7 +312,7 @@ const getproductdata = async ()=>{
                                                                     .filter(
                                                                       (boption) =>
                                                                         boption.forumula.FormulaName === post.productname &&
-                                                                        parseFloat(boption.ProductionQuantity) !== 0
+                                                                        parseFloat(boption.ProductionQuantity-boption.BatchQty) !== 0
                                                                     )
                                                                     .map((option) => (
                                                                       <div key={option.BatchNo} className="col-3 pt-1 px-5 material-tail">
@@ -320,12 +322,12 @@ const getproductdata = async ()=>{
                                                                               type="checkbox"
                                                                               className="px-5"
                                                                               // checked={checkedBatchno.includes(option.BatchNo)}
-                                                                              onChange={() => handlebatchCheck(option.BatchNo, post.forumula.FormulaID)}
+                                                                              onChange={() => handlebatchCheck(option.BatchNo, option.forumula.FormulaID,option.ProductionQuantity, option.BatchQty)}
                                                                               id={option.BatchNo}
                                                                               name={option.BatchNo}
                                                                               value={option.BatchNo}
                                                                             />
-                                                                            <label >{option.BatchNo}</label>
+                                                                            <label>&nbsp;{option.BatchNo}|<span className="avl_qty">{option.ProductionQuantity-option.BatchQty}</span></label>
                                                                             <br />
                                                                           </div>
                                                                         </div>

@@ -1,6 +1,7 @@
 
 import Sidebar from "../../components/sidebar/Sidebar";
 import CreateIcon from '@mui/icons-material/Create';
+import DetailsIcon from '@mui/icons-material/Details';
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
@@ -61,6 +62,7 @@ const SalesInvoiceDetails = () => {
                 <th scope="col">Damaged Quantity</th>
                 <th scope="col">Damage Reason</th>
                 <th scope="col">LossPrice</th>
+                <th scope="col"></th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -74,17 +76,19 @@ const SalesInvoiceDetails = () => {
                 <td>{post.sales_damage.length > 0 ? post.sales_damage[0].DamagedQuantity : 0}</td>
                 <td>{post.sales_damage.length > 0 ? post.sales_damage[0].DamageReason : 'no damage'}</td>
                 <td>{post.sales_damage.length > 0 ? post.sales_damage[0].LossPrice : 0}</td>
-              
                 <td>
                 <div className="actions-btns ">
                   <div onClick={() => navigate(`/Sales/saleDamage/${post.ID}`,{ state: { datainvoice: post } })}
                     className='view'><CreateIcon/>
                   </div>
                 </div>
-                  {/* <button
-                    onClick={() => navigate(`/Sales/saleDamage/${post.ID}`,{ state: { datainvoice: post } })}
-                    className='btn btn-warning'>Edit
-                  </button> */}
+                </td>
+                <td>
+                <div className="actions-btns">
+                  <div onClick={() => navigate(`/Sales/saleBatch/${post.ID}`,{ state: { datainvoice: post } })}
+                    className='view'><DetailsIcon/>
+                  </div>
+                </div>
                 </td>
               </tr>
             </tbody>);

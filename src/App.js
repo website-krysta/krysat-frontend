@@ -30,6 +30,7 @@ import SalesInvoiceUpdate from "./pages/sales/SalesInvoiceUpdate";
 import ProductionMain from "./pages/production/ProductionMain";
 import SalesInvoiceDetails from "./pages/sales/SalesInvoiceDetails";
 import SalesDamage from "./pages/sales/SalesDamage";
+import SalesBatch from "./pages/sales/SalesBatch";
 import Productiondamage from "./pages/production/Productiondamage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import { productInputs, userInputs } from "./formSource";
@@ -122,6 +123,7 @@ function App() {
               <Route  path="updatsaleinvoice/:invoiceid" element={<SalesInvoiceUpdate />} />
               <Route  path="saleProducts/:invoiceid" element={<SalesInvoiceDetails />} />
               <Route  path="saleDamage/:salesid" element={<SalesDamage />} />
+              <Route  path="saleBatch/:salesid" element={<SalesBatch/>} />
             </Route>
           </Route>
         </Routes>

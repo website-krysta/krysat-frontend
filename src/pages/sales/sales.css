@@ -113,8 +113,16 @@ margin-left: -100px;
 .css-12a83d4-MultiValueRemove{
     display: none !important;
 }
-.ch_lable{
-    background-color: rgb(199, 202, 204);
-    margin-right: 40px;
+.avl_qty{
+    background-color: #f6a91c;
+    padding: 2px;
     border-radius: 4px;
+    color: #080808;
 }
+
+/* .batchnum-sec{
+    border: 1px solid #eef0f2;
+    width: auto !important;
+    height: 35px;
+    border-radius: 4px;
+} */
