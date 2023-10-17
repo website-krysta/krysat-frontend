@@ -93,9 +93,10 @@ export default function AddProduct() {
           <div className="formInput col-6 mb-3">
                     <select className="popdropdown"  name="QtyType"  value={productData.QtyType} onChange={handleChange}  >
                     <option value="">-- Select QtyType --</option>
-                      <option value="kg">kg</option>
-                      <option value="gram">grams</option>
+                      <option value="kg">Kg</option>
+                      <option value="gram">Grams</option>
                       <option value="liter">liters</option>
+                      <option value="numbers">Numbers</option>
                     </select>
                 </div>
           {/* <div className="mb-3">

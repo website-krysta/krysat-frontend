@@ -93,8 +93,9 @@ export default function Addpacking() {
                     <select className="popdropdown"  name="QtyType"  value={packingData.QtyType} onChange={handleChange}  >
                     <option value="">-- Select QtyType --</option>
                       <option value="kg">kg</option>
-                      <option value="gram">grams</option>
-                      <option value="liter">liters</option>
+                      <option value="gram">Grams</option>
+                      <option value="liter">Liters</option>
+                      <option value="numbers">Numbers</option>
                     </select>
                 </div>
           {/* <div className="mb-3">
